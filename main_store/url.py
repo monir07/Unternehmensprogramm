@@ -40,6 +40,8 @@ urlpatterns = [
     # path('demo_job_name_delete', demo_job_name_delete, name='demo_job_name_delete'),
     path('job_no_store', job_no_store, name='job_no_store'),
 
+    path('item_group_name_change', item_group_name_change, name='item_group_name_change'),
+
 
     path('quality_receive', quality_receive, name='quality_receive'),
     path('material_quality/<quality_no>/', material_quality, name='material_quality'),

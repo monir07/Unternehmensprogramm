@@ -810,6 +810,17 @@ def product_name_store(request):
     return render(request, 'main_store/demo_code_name.html')
 
 
+def item_group_name_change(request):
+    name = "Timber & Stationary"
+    group_name = ProductCodeName.objects.filter(Q(item_under_group=name))
+    for group in group_name:
+        print("--------------------------")
+        group.item_under_group = "Timber and Stationary"
+        group.save()
+        print("Group", group.item_under_group)
+    return render(request, 'main_store/demo_code_name.html')
+
+
 def data_entry_statement(request):
     total_buy = 0
     total_issue = 0
