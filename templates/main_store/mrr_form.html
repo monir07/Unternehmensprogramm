@@ -1,0 +1,403 @@
+{% extends 'main_store/Existing_product_store_form.html' %}
+{% load staticfiles %}
+{% block content %}
+  <!-- Page Content -->
+  <div class="container">
+
+  {% if submitted1 %}
+     <div class="row" id="paint">
+              <div class="col-lg-12 text-center"><br>
+                <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+                    <span class="sr-only">Loading...</span>
+              </div>
+     </div>
+        <script>
+             setTimeout(function(){
+                window.location.href = "{% url 'compose_mrr'%}";
+             }, 3500);
+        </script>
+{% else %}
+
+      <div class="col-md-12"><br> </div>
+      <div class="col-md-12" style="background-color: #ff913a">
+        <p>** প্রথমে ফর্মের নিচে মালামালের লিস্ট যোগ করুন, এরপর মুল ফর্ম পূরণ করুন। </p>
+    </div>
+      <div class="col-md-12"><br> </div>
+    <div class="row">
+        <div class="col-md-3 text-center">
+            <img src="{% static 'img/ksy_logo.png' %}" class="logo" alt="...">
+        </div>
+          <div class="col-md-6 text-center">
+            <h1 class = "font-weight-normal">খুলনা শিপইয়ার্ড লিমিটেড</h1>
+            <h4 class = "font-weight-light"> বাংলাদেশ নৌ-বাহিনী, খুলনা </h4>
+            <h3 class = "font-weight-normal"><u> দ্রব্য গ্রহণ প্রতিবেদন</u> </h3>
+          </div>
+        <b>QF-STR-3</b>
+    </div>
+
+
+ <form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+<!--     sender part start   -->
+     <div class="row"> <!--Header part start-->
+            
+      <div class="form-group col-md-3">
+        <label for="sender_shop">প্রেরকঃ</label>
+        <select class="selectpicker form-control" data-live-search="true" title="নির্বচন করুন" data-live-search-placeholder="Search" data-actions-box="true" name="sender" id="id_sender"   data-max-options="1" >
+                    <option value="Main Store">প্রধান ভাণ্ডার</option>
+        </select>
+      </div>
+      <div class="form-group col-md-3">
+        <label for="receiver_shop">প্রাপকঃ</label>
+                <select class="selectpicker form-control" data-live-search="true" title="নির্বচন করুন" data-live-search-placeholder="Search" data-actions-box="true" name="receiver" id="id_receiver">
+                    <optgroup label="প্রশাসন বিভাগ">
+                      <option value="Costing Section">মূল্য নির্ধারন শাখা</option>
+                      <option value="Commercial Local">বাণিজ্যিক শাখা লোকাল </option>
+                      <option value="Commercial Foreign">বাণিজ্যিক শাখা ফরেন </option>
+                    </optgroup>
+                </select>
+      </div>
+         <div class="form-group col-md-3">
+            <label class="mrr_no"> এম.আর.আর নং  </label>
+              <input type="text" class="form-control"  name="mrr_no" id="id_mrr_no" placeholder="এম.আর.আর নং...">
+        </div>
+        <div class="form-group col-md-3">
+            <label class="mrr_date"> তারিখ </label>
+              <input type="text" class="form-control" onfocus="(this.type='date')"  name="mrr_date" id="id_mrr_date" placeholder="তারিখ...">
+        </div>
+     </div>
+<!--sender part end-->
+<!--Header part start-->
+       <div class="row border-bottom">
+
+      <div class="form-group col-md-6">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                <span class="input-group-text">ফরমায়েশ/ক্রয়াদেশ নং</span>
+                </div>
+                <input type="text" class="form-control" placeholder="ফরমায়েশ.. " name="po_no" id="id_po_no" maxlength="100">
+              </div>
+            </div>
+
+
+            <div class="form-group col-md-6">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"> ফরমায়েশ/ক্রয়াদেশ তারিখঃ </span>
+                  </div>
+                  <input placeholder="তারিখ.. " class="textbox-n form-control" type="text" onfocus="(this.type='date')" name="po_date" id="id_po_date">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">দফা</span>
+                    </div>
+                        <input type="text" class="form-control" name="po_qty" id="id_po_qty" maxlength="100">
+                    </div>
+            </div>
+            <div class="form-group col-6">
+                <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">সরবরাহকারীর নাম</span>
+                        </div>
+                        <input type="text" class="form-control" name="supplier_name" id="id_supplier_name" maxlength="300" placeholder="বিষয়...">
+                </div>
+            </div>
+            <div class="form-group col-6">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">সরবরাহকারীর ঠিকানা </span>
+                  </div>
+                    <input type="text" class="form-control"  name="supplier_addrs" id="id_supplier_addrs" maxlength="100"  placeholder="জব নং.../প্রয়োজন নাই">
+                </div>
+          </div>
+
+
+            <div class="form-group col-6">
+                <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">সরবরাহকারীর চালান / প্যাকিং লিস্ট নং</span>
+                        </div>
+                        <input type="text" class="form-control" name="challan_no" id="id_challan_no" maxlength="300" placeholder="সরবরাহকারীর চালাম / প্যাকিং লিস্ট নং">
+                </div>
+            </div>
+            <div class="form-group col-6">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">চালানের তারিখ </span>
+                  </div>
+                    <input placeholder="তারিখ.. " class="textbox-n form-control" type="text" onfocus="(this.type='date')"  name="challan_date" id="id_challan_date">
+                </div>
+          </div>
+
+          <div class="form-group col-6">
+                <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">কিভাবে সরবরাহ হয়েছে  </span>
+                        </div>
+                        <input type="text" class="form-control" name="how_delivary" id="id_how_delivary" maxlength="300" placeholder="বিষয়...">
+                </div>
+            </div>
+            <div class="form-group col-6">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">যানবাহন রশিদ নং </span>
+                  </div>
+                    <input type="text" class="form-control"  name="transport_form_no" id="id_transport_form_no" maxlength="100"  placeholder="জব নং.../প্রয়োজন নাই">
+                </div>
+          </div>
+
+
+          <div class="form-group col-6">
+                <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">কোথায় সরবরাহ হয়েছে</span>
+                        </div>
+                        <input type="text" class="form-control" name="where_delivery" id="id_where_delivery" maxlength="300" placeholder="বিষয়...">
+                </div>
+            </div>
+            <div class="form-group col-6">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">সরবরাহের তারিখ </span>
+                  </div>
+                    <input placeholder="তারিখ.. " class="textbox-n form-control" type="text" onfocus="(this.type='date')" name="delivery_date" id="id_delivery_date" >
+                </div>
+            </div>
+
+        </div>
+<!--Header part end-->
+
+<!-- Material list end -->
+
+        <div class="row">
+            <div class="col-md-12">
+                <label id="showDes"></label>
+                <ul id="search-results">
+
+                </ul>
+            </div>
+        </div>
+
+
+<!--     Start Table Design-->
+        <table class="table-responsive"> <!--        Start footer part Design-->
+         <table class="table">
+
+         <thead>
+            <tr>
+                <th class="col-md-4"></th>
+                <th class="col-md-3"></th>
+                <th class="col-md-2"></th>
+                <th class="col-md-3"></th>
+            </tr>
+        </thead>
+
+          <tbody class="table-bordered">
+            <tr>
+              <td scope="row">
+                  <div class="row">
+                      <div class="col-md-6">
+                          <label for="quality_shop"> গৃহীত ও পরীক্ষিত </label>
+                          <input type="text" class="form-control"  name="quality_shop" id="id_quality_shop" placeholder="শপের নাম...">
+                      </div>
+
+                      <div class="col-md-6">
+                          <label for="quality_date"> তারিখ </label>
+                          <input placeholder="তারিখ.. " class="textbox-n form-control" type="text" onfocus="(this.type='date')" id="id_quality_date" name="quality_date">
+                      </div>
+
+                      <div class="col-md-6">
+                          <label for="quality_form_no"> দ্রব্যমান পরীক্ষা নং </label>
+                          <input type="text" class="form-control"  name="quality_form_no" id="id_quality_form_no" placeholder="পত্রের নং ...">
+                       </div>
+                      <div class="col-md-6">
+                          <label for="bin_card_writer"> বিন কার্ড লিপিবদ্ধকারী  </label>
+                          <input type="text" class="form-control"  name="bin_card_writer" id="id_bin_card_writer" placeholder="লিপিবদ্ধকারী নাম...">
+                      </div>
+                      <div class="col-md-6">
+                          <label for="written_date"> তারিখ </label>
+                          <input placeholder="তারিখ.. " class="textbox-n form-control" type="text" onfocus="(this.type='date')" id="id_written_date" name="written_date">
+                      </div>
+                  </div>
+              </td>
+
+              <td>
+                  <div class="row">
+                          <div class="col-md-12">
+                          <label for="oic_store"> ওআইসি প্রধান ভান্ডার </label>
+                          <input type="text" class="form-control" name="oic_store" id="id_oic_store" placeholder="নাম ও পদবী..." maxlength="100">
+                      </div>
+                      <div class="col-md-12">
+                          <label class=""> সাক্ষর  </label>
+                          <div class="input-group">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="oic_sign" id="id_oic_sign"/>
+                                    <label class="custom-file-label" for="id_sign">Choose file</label>
+                                </div>
+                          </div>
+                       </div>
+                  </div>
+              </td>
+              <td>
+                  <div class="row">
+                      <div class="col-md-12">
+                          <label for="qc_name"> মূল্যায়িত দ্বারা  </label>
+                          <input type="text" class="form-control" name="qc_name" id="id_qc_name" placeholder=" মূল্যায়নকারীর নাম..." maxlength="100">
+                      </div>
+                      <div class="col-md-12">
+                          <label for="java_no"> জাভা/চেভা নং  </label>
+                          <input type="text" class="form-control" name="java_no" id="id_java_no" placeholder=" জাভা/চেভা নং..." maxlength="100">
+                      </div>
+                      <div class="col-md-12">
+                          <label for="java_date"> তারিখ </label>
+                          <input placeholder="তারিখ.. " class="textbox-n form-control" type="text" onfocus="(this.type='date')" id="id_java_date" name="java_date">
+                      </div>
+                  </div>
+              </td>
+              </td>
+              <td>
+                  <div class="row">
+                      <div class="col-md-12">
+
+                          <label for="ledgerer"> ক্ষতিয়ান নথিভূক্তকারী  </label>
+                          <input type="text" class="form-control"  name="ledgerer" id="id_ledgerer" placeholder="ক্ষতিয়ান নথিভূক্তকারী নাম...">
+                      </div>
+                      <div class="col-md-12">
+                          <label for="leadger_date"> তারিখ </label>
+                          <input placeholder="তারিখ.. " class="textbox-n form-control" type="text" onfocus="(this.type='date')" name="leadger_date" id="id_leadger_date" >
+                      </div>
+                  </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </table>
+<!--     Table Design end-->
+
+<!--     submit button start-->
+        <div class="row"> <!-- submit button section -->
+            <div class="form-group col-md-6">
+                <button type="reset" name="reset" class="btn btn-primary btn-lg btn-block">Reset</button>
+            </div>
+            <div class="form-group col-md-6">
+                <button type="submit" name="_save1" class="btn btn-primary btn-lg btn-block">Submit</button>
+            </div>
+        </div>
+<!--     submit button end-->
+  </form>
+
+
+<!-- Material list start -->
+        <div class="#">
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <table class="col-md-12 table table-bordered table-hover text-center">
+
+                      <thead class="thead-dark">
+                      <br>
+                        <tr>
+                          <th class="col-md-5" scope="col">মালামালের বিবরণ</th>
+                          <th class="col-md-1" scope="col">অবস্থান</th>
+                          <th class="col-md-1" scope="col">অংশ নং</th>
+                          <th class="col-md-2" scope="col">ভাণ্ডার সংকেত</th>
+                          <th class="col-md-2" scope="col">পরিমাণ</th>
+                          <th class="col-md-1" scope="col">একক</th>
+                          <th class="col-md-1" scope="col">এম.আর.আর.নং</th>
+                        </tr>
+                      </thead>
+                    {% if submitted %}
+                        {% for item_list in target_item_query %}
+                        <tr>
+                          <td>{{ item_list.material_des }}</td>
+                          <td>{{ item_list.material_location }}</td>
+                          <td>{{ item_list.material_part_no }}</td>
+                          <td>{{ item_list.store_code }}</td>
+                          <td>{{ item_list.material_qty }}</td>
+                          <td>{{ item_list.material_unit }}</td>
+                          <td>{{ item_list.mrr_no }}</td>
+                        {% endfor %}
+                        </tr>
+                        <tr>
+                          <td><input type="text" class="form-control"  name="material_des" id="id_item_name" maxlength="100"  placeholder="বিবরণ"></td>
+                          <td><input type="text" class="form-control"  name="material_location" id="id_material_location" maxlength="100"  placeholder="অবস্থান"></td>
+                          <td><input type="text" class="form-control"  name="material_part_no" id="id_material_part_no" maxlength="100"  placeholder="অংশ নং"></td>
+                          <td><input type="text" class="form-control"  name="store_code" id="id_item_code" maxlength="100"  placeholder="ভাণ্ডার সংকেত"></td>
+                          <td><input type="text" class="form-control"  name="material_qty" id="id_material_qty" maxlength="100"  placeholder="পরিমাণ"></td>
+                          <td><input type="text" class="form-control"  name="material_unit" id="id_item_unit" maxlength="100"  placeholder="একক"></td>
+                          <td><input type="text" class="form-control"  name="mrr_no" id="id_mrr_no" maxlength="100"  placeholder="এম.আর.আর.নং"></td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                          <td><input type="text" class="form-control"  name="material_des" id="id_item_name" maxlength="100"  placeholder="বিবরণ"></td>
+                          <td><input type="text" class="form-control"  name="material_location" id="id_material_location" maxlength="100"  placeholder="অবস্থান"></td>
+                          <td><input type="text" class="form-control"  name="material_part_no" id="id_material_part_no" maxlength="100"  placeholder="অংশ নং"></td>
+                          <td><input type="text" class="form-control"  name="store_code" id="id_item_code" maxlength="100"  placeholder="ভাণ্ডার সংকেত"></td>
+                          <td><input type="text" class="form-control"  name="material_qty" id="id_material_qty" maxlength="100"  placeholder="পরিমাণ"></td>
+                          <td><input type="text" class="form-control"  name="material_unit" id="id_item_unit" maxlength="100"  placeholder="একক"></td>
+                          <td><input type="text" class="form-control"  name="mrr_no" id="id_mrr_no" maxlength="100"  placeholder="এম.আর.আর.নং"></td>
+                        </tr>
+                      </tbody>
+                    {% endif %}
+                </table>
+            <div class="form-group col-md-3">
+                <button type="submit" name="_save" class="btn btn-primary btn-lg btn-block">Add</button>
+            </div>
+            </form>
+
+        </div>
+<!-- Material list end -->
+        {% endif %}
+  </div>
+{##}
+{#  <script>#}
+{#            $('#id_sign').on('change',function(){#}
+{#                //get the file name#}
+{#                var fileName = $(this).val();#}
+{#                //replace the "Choose a file" label#}
+{#                $(this).next('.custom-file-label').html(fileName);#}
+{#            });#}
+{##}
+            {#Date Time input using jquery#}
+{#            $(function () {#}
+{#                    $("#id_mrr_date").datetimepicker({#}
+{#                      format: 'm/d/Y H:i',#}
+{#                    });#}
+{#                  });#}
+            {#Real time search by jquery#}
+{##}
+{#            $('#id_mrr_date').keyup(function () {#}
+{#              $('#id_po_no').text($(this).val());#}
+{#            });#}
+{##}
+{#Auto Complete using other input type#}
+{##}
+{#            $("#id_mrr_no_first").keyup(function(){#}
+{#                update();#}
+{#            });#}
+{##}
+{#            function update() {#}
+{#              $("#id_po_no").val($('#id_mrr_no_first').val());#}
+{#            }#}
+{# Submit  specific input type data onclick        #}
+{#  $(function () {#}
+{#    $('#id_mrr_no_first').keyup(function () {#}
+{##}
+{#        $.ajax({#}
+{#            type: "POST",#}
+{#            url: "ajax_search",#}
+{#            data: {#}
+{#                'search_text' : $('#id_mrr_no_first').val(),#}
+{#                'csrfmiddlewaretoken' : $("input[name = csrfmiddlewaretoken]").val()#}
+{#            },#}
+{#            success: searchSuccess,#}
+{#            dataType: 'html'#}
+{#        });#}
+{##}
+{#    });#}
+{##}
+{#});#}
+{##}
+{#function searchSuccess(data, textStatus, jqXHR) {#}
+{#    $('#search-results').html(data); <!-- show vlaue of html code this format-->#}
+{#    $('#id_supplier_name').val(data); <!-- show vlaue of input type this format-->#}
+{#}#}
+{#  </script>#}
+{% endblock %}

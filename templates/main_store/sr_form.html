@@ -1,0 +1,207 @@
+{% extends 'main_store/starter.html' %}
+{% load staticfiles %}
+{% block content %}
+  <!-- Page Content -->
+
+  <div class="container">
+      <div class="col-md-12"><br> </div>
+    <div class="row">
+        <div class="col-md-3 text-center">
+            <label>এস.আর নংঃ </label>
+        </div>
+          <div class="col-md-6 text-center">
+            <h3 class = "font-weight-normal">খুলনা শিপইয়ার্ড লিমিটেড</h3>
+            <h5 class = "font-weight-light"> বাংলাদেশ নৌ-বাহিনী, খুলনা </h5>
+        </div>
+        <div class="col-md-3">
+            <b>QF-STR-2</b>
+        </div>
+
+    </div>
+
+
+ <form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+<!--     header part start   -->
+     <div class="row"> <!--Header part start-->
+
+
+         <div class="col-md-3">
+            <label>তারিখঃ</label>
+        </div>
+          <div class="col-md-6 text-center">
+              <h6 class = "font-weight-normal"><u><b> "দ্রব্য চাহিদা ও সরবরাহপত্র " </b></u> </h6>
+        </div>
+        <div class="col-md-3">
+            <label>সরবরাহপত্র নংঃ </label>
+        </div>
+
+         <div class="row col-md-12">
+                <label class="col-md-4">কার্য্য বিবরণঃ............................................... </label>
+                <label class="col-md-4">কার্য্য নং  ...................................................... </label>
+                <label class="col-md-4">হিসাব সংরক্ষণ নং.........................................</label>
+                <label class="col-md-6">দ্রব্যের বিবরণঃ...................................................................................</label>
+                <label class="col-md-6">কোড নং ......................................................................................... </label>
+         </div>
+
+     </div>
+<!--header part end-->
+
+<!--material list table start-->
+    <!--     Start Table Design-->
+        <table class=" table table-bordered table-hover text-center"> <!--        Start footer part Design-->
+                 <thead class="">
+                    <tr>
+                        <th rowspan="2" class="col-md-1 align-middle">একক</th>
+                        <th colspan="2" class="col-md-5 align-middle">পরিমাণ</th>
+                        <th rowspan="2" class="col-md-1 align-middle">একক মূল্য টাকা</th>
+                        <th rowspan="2" class="col-md-2 align-middle">মোট মূল্য টাকা</th>
+                        <th rowspan="2" class="col-md-1 align-middle">এই সরবরাহের পর মজুদের পরিমাণ </th>
+                        <th rowspan="2" class="col-md-2 align-middle">মন্তব্য</th>
+                    </tr>
+                    <tr>
+                        <th class="col-md-1 align-middle">চাহিদা</th>
+                        <th class="col-md-1 align-middle">সরবরাহ</th>
+
+                    </tr>
+                 </thead>
+
+                  <tbody class="table-bordered">
+                        <tr>
+                          <td >এফ ভি</td>
+                          <td >নং</td>
+                          <td >০১(এক) নং</td>
+                          <td >আর-২৩৪৬</td>
+                          <td >নেই</td>
+                          <td >০৩-০৬-২০২০</td>
+                        </tr>
+                  </tbody>
+        </table>
+
+
+<!--material list table end-->
+<div class="col-md-12">
+            <br>
+            <br>
+    </div>
+
+
+<!--     Start Table Design-->
+ <!--        Start footer part Design-->
+         <table class="table-borderless">
+
+         <thead>
+            <tr>
+                <th scope="col" class="col-md-1"></th>
+                <th scope="col" class="col-md-2"></th>
+                <th scope="col" class="col-md-2"></th>
+                <th scope="col" class="col-md-2"></th>
+                <th scope="col" class="col-md-2"></th>
+                <th scope="col" class="col-md-2"></th>
+                <th scope="col" class="col-md-1"></th>
+            </tr>
+        </thead>
+
+          <tbody >
+                <tr>
+                  <td scope="row">
+                      <div class="row">
+                          <label class="col-md-10" for="quality_shop"> লেখক</label>
+                      </div>
+                  </td>
+                  <td scope="row">
+                      <div class="row">
+                          <label class="col-md-6 text-center" for="quality_shop" > অনুমোদনকারী </label>
+                      </div>
+                  </td>
+                  <td scope="row">
+                      <div class="row">
+                          <label class="col-md-6" for="quality_shop" > সরবরাহকারী</label>
+                      </div>
+                  </td>
+                  <td scope="row">
+                      <div class="row">
+                          <label class="col-md-6" for="quality_shop" >গ্রহণকারী </label>
+                      </div>
+                  </td>
+                  <td scope="row">
+                      <div class="row">
+                          <label class="col-md-2" for="quality_shop" >কার্ডেক্স লেখক </label>
+                      </div>
+                  </td>
+                  <td scope="row">
+                      <div class="row">
+                          <label class="col-md-2" for="quality_shop" >মূল্যায়নকারী  </label>
+                      </div>
+                  </td>
+                  <td scope="row">
+                      <div class="row">
+                          <label class="col-md-2" for="quality_shop" >লেজার লেখক</label>
+                      </div>
+                  </td>
+            </tr>
+          </tbody>
+        </table>
+<!--     Table Design end-->
+
+  </form>
+
+
+<!-- Material list start -->
+<!-- Material list end -->
+
+  </div>
+  <script>
+            $('#id_sign').on('change',function(){
+                //get the file name
+                var fileName = $(this).val();
+                //replace the "Choose a file" label
+                $(this).next('.custom-file-label').html(fileName);
+            });
+
+            {#Date Time input using jquery#}
+            $(function () {
+                    $("#id_mrr_date").datetimepicker({
+                      format: 'm/d/Y H:i',
+                    });
+                  });
+            {#Real time search by jquery#}
+
+            $('#id_mrr_date').keyup(function () {
+              $('#id_po_no').text($(this).val());
+            });
+
+{#Auto Complete using other input type#}
+
+            $("#id_mrr_no_first").keyup(function(){
+                update();
+            });
+
+            function update() {
+              $("#id_po_no").val($('#id_mrr_no_first').val());
+            }
+{# Submit  specific input type data onclick        #}
+  $(function () {
+    $('#id_mrr_no_first').keyup(function () {
+
+        $.ajax({
+            type: "POST",
+            url: "ajax_search",
+            data: {
+                'search_text' : $('#id_mrr_no_first').val(),
+                'csrfmiddlewaretoken' : $("input[name = csrfmiddlewaretoken]").val()
+            },
+            success: searchSuccess,
+            dataType: 'html'
+        });
+
+    });
+
+});
+
+function searchSuccess(data, textStatus, jqXHR) {
+    $('#search-results').html(data); <!-- show vlaue of html code this format-->
+    $('#id_supplier_name').val(data); <!-- show vlaue of input type this format-->
+}
+  </script>
+{% endblock %}

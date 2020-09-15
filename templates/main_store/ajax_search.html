@@ -1,0 +1,10 @@
+{% if search_res %}
+{#    {% for search in search_res %}#}
+{#        <li>{{ search.name }}</li>#}
+{#    {% endfor %}#}
+    <p id="name">{{ search_res.name }}</p>
+    <p id="unit">{{ search_res.item_unit }}</p>
+    <p id="group">{{ search_res.item_under_group }}</p>
+{% else %}
+    <p> None for Show!</p>
+{% endif %}

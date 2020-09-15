@@ -1,0 +1,195 @@
+{% extends 'main_store/Existing_product_store_form.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    <!-- Page Content -->
+  <div class="container">
+{% if submitted %}
+     <div class="row" id="paint">
+              <div class="col-lg-12 text-center"><br>
+                <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+                  <p><b>Data Stored Successfully!</b></p>
+              </div>
+     </div>
+        <script>
+             setTimeout(function(){
+                window.location.href = "{% url 'product_store'%}";
+             }, 2500);
+        </script>
+{% else %}
+
+      <div class="col-md-12"><br> </div>
+<!--      Start Header information-->
+    <div class="row">
+        <div class="col-md-3 text-center">
+            <img class="logo" alt="..." src={% static 'img/ksy_logo.png' %} >
+        </div>
+          <div class="col-md-6 text-center">
+            <h1 class = "font-weight-normal">খুলনা শিপইয়ার্ড লিমিটেড</h1>
+            <h4 class = "font-weight-light"> বাংলাদেশ নৌ-বাহিনী, খুলনা </h4>
+            <h3 class = "font-weight-normal"><u> নতুন দ্রব্যের সংরক্ষণ ফরম</u> </h3>
+          </div>
+        <b>QF-PUR-01</b>
+    </div>
+<!--End Header information-->
+
+<!--Start Main Form      -->
+        <div class="custom-form indent_body">
+             <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+            <!--     sender part start   -->
+                 <div class="row">
+                          <div class="form-group row col-md-6">
+                                <label for="id_item_code" style="padding-top:7px; " class="col-md-3"> দ্রব্যের কোডঃ </label>
+                                <input type="text" class="form-control col-md-9"  name="item_code" id="id_item_code" placeholder="দ্রব্যের কোড...">
+                          </div>
+                          <div class="form-group row col-md-6">
+                                <label for="item_name" style="padding-top:7px; " class="col-md-3"> দ্রব্যের নামঃ</label>
+                                <input type="text" class="form-control col-md-9"  name="item_name" id="id_item_name" placeholder="দ্রব্যের নাম...">
+                          </div>
+                          <div class="form-group row col-md-6">
+                                <label for="item_quantity" style="padding-top:7px; " class="col-md-3">দ্রব্যের সংখ্যাঃ</label>
+                                <input type="text" required class="form-control col-md-9"  name="item_quantity" id="id_item_quantity" placeholder="দ্রব্যের সংখ্যা...">
+                          </div>
+                          <div class="form-group row col-md-6">
+                                <label for="item_unit" style="padding-top:7px; " class="col-md-3"> দ্রব্যের এককঃ </label>
+                                <input type="text" class="form-control col-md-9"  name="item_unit" id="id_item_unit" placeholder="দ্রব্যের একক...">
+                          </div>
+                           <div class="form-group row col-md-6">
+                                <label for="ref_no" style="padding-top:7px;" class="col-md-3"> রেফারেন্স নংঃ</label>
+                                <input type="text" class="form-control col-md-9"  name="ref_no" id="id_ref_no" placeholder="এম.আর.আর নং...">
+                          </div>
+                          <div class="form-group row col-md-6">
+                                <label for="buy_onDate" style="padding-top:7px;" class="col-md-3">তারিখঃ</label>
+                                <input placeholder="এম.আর.আর তারিখঃ... " class="textbox-n form-control col-md-9" type="text" onfocus="(this.type='date')"  name="buy_onDate" id="id_buy_onDate">
+                          </div>
+                          <div class="form-group row col-md-6">
+                                <label for="buy_underJob" style="padding-top:7px; " class="col-md-3"> কার্যাদেশ নংঃ</label>
+                                <input type="text" class="form-control col-md-9"  name="buy_underJob" id="id_buy_underJob" placeholder="NB-729">
+                          </div>
+
+                          <div class="form-group row col-md-6">
+                                <label for="item_user" style="padding-top:7px; " class="col-md-3">ব্যাবহারকারীঃ </label>
+{#                                <input type="text" class="form-control col-md-9"  name="item_user" id="id_item_user" placeholder="ব্যাবহারকারী শাখার নাম...">#}
+                                <select class="selectpicker form-control col-md-9" data-live-search="true" title="নির্বচন করুন" data-live-search-placeholder="Search" data-actions-box="true" name="item_user" id="id_item_user"  multiple="multiple" data-max-options="1" >
+                                      <optgroup label="প্রডাকশন বিভাগ">
+                                          <option value="Plater Shop">জাহাজ নির্মাণ শাখা (PLATER SHOP)</option>
+                                          <option value="Machine Shop Outdoor">যান্ত্রিক বাহির শাখা (MACHINE SHOP O/D)</option>
+                                          <option value="Machine Shop Indoor">যান্ত্রিক ভিতর শাখা (MACHINE SHOP I/D)</option>
+                                          <option value="Docking Section">নঙ্গর শাখা (DOCKING)</option>
+                                          <option value="Civil Section">পুরকৌশল শাখা (CIVIL)</option>
+                                          <option value="Electrical Section">বিদ্যুৎ শাখা (ELECTRICAL)</option>
+                                          <option value="Radio Electrical Section">রেডিও ইলেক্ট্রিক্যাল (RADIO ELECTRICAL)</option>
+                                          <option value="Carpentry Shop">কার্প্রেন্ট্রি শপ (CARPENTRY SHOP)</option>
+                                          <option value="Maintenance Section">রক্ষণাবেক্ষণ শাখা (MAINTENANCE)</option>
+                                        </optgroup>
+                                        <optgroup label="নকশা ও পরিকল্পনা বিভাগ">
+                                          <option value="Design Section">নকশা শাখা (DESIGN SECTION)</option>
+                                          <option value="Planning Section">পরিকল্পনা শাখা (PLANNING SECTION)</option>
+                                          <option value="IT Section">আইটি শাখা (IT)</option>
+                                        </optgroup>
+                                        <optgroup label="প্রশাসন বিভাগ">
+                                          <option value="Admin Section">প্রশাসন শাখা (ADMIN)</option>
+                                          <option value="Commercial Local">বাণিজ্যিক লোকাল (COMMERCIAL LOCAL)</option>
+                                          <option value="Commercial Foreign">বাণিজ্যিক ফরেন (COMMERCIAL FOREIGN)</option>
+                                          <option value="Human Resource Section">হিউম্যান রিসোর্স শাখা (HUMAN RESOURCE)</option>
+                                          <option value="Main Store">প্রধান ভাণ্ডার (MAIN STORE)</option>
+                                          <option value="Rubber Factory">রাবার ফ্যাক্টরী (RUBBER FACTORY)</option>
+                                          <option value="MT Pool">এমটি পুল (MT POOL)</option>
+                                          <option value="Caretaker">কেয়ার টেকার শাখা (CARETAKER)</option>
+                                          <option value="Security">নিরাপত্তা শাখা (SECURITY)</option>
+                                          <option value="Medical">মেডিক্যাল শাখা (MEDICAL)</option>
+                                        </optgroup>
+                                        <optgroup label="অর্থ বিভাগ">
+                                          <option value="Finance Section">অর্থ শাখা (FINANCE SECTION)</option>
+                                          <option value="Costing Section">মূল্য নির্ধারন শাখা (COSTING SECTION)</option>
+                                        </optgroup>
+                                        <optgroup label="সকল বিভাগ">
+                                          <option value="Every Section">সকল শাখা (EVERY SECTION)</option>
+                                        </optgroup>
+				                </select>
+                          </div>
+                          <div class="form-group row col-md-6">
+                                <label for="item_location" style="padding-top:7px; " class="col-md-3">অবস্থানঃ </label>
+                                <input type="text" class="form-control col-md-9"  name="item_location" id="id_item_location" placeholder="দ্রব্য যে র‍্যাকে আছে...">
+                          </div>
+                          <div class="form-group row col-md-6">
+                                <label for="expire_date" style="padding-top:7px; " class="col-md-3">দ্রব্যের মেয়াদঃ </label>
+                                <input type="text" class="form-control col-md-9" onfocus="(this.type='date')"  name="expire_date" id="id_expire_date" placeholder="দ্রব্যের মেয়াদউত্তীর্ন তারিখ ...">
+                          </div>
+                          <div class="form-group row col-md-6">
+                                <label for="min_balance" style="padding-top:7px; " class="col-md-3">নিম্ন ব্যাল্যান্সঃ </label>
+                                <input type="text" class="form-control col-md-9"  name="min_balance" id="id_min_balance" placeholder="দ্রব্যের নুন্যতম ব্যাল্যান্স সংখ্যায়...">
+                          </div>
+                          <div class="form-group row col-md-6">
+                                <label for="item_picture" style="padding-top:7px; " class="col-md-3">ছবিঃ</label>
+                                <div class="input-group col-md-9">
+                                    <input type="file" class="custom-file-input" name="item_picture" id="id_item_picture">
+                                    <div class="input-group-prepend">
+                                        <label class="custom-file-label" for="id_item_picture">ছবি নির্বাচন করুন...</label>
+                                    </div>
+                                </div>
+                          </div>
+                          <div class="form-group row col-md-6">
+                                <label for="recorder" style="padding-top:7px; " class="col-md-3">সংরক্ষণকারীঃ</label>
+                                <select class="selectpicker form-control col-md-9" data-live-search="true" title="নির্বচন করুন" data-live-search-placeholder="Search" data-actions-box="true" name="recorder" id="id_recorder"  multiple="multiple" data-max-options="1" >
+                                          <option value="Motahar">মোতাহার</option>
+                                          <option value="Alam">আলম</option>
+                                          <option value="Arafat">আরাফাত</option>
+                                          <option value="Mehedi">মেহেদী</option>
+                                          <option value="Khaled">খালেদ</option>
+                                          <option value="Alamgir">আলমগীর</option>
+				                </select>
+
+                          </div>
+                          <div class="form-group row col-md-6">
+                                <label for="remarks" style="padding-top:7px; " class="col-md-3"> মন্তব্যঃ</label>
+                                <input type="text" class="form-control col-md-9"  name="remarks" id="id_remarks" placeholder="দ্রব্যের সম্পর্কে মন্তব্য...">
+                          </div>
+                          <div class="form-group row col-md-6">
+{#                                <label for="remarks" style="padding-top:7px; " class="col-md-3"> মন্তব্যঃ</label>#}
+{#                                <input type="text" class="form-control col-md-9"  name="remarks" id="id_remarks" placeholder="দ্রব্যের সম্পর্কে মন্তব্য...">#}
+                          </div>
+                          <div class="form-group row col-md-6">
+                                <label for="remarks" style="padding-top:7px; " class="col-md-3"> গ্রুপঃ</label>
+                                <input type="text" class="form-control col-md-9"  name="item_under_group" id="id_item_under_group" placeholder="গ্রুপ...">
+{#                                <select class="selectpicker form-control col-md-9" data-live-search="true" title="নির্বচন করুন" data-live-search-placeholder="Search" data-actions-box="true" name="item_under_group" id="id_item_under_group"  multiple="multiple" data-max-options="1" >#}
+{#                                          <option value="Hardware">হার্ডওয়্যার </option>#}
+{#                                          <option value="Foreign">ফরেন</option>#}
+{#                                          <option value="General">জেনারেল</option>#}
+{#                                          <option value="Electrical">ইলেকট্রিক্যাল</option>#}
+{#                                          <option value="Timber & Stationary">টিম্বার ও স্টেশনারী</option>#}
+{#                                          <option value="Foundry">ফাউন্ড্রী</option>#}
+{#                                          <option value="Tools">টুলস</option>#}
+{#                                          <option value="Steel">স্টীল</option>#}
+{#				                </select>#}
+                          </div>
+                <!--     submit button start-->
+                            <div class="form-group col-md-6">
+                                <button type="reset" name="_preview" class="btn btn-primary btn-lg btn-block">Reset</button>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <button type="submit" name="_save" class="btn btn-primary btn-lg btn-block">Submit</button>
+                            </div>
+                <!--     submit button end-->
+
+                 </div>
+            <!--sender part end-->
+             </form>
+<!-- this error message is product code repeat verification control-->
+            {% if error_msg %}
+                <p style="color: #ff4d4f"><b>{{ p_code }} </b>{{ error_msg }}</p>
+            {% endif %}
+        </div>
+</div>
+
+{#    <script>#}
+{#      $(function () {#}
+{#        $("#id_buy_onDate").datetimepicker({#}
+{#          format: 'Y-m-d',#}
+{#        });#}
+{#      });#}
+{#    </script>#}
+
+{% endif %}
+{% endblock %}

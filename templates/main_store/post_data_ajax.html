@@ -1,0 +1,44 @@
+{% extends 'main_store/starter_ajax.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<!-- Page Content -->
+<div class="container">
+    <div class="col-md-12"><br> </div>
+    <!--      Start Header information-->
+        <div class="row">
+            <div class="col-md-3 text-center">
+                <img class="logo" alt="..." src={% static 'img/ksy_logo.png' %} >
+            </div>
+              <div class="col-md-6 text-center">
+                <h1 class = "font-weight-normal">খুলনা শিপইয়ার্ড লিমিটেড</h1>
+                <h4 class = "font-weight-light"> বাংলাদেশ নৌ-বাহিনী, খুলনা </h4>
+                  <h4 class = "font-weight-normal"><b><u>দ্রব্যের ইস্যু বিবরণী</u></b> </h4>
+                  <br>
+              </div>
+            <b>QF-PUR-01</b>
+        </div>
+    <!--End Header information-->
+<!--Bin Card Information section Start-->
+        <div class="row">
+            <div class="col-md-2">
+
+            </div>
+
+            <div class="col-md-8">
+                {% csrf_token %}
+                  <input type="text" class="form-control" id="id_search" name="id_search" placeholder="Search product.." aria-describedby="basic-addon2">
+
+                  <ul id="search-results">
+
+                  </ul>
+            </div>
+
+            <div class="col-md-2">
+
+            </div>
+
+        </div>
+<!--Bin Card Information section End-->
+</div>
+{% endblock %}

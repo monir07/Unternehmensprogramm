@@ -1,0 +1,16 @@
+
+product_issue_form
+Sr_No	Date,		Job_No,		receipt_Shop,	item_code,	item_name,	item_quantity,		
+1236	18-06-20	NB-712		Plater shop	33B/2290	Nozzle		50	
+1236	18-06-20	NB-722		out door	33B/2290	Nozzle		45	
+
+ 
+product_store_form
+item_code,	item_name,	Buy_under_job,		date_of_buy,	item_quantity,		item_location	
+33B/2290	Nozzle		NB-712			18-05-20	500			Rack-0001
+33B/2290	Nozzle		NB-733			14-04-20	300
+
+
+product_status_display
+item_code,	item_name,	item_total_quantity	item_on_rack
+33B/2290	Nozzle		800			rack-K(212)

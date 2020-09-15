@@ -1,0 +1,48 @@
+@font-face {
+    font-family: AdorshoLipi;
+    src: local('AdorshoLipi'), url('../../../style_idn/font/AdorshoLipi.ttf') format('truetype'),
+            local('kalpurush'), url('../../../style_idn/font/kalpurush.ttf') format('truetype'),
+            local('Siyamrupali'), url('../../../style_idn/font/Siyamrupali.ttf') format('truetype');
+
+}
+h1,h2,h3,h4,h5,h6 {
+    font-family: AdorshoLipi, serif;
+}
+body{
+    font-family: AdorshoLipi, serif;
+}
+ul{
+	list-style-type: none;
+}
+img.logo{
+    width: 130px;
+    height: 130px;
+}
+ol {
+    margin-left: 0;
+    padding-left: 0px;
+}
+ol li {
+  counter-increment: my-awesome-counter;
+  display: flex;
+  font-size: 12pt;
+}
+ol li::before {
+  content: "0" counter(my-awesome-counter);
+  font-size: 14pt;
+  margin-right: 0.5rem;
+  margin-top: 0;
+  font-family:SutonnyMJ, serif;
+  line-height: 1;
+}
+.dateFont label {
+    font-family:SutonnyMJ, serif;
+    font-size: 16pt;
+}
+
+.indent_body{
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 30px;
+}
+

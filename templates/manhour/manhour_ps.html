@@ -1,0 +1,386 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'Home/img/fabicon.png' %}">
+  <title>Khulna Shipyard Ltd</title>
+
+{#  <!-- Bootstrap core CSS -->#}
+  <link rel="stylesheet" href={% static 'style_idn/vendor/bootstrap/css/bootstrap.min.css' %} >
+  <link rel="stylesheet" href={% static 'style_idn/vendor/bootstrap/css/custom.css' %} >
+
+  <!-- multiselect css -->
+  <link rel="stylesheet" href={% static 'style_idn/css/bootstrap-select.css' %}>
+
+  <!-- Text editor installation-->
+
+
+</head>
+
+<body>
+
+
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Khulna Shipyard Limited</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'plater-shop' %}">home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+   <!--------- end of navigation bar------>
+
+{% block content %}
+
+    {% if submitted %}
+         <div class="row" id="paint">
+              <div class="col-lg-12 text-center"><br>
+                <h4 class = "font-weight-light"> আপনার অভ্যন্তরীণ লিপি সঠিকভাবে প্রেরণ করা হয়েছে, ধন্যবাদ।  </h4>
+              </div>
+          </div>
+        <script>
+             setTimeout(function(){
+                window.location.href = "{% url 'manhour-detail' %}";
+             }, 2000);
+        </script>
+    {% else %}
+  <!-- Page Content -->
+  <div class="container">
+      <div class="col-md-12"><br> </div>
+    <div class="row">
+        <div class="col-md-3 text-center">
+            <img src="{% static 'img/ksy_logo.png' %}" class="logo" alt="...">
+        </div>
+          <div class="col-md-6 text-center">
+            <h1 class = "font-weight-normal">খুলনা শিপইয়ার্ড লিমিটেড</h1>
+            <h4 class = "font-weight-light"> বাংলাদেশ নৌ-বাহিনী, খুলনা </h4>
+            <h3 class = "font-weight-normal"> জব ভিত্তিক হাজিরা </h3>
+          </div>
+	</div>
+
+
+	<form action="" method="post" enctype="multipart/form-data">
+		{% csrf_token %}
+        <div class="row">
+            <div class="form-group col-md-6">
+              <div class="input-group">
+        			  <div class="input-group-prepend">
+        				<span class="input-group-text">সুত্রঃ</span>
+        			  </div>
+        			  <input type="text" class="form-control" name="ref" id="id_ref" maxlength="100">
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+                <div class="input-group">
+			  <div class="input-group-prepend">
+				<span class="input-group-text">তারিখঃ</span>
+			  </div>
+			  <input type="date" class="form-control"  name="manhour_date" id="id_manhour_date">
+			</div>
+            </div>
+			<div class="form-group col-md-6">
+			  <label for="manhour_sender">প্রেরকঃ</label>
+				<select class="selectpicker form-control" data-live-search="true" title="নির্বচন করুন" data-live-search-placeholder="Search" data-actions-box="true" name="manhour_sender" id="id_manhour_sender"  multiple="multiple" data-max-options="1" >
+				  <optgroup label="প্রডাকশন বিভাগ">
+                      <option value="1">ও.আই.সি জাহাজ নির্মাণ শাখা</option>
+                      <option value="2">ও.আই.সি যান্ত্রিক বাহির শাখা</option>
+                      <option value="3">ও.আই.সি যান্ত্রিক ভিতর শাখা</option>
+                      <option value="4">ও.আই.সি নঙ্গর শাখা</option>
+                      <option value="5">ও.আই.সি পুরকৌশল শাখা</option>
+                      <option value="6">ও.আই.সি বিদ্যুৎ শাখা</option>
+                      <option value="7">ও.আই.সি রেডিও ইলেক্ট্রিক্যাল শাখা</option>
+                      <option value="8">ও.আই.সি কার্প্রেন্ট্রি শপ</option>
+                      <option value="9">ও.আই.সি রক্ষণাবেক্ষণ শাখা</option>
+                    </optgroup>
+                    <optgroup label="নকশা ও পরিকল্পনা বিভাগ">
+                      <option value="10">ও.আই.সি নকশা শাখা</option>
+                      <option value="11">ও.আই.সি পরিকল্পনা শাখা</option>
+                      <option value="12">ও.আই.সি আইটি শাখা</option>
+                    </optgroup>
+                    <optgroup label="প্রশাসন বিভাগ">
+                      <option value="13">প্রশাসন শাখা</option>
+                      <option value="14">বাণিজ্যিক শাখা লোকাল</option>
+                      <option value="15">বাণিজ্যিক শাখা ফরেন</option>
+                      <option value="16">হিউম্যান রিসোর্স শাখা</option>
+                      <option value="17">প্রধান ভাণ্ডার</option>
+                    </optgroup>
+                    <optgroup label="অর্থ বিভাগ">
+                      <option value="18">অর্থ শাখা </option>
+                      <option value="19">মূল্য নির্ধারন শাখা</option>
+                    </optgroup>
+				</select>
+			</div>
+			<div class="form-group col-md-6">
+			  <label for="manhour_receiver">প্রাপকঃ</label>
+                <select class="selectpicker form-control" data-live-search="true" title="নির্বচন করুন" data-live-search-placeholder="Search" data-actions-box="true" name="manhour_receiver" id="id_manhour_receiver" multiple = "multiple">
+                    <optgroup label="প্রোডাকশন বিভাগ">
+                      <option value="1">জি এম প্রোডাকশন</option>
+                      <option value="2">ডি জি এম (এস বি)</option>
+                      <option value="3">ডি জি এম ইঞ্জিনিয়ারিং</option>
+                      <option value="4">ডি জি এম ইলেক্ট্রিক্যাল</option>
+                    </optgroup>
+                    <optgroup label="নকশা ও পরিকল্পনা বিভাগ">
+                      <option value="5">জি এম নকশা ও পরিকল্পনা</option>
+                      <option value="6">ডি জি এম নকশা ও পরিকল্পনা </option>
+                      <option value="7">আইটি শাখা</option>
+                    </optgroup>
+                    <optgroup label="প্রশাসন বিভাগ">
+                      <option value="7">জি এম প্রশাসন </option>
+                      <option value="8">ডি জি এম প্রশাসন </option>
+                    </optgroup>
+                    <optgroup label="অর্থ বিভাগ">
+                      <option value="9">জি এম অর্থ </option>
+                      <option value="10">ডি জি এম অর্থ</option>
+                    </optgroup>
+                </select>
+			</div>
+			<div class="form-group col-12">
+				<hr>
+			</div>
+			<div class="form-group col-6">
+                <label for="manhour_jobType">জবের ধরনঃ </label>
+                <select class="selectpicker form-control" data-live-search="true" title="নির্বচন করুন" data-live-search-placeholder="Search" data-actions-box="true" name="manhour_jobType" id="id_manhour_jobType">
+                      <option value="1">নবনির্মাণ</option>
+                      <option value="2">মেরামতি</option>
+                      <option value="3">ম্যানুফ্যাকচারিং</option>
+                      <option value="4">আভ্যন্তরীণ</option>
+                </select>
+            </div>
+            <div class="form-group col-6">
+                <label for="manhour_jobNo">জব নংঃ </label>
+                <select class="selectpicker form-control" data-live-search="true" title="নির্বচন করুন" data-live-search-placeholder="Search" data-actions-box="true" name="manhour_jobNo" id="id_manhour_jobNo">
+                    <optgroup label="নবনির্মাণ">
+                      <option value="1">নব নির্মান-৭২৫</option>
+                      <option value="2">নব নির্মান-৭২৯</option>
+                      <option value="3">নব নির্মান-৭৩০</option>
+                      <option value="4">নব নির্মান-৭৩১</option>
+                      <option value="5">নব নির্মান-৭৩২</option>
+                      <option value="6">নব নির্মান-৭৩৩</option>
+                    </optgroup>
+                    <optgroup label="মেরামতি">
+                      <option value="7">মেরামতি-২৩৩৬</option>
+                      <option value="8">মেরামতি-২৩৩৭</option>
+                      <option value="9">মেরামতি-২৩৪২</option>
+                      <option value="10">মেরামতি-২৩৪৩</option>
+                    </optgroup>
+                    <optgroup label="ম্যানুফ্যাকচারিং">
+                      <option value="#">মেরামতি-২৩৩৬</option>
+                      <option value="#">মেরামতি-২৩৩৭</option>
+                      <option value="#">মেরামতি-২৩৪২</option>
+                      <option value="#">মেরামতি-২৩৪৩</option>
+                    </optgroup>
+                    <optgroup label="আভ্যন্তরীণ">
+                      <option value="11">আভ্যঃ বিঃ-৩১৩</option>
+                      <option value="12">আভ্যঃ এম/এম-৪৩/১১</option>
+                      <option value="13">আভ্যঃ পিঃ-৫৪৫</option>
+                      <option value="14">আভ্যঃ ৪৭/২৩</option>
+                      <option value="#">আভ্যঃ </option>
+                    </optgroup>
+                </select>
+            </div>
+            <div class="form-group col-6">
+                <label for="manhour_jobOfficer">জব অফিসারঃ </label>
+                <select class="selectpicker form-control" data-live-search="true" title="নির্বচন করুন" data-live-search-placeholder="Search" data-actions-box="true" name="manhour_jobOfficer" id="id_manhour_jobOfficer">
+                      <option value="1">মোঃ গিয়াস উদ্দিন</option>
+                      <option value="2">মাহমুদ আনজির করিম</option>
+                      <option value="3">মোঃ নাজমুল হক</option>
+                      <option value="4">মোঃ সাইফুল ইসলাম</option>
+                      <option value="5">মোহাম্মাদ রাসেল খান</option>
+                      <option value="6">এম এ সালাম</option>
+                      <option value="7">মোঃ ফিরোজ আহম্মেদ</option>
+                      <option value="8">হাসানুজ্জামান খান</option>
+                      <option value="9">মোঃ ফরিদ উদ্দিন</option>
+                      <option value="10">মোঃ ইব্রাহীম</option>
+                      <option value="11">মোঃ মনিরুল ইসলাম</option>
+                      <option value="12">মোঃ নাহিদ হোসাইন</option>
+                      <option value="13">মীর ইউসুফ কাউছার</option>
+                </select>
+            </div>
+            <div class="form-group col-6">
+                <label for="manhour_supvr">জব সুপারভাইজার/লিডম্যানঃ  </label>
+                <select class="selectpicker form-control" data-live-search="true" title="নির্বচন করুন" data-live-search-placeholder="Search" data-actions-box="true" name="manhour_supvr" id="id_manhour_supvr">
+                      <option value="1">মাসুদ রানা</option>
+                      <option value="2">এ কে এম রেজাউল করিম</option>
+                      <option value="3">আবুল কালাম</option>
+                      <option value="3">পারভেজ</option>
+                </select>
+            </div>
+
+            <div class="form-group col-6">
+                <select class="selectpicker form-control" data-live-search="true" title="শিফট নির্বাচন করুনঃ" data-live-search-placeholder="Search" data-actions-box="true" name="manhour_shift" id="id_manhour_shift">
+                      <option value="1">এ শিফট</option>
+                      <option value="2">বি শিফট</option>
+                      <option value="3">নাইট শিফট</option>
+                </select>
+            </div>
+            <div class="form-group col-md-6">
+              <div class="input-group">
+        			  <div class="input-group-prepend">
+        				<span class="input-group-text">ফিটারঃ</span>
+        			  </div>
+        			  <input type="text" class="form-control" placeholder="জাহাজ নির্মাণ" name="manhour_fitter" id="id_manhour_fitter" maxlength="100">
+                      <div class="input-group-prepend">
+        				<span class="input-group-text">ফিটারঃ</span>
+        			  </div>
+        			  <input type="text" class="form-control" placeholder="অন্যান্য শপ" name="manhour_fitter_Other" id="id_manhour_fitter_Other" maxlength="100">
+              </div>
+            </div>
+
+            <div class="form-group col-md-6">
+              <div class="input-group">
+        			  <div class="input-group-prepend">
+        				<span class="input-group-text">ওয়েল্ডারঃ</span>
+        			  </div>
+        			  <input type="text" class="form-control" placeholder="জাহাজ নির্মাণ" name="manhour_welder" id="id_manhour_welder" maxlength="100">
+                      <div class="input-group-prepend">
+        				<span class="input-group-text">ওয়েল্ডারঃ</span>
+        			  </div>
+        			  <input type="text" class="form-control" placeholder="অন্যান্য শপ" name="manhour_welder_Other" id="id_manhour_welder_Other" maxlength="100">
+              </div>
+            </div>
+
+            <div class="form-group col-md-6">
+              <div class="input-group">
+        			  <div class="input-group-prepend">
+        				<span class="input-group-text">গ্যাস কাটারঃ </span>
+        			  </div>
+        			  <input type="text" class="form-control" placeholder="জাহাজ নির্মাণ" name="manhour_gasCutter" id="id_manhour_gasCutter" maxlength="100">
+                      <div class="input-group-prepend">
+        				<span class="input-group-text">গ্যাস কাটারঃ </span>
+        			  </div>
+        			  <input type="text" class="form-control" placeholder="অন্যান্য শপ" name="manhour_gasCutter_Other" id="id_manhour_gasCutter_Other" maxlength="100">
+              </div>
+            </div>
+
+            <div class="form-group col-md-6">
+              <div class="input-group">
+        			  <div class="input-group-prepend">
+        				<span class="input-group-text">গ্রাইন্ডারঃ</span>
+        			  </div>
+        			  <input type="text" class="form-control" placeholder="জাহাজ নির্মাণ" name="manhour_grinder" id="id_manhour_grinder" maxlength="100">
+                      <div class="input-group-prepend">
+        				<span class="input-group-text">গ্রাইন্ডারঃ</span>
+        			  </div>
+        			  <input type="text" class="form-control" placeholder="অন্যান্য শপ" name="manhour_grinder_Other" id="id_manhour_grinder_Other" maxlength="100">
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <div class="input-group">
+        			  <div class="input-group-prepend">
+        				<span class="input-group-text">মেশিনম্যানঃ</span>
+        			  </div>
+        			  <input type="text" class="form-control" placeholder="জাহাজ নির্মাণ" name="manhour_machineMan" id="id_manhour_machineMan" maxlength="100">
+                      <div class="input-group-prepend">
+        				<span class="input-group-text">সিএনসিঃ</span>
+        			  </div>
+        			  <input type="text" class="form-control" placeholder="জাহাজ নির্মাণ" name="manhour_cNc" id="id_manhour_cNc" maxlength="100">
+              </div>
+            </div>
+
+            <div class="form-group col-md-6">
+                <button type="submit" name="_preview" class="btn btn-primary btn-lg btn-block">Preview</button>
+            </div>
+            <div class="form-group col-md-6">
+                <button type="submit" name="_save" class="btn btn-primary btn-lg btn-block">Submit</button>
+            </div>
+		</div>
+	</form>
+  {% endif %}
+  </div>
+
+
+{% endblock %}
+  <!-- Bootstrap core JavaScript -->
+<script src={% static 'style_idn/vendor/jquery/jquery.slim.min.js' %}></script>
+<script src={% static 'style_idn/vendor/bootstrap/js/bootstrap.bundle.min.js' %}></script>
+
+
+<!-- Dropdown Multiple Select JS -->
+<script src={% static 'style_idn/js/bootstrap-select.js'%}></script>
+
+<!-- Text Editor Source JS-->
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+<script type="text/javascript" src="{% static "ckeditor/ckeditor.js" %}"></script>
+
+<!-- JS Declaration here. -->
+
+<script type="text/javascript">
+
+// http redirect --------------------
+
+// Multiselect--------------------------------------
+function createOptions(number) {
+  var options = [], _options;
+  var option1 = ['Managing Director','GM Production','DGM Shipbuilding','DGM Engineering','DGM Electrical'];
+
+  {#Option Group Variable#}
+  var option_group = [];
+  var group_1st_tag =  '<optgroup label=" 1st gr">';
+  var group_end_tag =  '</optgroup>';
+
+
+  for (var i = 0; i < number; i++) {
+    var option = '<option value="' + i + '">' + option1[i] + '</option>';
+    options.push(option);
+  }
+
+
+
+  option_group.push(group_1st_tag);
+  option_group.push(options);
+  option_group.push(group_end_tag);
+
+  _options = option_group.join('');
+
+  $('#number')[0].innerHTML = _options;
+
+  {#$('#number-multiple')[0].innerHTML = _options;#}
+  {##}
+  {##}
+  {#$('#number2')[0].innerHTML = _options;#}
+  {#$('#number2-multiple')[0].innerHTML = _options;#}
+}
+
+var mySelect = $('#first-disabled2');
+
+createOptions(5);
+
+$('#special').on('click', function () {
+  mySelect.find('option:selected').prop('disabled', true);
+  mySelect.selectpicker('refresh');
+});
+
+$('#special2').on('click', function () {
+  mySelect.find('option:disabled').prop('disabled', false);
+  mySelect.selectpicker('refresh');
+});
+
+$('#basic2').selectpicker({
+  liveSearch: true,
+  maxOptions: 1
+});
+</script>
+
+
+</body>
+
+</html>

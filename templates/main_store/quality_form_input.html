@@ -1,0 +1,263 @@
+{% extends 'main_store/Existing_product_store_form.html' %}
+{% load staticfiles %}
+{% block content %}
+  <!-- Page Content -->
+
+  <div class="container">
+   {% if submitted %}
+     <div class="row" id="paint">
+              <div class="col-lg-12 text-center"><br>
+                <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+                    <span class="sr-only">Loading...</span>
+              </div>
+     </div>
+        <script>
+             setTimeout(function(){
+                window.location.href = "{% url 'quality_input'%}";
+             }, 3500);
+        </script>
+{% else %}
+    <div class="col-md-12" style="background-color: #ff913a">
+        <p>** প্রথমে ফর্মের নিচে মালামালের লিস্ট যোগ করুন, এরপর মুল ফর্ম পূরণ করুন। </p>
+    </div>
+    <div class="row">
+        <div class="col-md-3 text-center">
+            <img src="{% static 'img/ksy_logo.png' %}" class="logo" alt="...">
+        </div>
+          <div class="col-md-6 text-center">
+            <h1 class = "font-weight-normal">খুলনা শিপইয়ার্ড লিমিটেড</h1>
+            <h4 class = "font-weight-light"> বাংলাদেশ নৌ-বাহিনী, খুলনা </h4>
+            <h4 class = "font-weight-normal"><u>"দ্রব্যমান পরীক্ষা পত্র"</u> </h4>
+            <h5 class = "font-weight-normal">(MATERIAL QUALITY INSPECTION FORM)</h5>
+          </div>
+        <b>QF-STR-2</b>
+    </div>
+
+
+ <form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+<!--     header part start   -->
+     <div class="row"> <!--Header part start-->
+
+          <div class="form-group col-md-4">
+                <label for="id_send_to" style="padding-top:7px; " class="col-md-1">প্রতিঃ</label>
+                <select class="selectpicker form-control" data-live-search="true" title="নির্বচন করুন" data-live-search-placeholder="Search" data-actions-box="true" name="send_to" id="id_send_to">
+                      <optgroup label="প্রডাকশন বিভাগ">
+                          <option value="Plater Shop">জাহাজ নির্মাণ শাখা</option>
+                          <option value="Machine Shop Outdoor">যান্ত্রিক বাহির শাখা</option>
+                          <option value="Machine Shop Indoor">যান্ত্রিক ভিতর শাখা</option>
+                          <option value="Docking Section">নঙ্গর শাখা</option>
+                          <option value="Civil Section">পুরকৌশল শাখা</option>
+                          <option value="Electrical Section">বিদ্যুৎ শাখা</option>
+                          <option value="Radio Electrical Section">রেডিও ইলেক্ট্রিক্যাল শাখা</option>
+                          <option value="Carpentry Shop">কার্প্রেন্ট্রি শপ</option>
+                          <option value="Maintenance Section">রক্ষণাবেক্ষণ শাখা</option>
+                        </optgroup>
+                        <optgroup label="নকশা ও পরিকল্পনা বিভাগ">
+                          <option value="10">নকশা শাখা</option>
+                          <option value="11">পরিকল্পনা শাখা</option>
+                          <option value="12">আইটি শাখা</option>
+                        </optgroup>
+                        <optgroup label="প্রশাসন বিভাগ">
+                          <option value="13">প্রশাসন শাখা</option>
+                          <option value="14">বাণিজ্যিক শাখা লোকাল</option>
+                          <option value="15">বাণিজ্যিক শাখা ফরেন</option>
+                          <option value="16">হিউম্যান রিসোর্স শাখা</option>
+                          <option value="17">প্রধান ভাণ্ডার</option>
+                        </optgroup>
+                        <optgroup label="অর্থ বিভাগ">
+                          <option value="18">অর্থ শাখা </option>
+                          <option value="19">মূল্য নির্ধারন শাখা</option>
+                        </optgroup>
+                </select>
+          </div>
+         <div class="form-group col-md-4">
+                <label for="quality_no" style="padding-top:7px; " class="col-md-2"> নংঃ </label>
+                <input type="text" class="form-control"  name="quality_no" id="id_quality_no" maxlength="100"  placeholder="নম্বর">
+         </div>
+
+         <div class="form-group col-md-4">
+                <label for="quality_date" style="padding-top:7px; " class="col-md-3"> তারিখঃ </label>
+                <input placeholder="তারিখ... " class="form-control" type="text" onfocus="(this.type='date')" id="id_quality_date" name="quality_date">
+         </div>
+
+         <div class="form-group col-md-12">
+                <label>অনুগ্রহ পূর্বক নিম্নে বর্ণিত দ্রব্যগুলোর গুনাগুণ পরীক্ষা করিয়া উহার গ্রহণ যোগ্যতা সম্পর্কে আপনার মন্তব্য পেশ করুন। দ্রব্যগুলির
+                    ফরমায়েশ নং / ক্রয়াদেশ নং এবং চালান/মেমো নংঃ অনুসারে সরবরাহ করা হয়েছে। </label>
+         </div>
+
+         <div class="form-group col-md-3">
+                <label for="id_po_no" style="padding-top:7px; " >ফরমায়েশ নংঃ </label>
+                <input type="text" class="form-control"  name="po_no" id="id_po_no" maxlength="100"  placeholder="ফরমায়েশ নংঃ ">
+          </div>
+
+         <div class="form-group col-md-3">
+                <label for="id_po_date" style="padding-top:7px; "> তারিখঃ </label>
+                <input placeholder="তারিখ... " class="form-control" type="text" onfocus="(this.type='date')" id="id_po_date" name="po_date">
+         </div>
+
+         <div class="form-group col-md-3">
+                <label for="id_memo_no" style="padding-top:7px; " > চালান/মেমো নংঃ  </label>
+                <input type="text" class="form-control"  name="memo_no" id="id_memo_no" maxlength="100"  placeholder=" চালান/মেমো নংঃ  ">
+         </div>
+
+          <div class="form-group col-md-3">
+                <label for="id_memo_date" style="padding-top:7px; " > তারিখঃ </label>
+                <input placeholder="তারিখ... " class="form-control" type="text" onfocus="(this.type='date')" id="id_memo_date" name="memo_date">
+         </div>
+
+     </div>
+<!--header part end-->
+
+    <div class="col-md-12">
+            <br>
+    </div>
+
+     <div class="form-group row col-md-12">
+                <label for="sign_oic_store" class="col-md-10">(গুনাগুণ পরীক্ষা করিয়া গ্রহণযোগ্য/ অযোগ্য ঘোষণা করিতেছি।
+                    অযোগ্য ঘোষিত হইলে বিস্তারিত কারণ দর্শাইতে হবে। )</label>
+                <select class="selectpicker col-md-2 text-right form-control" data-live-search="false" title="স্বাক্ষর নির্বচন করুন" data-live-search-placeholder="Search" data-actions-box="true" name="sign_oic_store" id="id_sign_oic_store">
+                      <option value="1">ওআইসি প্রধান ভাণ্ডার</option>
+                </select>
+{#         <input type="file" name="sign_oic_store" id="id_sign_oic_store">#}
+         </div>
+
+<!--material list table end-->
+
+
+
+<!--     Start Table Design-->
+        <table class="table-responsive"> <!--        Start footer part Design-->
+         <table class="table-borderless">
+
+         <thead>
+            <tr>
+                <th class="col-md-3"></th>
+                <th class="col-md-3"></th>
+                <th class="col-md-3"></th>
+                <th class="col-md-3"></th>
+            </tr>
+        </thead>
+
+          <tbody >
+                <tr>
+                  <td scope="row">
+                      <div class="row">
+                           <select class="selectpicker col-md-10 text-right form-control" data-live-search="false" title="স্বাক্ষর নির্বচন করুন" data-live-search-placeholder="Search" data-actions-box="true" name="responsible_oic" id="id_responsible_oic">
+                                  <option value="1">সংশ্লিট শাখা প্রধান  </option>
+                           </select>
+                          <label style="padding-top: 10px" for="quality_shop" class="col-md-12"> সংশ্লিট শাখা প্রধান </label>
+                          <label for="responsible_oic_date" class="col-md-12"> সদস্য </label>
+                          <input placeholder="তারিখ... " class="form-control col-md-10" type="text" onfocus="(this.type='date')" id="id_responsible_oic_date" name="responsible_oic_date">
+                      </div>
+                  </td>
+                  <td scope="row">
+                      <div class="row">
+                          <select class="selectpicker col-md-10 text-right form-control" data-live-search="false" title="স্বাক্ষর নির্বচন করুন" data-live-search-placeholder="Search" data-actions-box="true" name="oic_store_sign" id="id_oic_store_sign">
+                                  <option value="1">ওআইসি প্রধান ভাণ্ডার </option>
+                           </select>
+                          <label style="padding-top: 10px" for="quality_shop" class="col-md-12"> ওআইসি প্রধান ভান্ডার </label>
+                          <label for="quality_shop" class="col-md-12"> সদস্য </label>
+                          <input placeholder="তারিখ... " class="form-control col-md-10" type="text" onfocus="(this.type='date')" id="id_oic_store_date" name="oic_store_date">
+                      </div>
+                  </td>
+                  <td scope="row">
+                      <div class="row">
+                          <select class="selectpicker col-md-10 text-right form-control" data-live-search="false" title="স্বাক্ষর নির্বচন করুন" data-live-search-placeholder="Search" data-actions-box="true" name="dgm_sign" id="id_dgm_sign">
+                                  <option value="1">সংশ্লিট ডিজিএম </option>
+                           </select>
+                          <label style="padding-top: 10px" for="quality_shop" class="col-md-12"> সংশ্লিট ডিজিএম </label>
+                          <label for="quality_shop" class="col-md-12"> সদস্য </label>
+                          <input placeholder="তারিখ... " class="form-control col-md-10" type="text" onfocus="(this.type='date')" id="id_dgm_date" name="dgm_date">
+                      </div>
+                  </td>
+                  <td scope="row">
+                      <div class="row">
+                          <select class="selectpicker col-md-10 text-right form-control" data-live-search="false" title="স্বাক্ষর নির্বচন করুন" data-live-search-placeholder="Search" data-actions-box="true" name="gm_sign" id="id_gm_sign">
+                                  <option value="1"> জিএম(প্রোডাকশন) </option>
+{#                                  <option value="2"> </option>#}
+{#                                  <option value="3"> </option>#}
+                           </select>
+                          <label style="padding-top: 10px" for="quality_shop" class="col-md-12"> জিএম(প্রোডাকশন) </label>
+                          <label for="id_gm_date" class="col-md-12"> সভাপতি</label>
+                          <input placeholder="তারিখ... " class="form-control col-md-10" type="text" onfocus="(this.type='date')" id="id_gm_date" name="gm_date">
+                      </div>
+                  </td>
+
+            </tr>
+          </tbody>
+        </table>
+      </table>
+<!--     Table Design end-->
+      <!--     submit button start-->
+                        <div>
+                            <br>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <button type="reset" name="_preview" class="btn btn-primary btn-lg btn-block">Reset</button>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <button type="submit" name="_save" class="btn btn-primary btn-lg btn-block">Submit</button>
+                            </div>
+                        </div>
+                <!--     submit button end-->
+
+
+  </form>
+
+
+<!-- Material list start -->
+        <div class="#">
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <table class="col-md-12 table table-bordered table-hover text-center">
+
+                      <thead class="thead-dark">
+                      <br>
+                        <tr>
+                          <th class="col-md-5" scope="col">মালামালের বিবরণ</th>
+                          <th class="col-md-2" scope="col">ভাণ্ডার সংকেত</th>
+                          <th class="col-md-1" scope="col">একক</th>
+                          <th class="col-md-1" scope="col">পরিমাণ</th>
+                          <th class="col-md-2" scope="col">পরীক্ষা পত্র নং</th>
+                        </tr>
+                      </thead>
+                    {% if submitted1 %}
+                        {% for item_list in target_item_query %}
+                        <tr>
+                          <td>{{ item_list.material_des }}</td>
+                          <td>{{ item_list.store_code }}</td>
+                          <td>{{ item_list.material_unit }}</td>
+                          <td>{{ item_list.material_qty }}</td>
+                          <td>{{ item_list.quality_no }}</td>
+                        {% endfor %}
+                        </tr>
+                        <tr>
+                          <td><input type="text" class="form-control"  name="material_des" id="id_item_name" maxlength="100"  placeholder="বিবরণ"></td>
+                          <td><input type="text" class="form-control"  name="store_code" id="id_item_code" maxlength="100"  placeholder="ভাণ্ডার সংকেত"></td>
+                          <td><input type="text" class="form-control"  name="material_unit" id="id_item_unit" maxlength="100"  placeholder="একক"></td>
+                          <td><input type="text" class="form-control"  name="material_qty" id="id_material_qty" maxlength="100"  placeholder="পরিমাণ"></td>
+                          <td><input type="text" class="form-control"  name="quality_no" id="id_quality_no" maxlength="100"  placeholder="পরীক্ষা পত্র নং"></td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                          <td><input type="text" class="form-control"  name="material_des" id="id_item_name" maxlength="100"  placeholder="বিবরণ"></td>
+                          <td><input type="text" class="form-control"  name="store_code" id="id_item_code" maxlength="100"  placeholder="ভাণ্ডার সংকেত"></td>
+                          <td><input type="text" class="form-control"  name="material_unit" id="id_item_unit" maxlength="100"  placeholder="একক"></td>
+                          <td><input type="text" class="form-control"  name="material_qty" id="id_material_qty" maxlength="100"  placeholder="পরিমাণ"></td>
+                          <td><input type="text" class="form-control"  name="quality_no" id="id_quality_no" maxlength="100"  placeholder="পরীক্ষা পত্র নং"></td>
+                        </tr>
+                      </tbody>
+                    {% endif %}
+                </table>
+            <div class="form-group col-md-3">
+                <button type="submit" name="_save1" class="btn btn-primary btn-lg btn-block">Add</button>
+            </div>
+            </form>
+
+        </div>
+<!-- Material list end -->
+  </div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,328 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Khulna Shipyard Limited</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'Home/img/fabicon.png' %}">
+    <!--Auto complete CSS-->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="shortcut icon" type="image/x-icon" href="{% static 'Home/img/fabicon.png' %}">
+  <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href={% static 'starter_template/bootstrap/css/bootstrap.min.css' %} >
+    <link rel="stylesheet" href={% static 'starter_template/bootstrap/css/custom_store.css' %} >
+
+<!-- multiselect css -->
+  <link rel="stylesheet" href={% static 'style_idn/css/bootstrap-select.css' %}>
+
+<!-- font awesome core CSS -->
+   <link rel="stylesheet" href= {% static 'js/fontawesome-free/css/all.min.css' %}>
+<!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<!-- icheck bootstrap -->
+  <link rel="stylesheet" href={% static 'js/bootstrap/icheck-bootstrap.min.css' %}>
+
+
+    <!-- jQuery for dropdown multiple -->
+{#  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>#}
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+{#    <!-- XDSoft DateTimePicker -->#}
+{#<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css" integrity="sha256-DOS9W6NR+NFe1fUhEE0PGKY/fubbUCnOfTje2JMDw3Y=" crossorigin="anonymous" />#}
+{#<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" integrity="sha256-FEqEelWI3WouFOo2VWP/uJfs1y8KJ++FLh2Lbqc8SJk=" crossorigin="anonymous"></script>#}
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">KHULNA SHIPYARD LIMITED</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'main_store' %}">Home
+              <span class="sr-only">(current)</span>
+            </a>
+         </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Services</a>
+          </li>
+         <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+{% block content %}
+    <!-- Page Content -->
+  <div class="container">
+{% if submitted %}
+     <div class="row" id="paint">
+              <div class="col-lg-12 text-center"><br>
+                <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+                    <p><b>Data Stored Successfully!</b></p>
+              </div>
+     </div>
+        <script>
+             setTimeout(function(){
+                window.location.href = "{% url 'product_issue'%}";
+             }, 2500);
+        </script>
+{% else %}
+
+      <div class="col-md-12"><br> </div>
+<!--      Start Header information-->
+    <div class="row">
+        <div class="col-md-3 text-center">
+            <img class="logo" alt="..." src={% static 'img/ksy_logo.png' %} >
+        </div>
+          <div class="col-md-6 text-center">
+            <h1 class = "font-weight-normal">খুলনা শিপইয়ার্ড লিমিটেড</h1>
+            <h4 class = "font-weight-light"> বাংলাদেশ নৌ-বাহিনী, খুলনা </h4>
+            <h3 class = "font-weight-normal"><u>বিদ্যমান দ্রব্যের সংরক্ষণ ফরম</u> </h3>
+          </div>
+        <b>QF-PUR-01</b>
+    </div>
+<!--End Header information-->
+
+<!--Start Main Form      -->
+        <div class="custom-form indent_body">
+             <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+            <!--     sender part start   -->
+                 <div class="row">
+                          <div class="form-group row col-md-6">
+                                <label for="item_code" style="padding-top:7px; " class="col-md-3"> দ্রব্যের কোডঃ </label>
+                                <input type="text" class="form-control col-md-9"  name="item_code" id="id_item_code" placeholder="দ্রব্যের কোড...">
+                          </div>
+                          <div class="form-group row col-md-6">
+                                <label for="item_name" style="padding-top:7px; " class="col-md-3"> দ্রব্যের নামঃ</label>
+                                <input type="text" class="form-control col-md-9"  name="item_name" id="id_item_name" placeholder="দ্রব্যের নাম...">
+                          </div>
+                          <div class="form-group row col-md-6">
+                                <label for="item_quantity" style="padding-top:7px; " class="col-md-3">দ্রব্যের সংখ্যাঃ</label>
+                                <input type="text" class="form-control col-md-9"  name="item_quantity" id="id_item_quantity" placeholder="দ্রব্যের সংখ্যা...">
+                          </div>
+                          <div class="form-group row col-md-6">
+                                <label for="item_unit" style="padding-top:7px; " class="col-md-3"> দ্রব্যের এককঃ </label>
+                                <input type="text" class="form-control col-md-9"  name="item_unit" id="id_item_unit" placeholder="দ্রব্যের একক...">
+                          </div>
+                           <div class="form-group row col-md-6">
+                                <label for="ref_no" style="padding-top:7px;" class="col-md-3"> রেফারেন্স নংঃ</label>
+                                <input type="text" class="form-control col-md-9"  name="ref_no" id="id_ref_no" placeholder="এম.আর.আর নং...">
+                          </div>
+                          <div class="form-group row col-md-6">
+                                <label for="buy_onDate" style="padding-top:7px;" class="col-md-3">তারিখঃ</label>
+                                <input placeholder="এম.আর.আর তারিখঃ... " class="textbox-n form-control col-md-9" type="text" onfocus="(this.type='date')" name="buy_onDate" id="id_buy_onDate">
+                          </div>
+                          <div class="form-group row col-md-6">
+                                <label for="buy_underJob" style="padding-top:7px; " class="col-md-3"> কার্যাদেশ নংঃ</label>
+                                <input type="text" class="form-control col-md-9"  name="buy_underJob" id="id_buy_underJob" placeholder="NB-729">
+{#                                <select class="selectpicker form-control col-md-9" data-live-search="true" title="কার্যাদেশ নং..." data-live-search-placeholder="Search" data-actions-box="true" name="buy_underJob" id="id_buy_underJob"  multiple="multiple" data-max-options="1" >#}
+{#                                      <optgroup label="নব নির্মান">#}
+{#                                          <option value="NB-728">ননি-৭২৮</option>#}
+{#                                          <option value="NB-729">ননি-৭২৯</option>#}
+{#                                          <option value="NB-730">ননি-৭৩০</option>#}
+{#                                          <option value="NB-731">ননি-৭৩১</option>#}
+{#                                          <option value="NB-727">ননি-৭২৭</option>#}
+{#                                          <option value="NB-732">ননি-৭৩২</option>#}
+{#                                          <option value="NB-733">ননি-৭৩৩</option>#}
+{#                                          <option value="NB-734">ননি-৭৩৪</option>#}
+{#                                          <option value="NB-742">ননি-৭৪২</option>#}
+{##}
+{#                                        </optgroup>#}
+{#                                        <optgroup label="মেরামতি">#}
+{#                                          <option value="R-2343">আর-২৩৪৩</option>#}
+{#                                          <option value="R-2344">আর-২৩৪৪</option>#}
+{#                                          <option value="R-2345">আর-২৩৪৫</option>#}
+{##}
+{#                                        </optgroup>#}
+{##}
+{#				                </select>#}
+                          </div>
+
+                          <div class="form-group row col-md-6">
+                                <label for="item_user" style="padding-top:7px; " class="col-md-3">ব্যাবহারকারীঃ </label>
+{#                                <input type="text" class="form-control col-md-9"  name="item_user" id="id_item_user" placeholder="ব্যাবহারকারী শাখার নাম...">#}
+                                <select class="selectpicker form-control col-md-9" data-live-search="true" title="নির্বচন করুন" data-live-search-placeholder="Search" data-actions-box="true" name="item_user" id="id_item_user"  multiple="multiple" data-max-options="1" >
+                                      <optgroup label="প্রডাকশন বিভাগ">
+                                          <option value="Plater Shop">জাহাজ নির্মাণ শাখা (PLATER SHOP)</option>
+                                          <option value="Machine Shop Outdoor">যান্ত্রিক বাহির শাখা (MACHINE SHOP O/D)</option>
+                                          <option value="Machine Shop Indoor">যান্ত্রিক ভিতর শাখা (MACHINE SHOP I/D)</option>
+                                          <option value="Docking Section">নঙ্গর শাখা (DOCKING)</option>
+                                          <option value="Civil Section">পুরকৌশল শাখা (CIVIL)</option>
+                                          <option value="Electrical Section">বিদ্যুৎ শাখা (ELECTRICAL)</option>
+                                          <option value="Radio Electrical Section">রেডিও ইলেক্ট্রিক্যাল (RADIO ELECTRICAL)</option>
+                                          <option value="Carpentry Shop">কার্প্রেন্ট্রি শপ (CARPENTRY SHOP)</option>
+                                          <option value="Maintenance Section">রক্ষণাবেক্ষণ শাখা (MAINTENANCE)</option>
+                                        </optgroup>
+                                        <optgroup label="নকশা ও পরিকল্পনা বিভাগ">
+                                          <option value="Design Section">নকশা শাখা (DESIGN SECTION)</option>
+                                          <option value="Planning Section">পরিকল্পনা শাখা (PLANNING SECTION)</option>
+                                          <option value="IT Section">আইটি শাখা (IT)</option>
+                                        </optgroup>
+                                        <optgroup label="প্রশাসন বিভাগ">
+                                          <option value="Admin Section">প্রশাসন শাখা (ADMIN)</option>
+                                          <option value="Commercial Local">বাণিজ্যিক লোকাল (COMMERCIAL LOCAL)</option>
+                                          <option value="Commercial Foreign">বাণিজ্যিক ফরেন (COMMERCIAL FOREIGN)</option>
+                                          <option value="Human Resource Section">হিউম্যান রিসোর্স শাখা (HUMAN RESOURCE)</option>
+                                          <option value="Main Store">প্রধান ভাণ্ডার (MAIN STORE)</option>
+                                          <option value="Rubber Factory">রাবার ফ্যাক্টরী (RUBBER FACTORY)</option>
+                                          <option value="MT Pool">এমটি পুল (MT POOL)</option>
+                                          <option value="Caretaker">কেয়ার টেকার শাখা (CARETAKER)</option>
+                                          <option value="Security">নিরাপত্তা শাখা (SECURITY)</option>
+                                          <option value="Medical">মেডিক্যাল শাখা (MEDICAL)</option>
+                                        </optgroup>
+                                        <optgroup label="অর্থ বিভাগ">
+                                          <option value="Finance Section">অর্থ শাখা (FINANCE SECTION)</option>
+                                          <option value="Costing Section">মূল্য নির্ধারন শাখা (COSTING SECTION)</option>
+                                        </optgroup>
+                                        <optgroup label="সকল বিভাগ">
+                                          <option value="Every Section">সকল শাখা (EVERY SECTION)</option>
+                                        </optgroup>
+				                </select>
+                          </div>
+
+                          <div class="form-group row col-md-6">
+                                <label for="expire_date" style="padding-top:7px; " class="col-md-3">দ্রব্যের মেয়াদঃ </label>
+                                <input type="text" class="form-control col-md-9" onfocus="(this.type='date')"  name="expire_date" id="id_expire_date" placeholder="দ্রব্যের মেয়াদউত্তীর্ন তারিখ ...">
+                          </div>
+                          <div class="form-group row col-md-6">
+                                <label for="remarks" style="padding-top:7px; " class="col-md-3"> মন্তব্যঃ</label>
+                                <input type="text" class="form-control col-md-9"  name="remarks" id="id_remarks" placeholder="দ্রব্যের সম্পর্কে মন্তব্য...">
+                          </div>
+                          <div class="form-group row col-md-6">
+                                <label for="recorder" style="padding-top:7px; " class="col-md-3">সংরক্ষণকারীঃ</label>
+                                <select class="selectpicker form-control col-md-9" data-live-search="true" title="নির্বচন করুন" data-live-search-placeholder="Search" data-actions-box="true" name="recorder" id="id_recorder"  multiple="multiple" data-max-options="1" >
+                                          <option value="Motahar">মোতাহার</option>
+                                          <option value="Alam">আলম</option>
+                                          <option value="Arafat">আরাফাত</option>
+                                          <option value="Mehedi">মেহেদী</option>
+                                          <option value="Khaled">খালেদ</option>
+                                          <option value="Alamgir">আলমগীর</option>
+				                </select>
+
+                          </div>
+                          <div class="form-group row col-md-6">
+                                <label for="remarks" style="padding-top:7px; " class="col-md-3"> গ্রুপঃ</label>
+                                <input type="text" class="form-control col-md-9"  name="item_under_group" id="id_item_under_group" placeholder="গ্রুপ...">
+                          </div>
+                <!--     submit button start-->
+                            <div class="form-group col-md-6">
+                                <button type="reset" name="_preview" class="btn btn-primary btn-lg btn-block">Reset</button>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <button type="submit" name="_save" class="btn btn-primary btn-lg btn-block">Submit</button>
+                            </div>
+                <!--     submit button end-->
+
+                 </div>
+            <!--sender part end-->
+             </form>
+<!-- this error message is product code repeat verification control-->
+            {% if error_msg %}
+                <p style="color: #ff4d4f"><b>{{ p_code }} and {{ p_job_no }} </b>{{ error_msg }}</p>
+            {% endif %}
+
+        </div>
+</div>
+    {% endif %}
+{% endblock %}
+
+<!--Auto complete jquery -->
+<script src={% static 'style_idn/vendor/jquery/jquery-3.3.1.min.js' %}></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+
+<!--Bootstrap JS -->
+{#<script src={% static 'style_idn/vendor/jquery/jquery-3.3.1.min.js' %}></script>#}
+{#<script src={% static 'style_idn/vendor/jquery/jquery.slim.min.js' %}></script>#}
+<script src={% static 'style_idn/vendor/bootstrap/js/bootstrap.bundle.min.js' %}></script>
+
+{##for Ajax Search#}
+{#<script src={%  static 'js/jquery/ajax.js' %}></script>#}
+<!-- Dropdown Multiple Select JS -->
+<script src={% static 'style_idn/js/bootstrap-select.js'%}></script>
+
+
+
+
+
+<!--Here Java Script Declaration for auto complete dropdown-->
+<script type="text/javascript">
+  <!--Auto Complete Scrip start here-->
+   $(function() {
+    $("#id_item_code").autocomplete({
+        source: '{% url 'autocomplete' %}',
+        minLength: 2,
+        delay:500
+    });
+  });
+
+  $(function() {
+    $("#id_item_job_no").autocomplete({
+        source: '{% url 'autocomplete_job_no' %}',
+        minLength: 2,
+        delay:500
+    });
+  });
+</script>
+<!--END Java Script Declaration for auto complete dropdown-->
+
+<!--Here Java Script Declaration for datetime, ajax post and -->
+<script>
+      {#$(function () {#}
+      {#  $("#id_buy_onDate").datetimepicker({#}
+      {#    format: 'm/d/Y',#}
+      {#  });#}
+      {#});#}
+
+
+ <!--Post specific input type data onclick without form submit-->
+  $(function () {
+    $('#id_item_code').keyup(function () {
+
+        $.ajax({
+            type: "POST",
+            url: "{% url 'ajax_search' %}",
+            data: {
+                'search_text' : $('#id_item_code').val(),
+                'csrfmiddlewaretoken' : $("input[name = csrfmiddlewaretoken]").val()
+            },
+            success: searchSuccess,
+            dataType: 'html'
+        });
+    });
+});
+
+function searchSuccess(data, textStatus, jqXHR) {
+    var parser = new DOMParser(); <!-- Here receive data type html parse html data using DOMParser()-->
+    doc = parser.parseFromString(data, "text/html");
+    var unit = doc.getElementById("unit").innerHTML;  <!-- Select Data using ID in html ajax_search.html template-->
+    var name = doc.getElementById("name").innerHTML;  <!-- Select Data using ID in html ajax_search.html template-->
+    var group = doc.getElementById("group").innerHTML;  <!-- Select Data using ID in html ajax_search.html template-->
+    $('#id_item_name').val(name).text();  <!-- show vlaue of input-type in id_item_name-->
+    $('#id_item_unit').val(unit).text();  <!-- show vlaue of input-type in id_item_unit -->
+    $('#id_item_under_group').val(group).text();  <!-- show vlaue of input-type in id_item_unit -->
+
+}
+
+</script>
+
+</body>
+
+</html>

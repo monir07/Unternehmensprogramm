@@ -1,0 +1,116 @@
+{% extends 'manhour/starter.html' %}
+{% load staticfiles %}
+{% load static %}
+
+
+{% block content %}
+    <!-- Navigation -->
+          <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+            <div class="container">
+              <a class="navbar-brand" href="#">KHULNA SHIPYARD LIMITED</a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'plater-shop' %}">home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">logout</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-12">
+               <br>
+            </div>
+            <div class="col-md-3 text-center">
+                <img src="{% static 'img/ksy_logo.png' %}" class="logo" alt="...">
+            </div>
+              <div class="col-md-6 text-center">
+                <h1 class = "font-weight-normal">খুলনা শিপইয়ার্ড লিমিটেড</h1>
+                <h4 class = "font-weight-light"> বাংলাদেশ নৌ-বাহিনী, খুলনা </h4>
+                <h3 class = "font-weight-normal"> হাজিরা বিবরণী</h3>
+              </div>
+                QF-PRN-12
+            <div class="col-md-12">
+               <hr>
+            </div>
+
+
+            <div class="col-md-8">
+                <label><b>সুত্রঃ</b> {{ attend_list1.ref }}</label>
+            </div>
+            <div class="col-md-4 dateFont">
+                <b>তারিখঃ </b><label>{{ attend_list1.attendance_date|date:"d- m- Y" }}</label>
+            </div>
+            <div class="col-md-12">
+               <hr>
+            </div>
+
+            <div class="col-md-8">
+                <label><b>প্রেরকঃ </b> {{ attend_list1.get_attendance_sender }}</label>
+            </div>
+            <div class="col-md-4 col">
+                <label><b>প্রাপকঃ </b>
+                <ol>
+                {% for recv in attend_list1.get_attendance_receiver %}
+                   <li>. {{ recv }} </li>
+                {% endfor %}
+                </ol>
+                </label>
+            </div>
+            <div class="col-md-12">
+               <hr>
+            </div>
+
+            <div class="col-md-12">
+               <table class="table table-bordered table-hover text-center">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">ক্রমিক নং</th>
+                      <th scope="col">জনবলের ধরন </th>
+                      <th scope="col">জবের ধরন </th>
+                      <th scope="col">মোট</th>
+                      <th scope="col">উপস্থিতি</th>
+                      <th scope="col">ছুটিতে</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                    {% for attendance, total_p, total_a, ser in mylist %}
+                    <tr>
+                      <td style="font-family: SutonnyMJ, serif;font-size: 16pt">{{ ser }}</td>
+                      <td >{{ attendance.get_manpower_type }}</td>
+                      <td >{{ attendance.get_job_type }}</td>
+                      <td style="font-family: SutonnyMJ, serif;font-size: 16pt">{{ total_p }}</td>
+                      <td style="font-family: SutonnyMJ, serif;font-size: 16pt">{{ attendance.manpower_attendance }}</td>
+                      <td style="font-family: SutonnyMJ, serif;font-size: 16pt">{{ attendance.manpower_absence }}</td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <td colspan="3" align="right"><b>সর্বমোট জনবল = </b></td>
+                      <td style="font-family: SutonnyMJ, serif;font-size: 16pt">{{ grand_total }}</td>
+                      <td style="font-family: SutonnyMJ, serif;font-size: 16pt">{{ g_total_p }}</td>
+                      <td style="font-family: SutonnyMJ, serif;font-size: 16pt">{{ g_total_a }}</td>
+                    </tr>
+
+
+                  </tbody>
+                </table>
+                <div class="form-group col-md-12">
+                    <a class="btn btn-primary" href="{% url 'manpower' %}" role="button">Add Another</a>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+{% endblock %}
+

@@ -1,0 +1,92 @@
+{% extends 'main_store/starter.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<!-- Page Content -->
+<div class="container">
+    <div class="col-md-12"><br> </div>
+    <!--      Start Header information-->
+        <div class="row">
+            <div class="col-md-3 text-center">
+                <img class="logo" alt="..." src={% static 'img/ksy_logo.png' %} >
+            </div>
+              <div class="col-md-6 text-center">
+                <h1 class = "font-weight-normal">খুলনা শিপইয়ার্ড লিমিটেড</h1>
+                <h4 class = "font-weight-light"> বাংলাদেশ নৌ-বাহিনী, খুলনা </h4>
+                  <h4 class = "font-weight-normal"><b><u>স্টক-ব্যাল্যান্স বিবরণী</u></b> </h4>
+                  <br>
+              </div>
+            <b>QF-PUR-01</b>
+        </div>
+    <!--End Header information-->
+<!--Bin Card Information section Start-->
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-2">
+
+            </div>
+
+            <div class="col-md-8">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">KSY</span>
+                  </div>
+                  <input type="text" class="form-control" name="search" placeholder="Search product.." aria-describedby="basic-addon2">
+                  <div class="input-group-append">
+                    <button type="submit" name="_search" class="btn btn-outline-secondary"><i class="fas fa-search"></i></button>
+                  </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-2">
+
+            </div>
+
+        </div>
+    </form>
+
+    <table class="table table-bordered table-hover text-center" style="font-size: 11pt">
+                  <thead class="thead-dark">
+                  <br>
+                    <tr>
+                      <th scope="col">এম.আর.আর নং</th>
+                      <th scope="col">তারিখ</th>
+                      <!-- <th scope="col">ব্যবহারকারী</th> -->
+                      <!-- <th scope="col">কার্যাদেশ নং</th> -->
+                      <th scope="col">দ্রব্যের কোড</th>
+                      <th scope="col">দ্রব্যের নাম</th>
+                      <th scope="col">স্টক-ব্যাল্যান্স</th>
+                      <th scope="col">একক</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                    {% for search_item in search_query_set %}
+                    <tr>
+                       <td >{{ search_item.ref_no }}</td>
+                      <td>{{ search_item.date }}</td>
+                      <!-- <td>{{ search_item.receiver }}</td> -->
+                      <!-- <td >{{ search_item.job_no }}</td> -->
+                      <td >{{ search_item.item_code }}</td>
+                      <td >{{ search_item.item_name }}</td>
+                      <td >{{ search_item.balance }}</td>
+                      <td >{{ search_item.item_unit }}</td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <td colspan="4" style="text-align: right; font-weight: bold;">Total= </td>
+                        <td style="font-weight: bold;">{{ total }}</td>
+                        <td style="font-weight: bold;">{{ unit }}</td>
+                    </tr>
+                  </tbody>
+    </table>
+    {% if search_query_set %}
+        <a class="btn btn-primary" target="_blank" href="{% url 'product_issue' %}">এস আর ইস্যু</a>
+    {% endif %}
+
+<!--Bin Card Information section End-->
+
+</div>
+{% endblock %}

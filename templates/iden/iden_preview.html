@@ -1,0 +1,114 @@
+{% extends 'iden/starter.html' %}
+{% load staticfiles %}
+{% load static %}
+
+{% block content %}
+    <!-- Navigation -->
+          <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+            <div class="container">
+              <a class="navbar-brand" href="#">KHULNA SHIPYARD LIMITED</a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">logout</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-12">
+               <br>
+            </div>
+            <div class="col-md-3 text-center">
+                <img src="{% static 'img/ksy_logo.png' %}" class="logo" alt="...">
+            </div>
+              <div class="col-md-6 text-center">
+                <h1 class = "font-weight-normal">খুলনা শিপইয়ার্ড লিমিটেড</h1>
+                <h4 class = "font-weight-light"> বাংলাদেশ নৌ-বাহিনী, খুলনা </h4>
+                <h3 class = "font-weight-normal"> অভ্যন্তরীণ লিপি</h3>
+              </div>
+                QF-PRN-12
+            <div class="col-md-12">
+               <hr>
+            </div>
+
+
+            <div class="col-md-8">
+                <label><b>সুত্রঃ</b> {{ post.ref }}</label>
+            </div>
+            <div class="col-md-4">
+                <label><b>তারিখঃ </b>{{ post.iden_date|date:"d M, Y" }}</label>
+            </div>
+            <div class="col-md-12">
+               <hr>
+            </div>
+
+            <div class="col-md-8">
+                <label><b>প্রেরকঃ </b> {{ post.senderShop }}</label>
+            </div>
+            <div class="col-md-4 col">
+                <label><b>প্রাপকঃ </b></label>
+
+            </div>
+            <div class="col-md-12">
+               <hr>
+            </div>
+            <div class="col-md-12">
+                <label><b>বিষয়ঃ</b> {{ post.subject }} {% if post.job_no %} <b>জব নংঃ </b>{{ post.job_no }}</label>{% endif %}
+            </div>
+            <div class="col-md-12">
+               <br>
+               <br>
+            </div>
+            <div class="col-md-12 text-justify">
+               <p>
+                   {{ post.iden_body|safe }}
+               </p>
+            </div>
+            <div class="col-md-12">
+               <br>
+               <br>
+            </div>
+
+            <div class="col-md-12 text-left">
+               {% if post.attachment %}
+                <label>সংলগ্নীঃ </label>
+                <ol>
+                    <li><a href="{% get_media_prefix %}{{ post.attachment }}">{{ post.attachment }}</a></li>
+                </ol>
+               {% endif %}
+            </div>
+
+            <div class="col-md-8">
+{#                {% if post.get_attention %}#}
+                    <label>অবগতিঃ </label>
+                    {{ post.get_attention }}
+{#                    <ol>#}
+{#                        {% for attn in post %}#}
+{##}
+{#                                <li>{{ attn }}</li>#}
+{##}
+{#                        {% endfor %}#}
+{#                    </ol>#}
+{#                {% endif %}#}
+            </div>
+
+            <div class="col-md-4 text-center">
+               <ul>
+                   <li><img src="{% get_media_prefix %}{{ post.sign }}"></li>
+                   <li>{{ post.sender_name }}</li>
+                   <li>{{ post.sender_designation }}</li>
+               </ul>
+            </div>
+
+
+        </div>
+
+    </div>
+{% endblock %}

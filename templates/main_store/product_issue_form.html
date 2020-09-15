@@ -1,0 +1,262 @@
+{% extends 'main_store/Existing_product_store_form.html' %}
+{% load staticfiles %}
+{% load static %}
+
+{% block content %}
+
+    <!-- Page Content -->
+<div class="container">
+
+{% if submitted %}
+     <div class="row" id="paint">
+              <div class="col-lg-12 text-center"><br>
+                <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+                <p><b>Data Issued Successfully!</b></p>
+              </div>
+     </div>
+        <script>
+             setTimeout(function(){
+                window.location.href = "{% url 'product_issue'%}";
+             }, 2500);
+        </script>
+{% else %}
+      <div class="col-md-12"><br> </div>
+<!--      Start Header information-->
+    <div class="row">
+        <div class="col-md-3 text-center">
+            <img class="logo" alt="..." src={% static 'img/ksy_logo.png' %} >
+        </div>
+          <div class="col-md-6 text-center">
+            <h1 class = "font-weight-normal">খুলনা শিপইয়ার্ড লিমিটেড</h1>
+            <h4 class = "font-weight-light"> বাংলাদেশ নৌ-বাহিনী, খুলনা </h4>
+            <h3 class = "font-weight-normal"><u> দ্রব্যের ইস্যু ফরম</u> </h3>
+          </div>
+        <b>QF-PUR-01</b>
+    </div>
+<!--End Header information-->
+
+<!--Start Main Form      -->
+        <div class="custom-form indent_body">
+             <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+            <!--     sender part start   -->
+                 <div class="row">
+                          <div class="form-group row col-md-6">
+                                <label for="id_sr_no" style="padding-top:7px; " class="col-md-3"> এস আর নংঃ </label>
+                                <input type="text" class="form-control col-md-9"  name="sr_no" id="id_sr_no" placeholder="এস আর নং...">
+                          </div>
+                          <div class="form-group row col-md-6">
+                                <label for="date" style="padding-top:7px; " class="col-md-3"> তারিখঃ</label>
+                                <input placeholder="ইস্যু করার তারিখ... " class="textbox-n form-control col-md-9" type="text" onfocus="(this.type='date')" id="id_date" name="date">
+
+                          </div>
+                          <div class="form-group row col-md-6">
+                                <label for="job_no" style="padding-top:7px; " class="col-md-3"> কার্যাদেশ নংঃ </label>
+{#                                <input type="text" class="form-control col-md-9"  name="job_no" id="id_job_no" placeholder="কার্যাদেশ নং...">#}
+                                <select class="selectpicker form-control col-md-9" data-live-search="true" title="কার্যাদেশ নং..." data-live-search-placeholder="Search" data-actions-box="true" name="job_no" id="id_job_no"  multiple="multiple" data-max-options="1" >
+
+                                    {% if all_job %}
+                                        <optgroup label="নব নির্মান">
+                                            {% for job in all_job %}
+                                                    {% if job.job_type == "New Building" %}
+                                                        <option value="{{ job.job_no }}">{{ job.job_name }}</option>
+                                                    {% endif %}
+                                            {% endfor %}
+                                        </optgroup>
+                                        <optgroup label="মেরামতি">
+                                            {% for job in all_job %}
+                                                    {% if job.job_type == "Repair" %}
+                                                        <option value="{{ job.job_no }}">{{ job.job_name }}</option>
+                                                    {% endif %}
+                                            {% endfor %}
+                                        </optgroup>
+                                        <optgroup label="অভ্যন্তরীণ">
+                                            {% for job in all_job %}
+                                                    {% if job.job_type == "Internal" %}
+                                                        <option value="{{ job.job_no }}">{{ job.job_no }}</option>
+                                                    {% endif %}
+                                            {% endfor %}
+                                        </optgroup>
+                                        <optgroup label="ম্যানুফ্যাকচার">
+                                            {% for job in all_job %}
+                                                    {% if job.job_type == "Manufacture" %}
+                                                        <option value="{{ job.job_no }}">{{ job.job_no }}</option>
+                                                    {% endif %}
+                                            {% endfor %}
+                                        </optgroup>
+                                        <optgroup label="Miscellaneous">
+                                            {% for job in all_job %}
+                                                    {% if job.job_type == "Misc" %}
+                                                        <option value="{{ job.job_no }}">{{ job.job_no }}</option>
+                                                    {% endif %}
+                                            {% endfor %}
+                                        </optgroup>
+                                    {% endif %}
+
+{#                                      <optgroup label="নব নির্মান">#}
+{#                                          <option value="NB-728">ননি-৭২৮</option>#}
+{#                                          <option value="NB-729">ননি-৭২৯</option>#}
+{#                                          <option value="NB-730">ননি-৭৩০</option>#}
+{#                                          <option value="NB-731">ননি-৭৩১</option>#}
+{#                                          <option value="NB-727">ননি-৭২৭</option>#}
+{#                                          <option value="NB-732">ননি-৭৩২</option>#}
+{#                                          <option value="NB-733">ননি-৭৩৩</option>#}
+{#                                          <option value="NB-734">ননি-৭৩৪</option>#}
+{#                                          <option value="NB-742">ননি-৭৪২</option>#}
+{##}
+{#                                        </optgroup>#}
+{#                                        <optgroup label="মেরামতি">#}
+{#                                          <option value="R-2343">আর-২৩৪৩</option>#}
+{#                                          <option value="R-2344">আর-২৩৪৪</option>#}
+{#                                          <option value="R-2345">আর-২৩৪৫</option>#}
+{##}
+{#                                        </optgroup>#}
+
+				                </select>
+                          </div>
+                          <div class="form-group row col-md-6">
+                                <label for="loan_job_no" style="padding-top:7px; " class="col-md-3"> জব ঋণকৃতঃ </label>
+                                <input type="text" class="form-control col-md-9"  name="loan_job_no" id="id_loan_job_no" placeholder="ঋণকৃত জব নং...">
+                          </div>
+                          <div class="form-group row col-md-6">
+                                <label for="received_shop" style="padding-top:7px;" class="col-md-3 text-left"> গৃহীত শপঃ</label>
+                                <select class="selectpicker form-control col-md-9" data-live-search="true" title="নির্বচন করুন" data-live-search-placeholder="Search" data-actions-box="true" name="received_shop" id="id_received_shop"  multiple="multiple" data-max-options="1" >
+                                      <optgroup label="প্রডাকশন বিভাগ">
+                                          <option value="Plater Shop">জাহাজ নির্মাণ শাখা (PLATER SHOP)</option>
+                                          <option value="Machine Shop Outdoor">যান্ত্রিক বাহির শাখা (MACHINE SHOP O/D)</option>
+                                          <option value="Machine Shop Indoor">যান্ত্রিক ভিতর শাখা (MACHINE SHOP I/D)</option>
+                                          <option value="Docking Section">নঙ্গর শাখা (DOCKING)</option>
+                                          <option value="Civil Section">পুরকৌশল শাখা (CIVIL)</option>
+                                          <option value="Electrical Section">বিদ্যুৎ শাখা (ELECTRICAL)</option>
+                                          <option value="Radio Electrical Section">রেডিও ইলেক্ট্রিক্যাল (RADIO ELECTRICAL)</option>
+                                          <option value="Carpentry Shop">কার্প্রেন্ট্রি শপ (CARPENTRY SHOP)</option>
+                                          <option value="Maintenance Section">রক্ষণাবেক্ষণ শাখা (MAINTENANCE)</option>
+                                        </optgroup>
+                                        <optgroup label="নকশা ও পরিকল্পনা বিভাগ">
+                                          <option value="Design Section">নকশা শাখা (DESIGN SECTION)</option>
+                                          <option value="Planning Section">পরিকল্পনা শাখা (PLANNING SECTION)</option>
+                                          <option value="IT Section">আইটি শাখা (IT)</option>
+                                        </optgroup>
+                                        <optgroup label="প্রশাসন বিভাগ">
+                                          <option value="Admin Section">প্রশাসন শাখা (ADMIN)</option>
+                                          <option value="Commercial Local">বাণিজ্যিক লোকাল (COMMERCIAL LOCAL)</option>
+                                          <option value="Commercial Foreign">বাণিজ্যিক ফরেন (COMMERCIAL FOREIGN)</option>
+                                          <option value="Human Resource Section">হিউম্যান রিসোর্স শাখা (HUMAN RESOURCE)</option>
+                                          <option value="Main Store">প্রধান ভাণ্ডার (MAIN STORE)</option>
+                                          <option value="Rubber Factory">রাবার ফ্যাক্টরী (RUBBER FACTORY)</option>
+                                          <option value="MT Pool">এমটি পুল (MT POOL)</option>
+                                          <option value="Caretaker">কেয়ার টেকার শাখা (CARETAKER)</option>
+                                          <option value="Security">নিরাপত্তা শাখা (SECURITY)</option>
+                                          <option value="Medical">মেডিক্যাল শাখা (MEDICAL)</option>
+                                        </optgroup>
+                                        <optgroup label="অর্থ বিভাগ">
+                                          <option value="Finance Section">অর্থ শাখা (FINANCE SECTION)</option>
+                                          <option value="Costing Section">মূল্য নির্ধারন শাখা (COSTING SECTION)</option>
+                                        </optgroup>
+                                        <optgroup label="সকল বিভাগ">
+                                          <option value="Every Section">সকল শাখা (EVERY SECTION)</option>
+                                        </optgroup>
+				                </select>
+                          </div>
+                          <div class="form-group row col-md-6">
+                                <label for="item_code" style="padding-top:7px; " class="col-md-3 text-left">দ্রব্যের কোডঃ</label>
+                                <input type="text" class="form-control col-md-9"  name="item_code" id="id_item_code" placeholder="দ্রব্যের কোড...">
+                          </div>
+                          <div class="form-group row col-md-6">
+                                <label for="item_name" style="padding-top:7px; " class="col-md-3">দ্রব্যের নামঃ</label>
+                                <input type="text" class="form-control col-md-9"  name="item_name" id="id_item_name" placeholder="দ্রবের নাম...">
+                          </div>
+                          <div class="form-group row col-md-6">
+                                <label for="item_unit" style="padding-top:7px; " class="col-md-3"> দ্রব্যের এককঃ </label>
+                                <input type="text" class="form-control col-md-9"  name="item_unit" id="id_item_unit" placeholder="দ্রব্যের একক...">
+                          </div>
+                          <div class="form-group row col-md-6">
+                                <label for="item_quantity" style="padding-top:7px; " class="col-md-3">দ্রব্যের সংখ্যাঃ</label>
+                                <input type="text" class="form-control col-md-9"  name="item_quantity" id="id_item_quantity" placeholder="দ্রব্যের সংখ্যা...">
+                          </div>
+                          <div class="form-group row col-md-6">
+                                <label for="remarks" style="padding-top:7px; " class="col-md-3"> মন্তব্যঃ</label>
+                                <input type="text" class="form-control col-md-9"  name="remarks" id="id_remarks" placeholder="দ্রব্যের সম্পর্কে মন্তব্য...">
+                          </div>
+                          <div class="form-group row col-md-6">
+                                <label for="issuer_name" style="padding-top:7px; " class="col-md-3">ইস্যুকারীঃ</label>
+                                <select class="selectpicker form-control col-md-9" data-live-search="true" title="নির্বচন করুন" data-live-search-placeholder="Search" data-actions-box="true" name="issuer_name" id="id_issuer_name"  multiple="multiple" data-max-options="1" >
+                                          <option value="Motahar">মোতাহার</option>
+                                          <option value="Alam">আলম</option>
+                                          <option value="Arafat">আরাফাত</option>
+                                          <option value="Mehedi">মেহেদী</option>
+                                          <option value="Khaled">খালেদ</option>
+                                          <option value="Alamgir">আলমগীর</option>
+				                </select>
+                          </div>
+                <!--     submit button start-->
+                            <div class="form-group col-md-6">
+{#                                <button type="reset" name="_preview" class="btn btn-primary btn-lg btn-block">Reset</button>#}
+                            </div>
+                            <div class="form-group col-md-6">
+                                <button type="reset" name="_preview" class="btn btn-primary btn-lg btn-block">Reset</button>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <button type="submit" name="_save" class="btn btn-primary btn-lg btn-block">Submit</button>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <a class="btn btn-primary btn-lg btn-block" href="{% url 'issuer_state' %}" target="_blank">মালামালের ইস্যু বিবরণী যাচাই করুন</a>
+                            </div>
+                <!--     submit button end-->
+
+                 </div>
+            <!--sender part end-->
+             </form>
+        </div>
+    {% if popup %}
+    <div class="col-md-12">
+        <h3>Issue Material Not Available For {{ p_job }} Job!</h3>
+    </div>
+    {% endif %}
+
+    {% if balance_low %}
+    <div class="col-md-12">
+        <h4 style="color: #ff4a4a"> This Product Not Available or product {{ before_issue }} available but less than your requirement</h4>
+    </div>
+    {% endif %}
+
+</div>
+
+
+
+<script>
+      $(function () {
+        $("#id_date").datetimepicker({
+          format: 'm/d/Y',
+        });
+      });
+
+{# Post  specific input type data onclick without form submit  #}
+  $(function () {
+    $('#id_item_code').keyup(function () {
+
+        $.ajax({
+            type: "POST",
+            url: "ajax_search",
+            data: {
+                'search_text' : $('#id_item_code').val(),
+                'csrfmiddlewaretoken' : $("input[name = csrfmiddlewaretoken]").val()
+            },
+            success: searchSuccess,
+            dataType: 'html'
+        });
+
+    });
+
+});
+
+function searchSuccess(data, textStatus, jqXHR) {
+    {#$('#search-results').html(data); <!-- show vlaue of html code this format-->#}
+    $('#id_item_name').val(data); <!-- show vlaue of input type this format-->
+}
+</script>
+
+
+{% endif %}
+{% endblock %}

@@ -1,0 +1,136 @@
+{% extends 'main_store/Existing_product_store_form.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<!-- Page Content -->
+<div class="container">
+    <div class="col-md-12"><br> </div>
+    <!--      Start Header information-->
+        <div class="row">
+            <div class="col-md-3 text-center">
+                <img class="logo" alt="..." src={% static 'img/ksy_logo.png' %} >
+            </div>
+              <div class="col-md-6 text-center">
+                <h1 class = "font-weight-normal">খুলনা শিপইয়ার্ড লিমিটেড</h1>
+                <h4 class = "font-weight-light"> বাংলাদেশ নৌ-বাহিনী, খুলনা </h4>
+                  <h4 class = "font-weight-normal"><b><u>ডাটা এন্ট্রি রিপোর্ট </u></b> </h4>
+                  <br>
+              </div>
+            <b>QF-PUR-01</b>
+        </div>
+    <!--End Header information-->
+<!--Bin Card Information section Start-->
+    <div class="custom-form indent_body">
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row">
+            <div class="form-group col-md-3">
+                <input placeholder="শুরুর তারিখ... " required class="textbox-n form-control col-md-12" type="text" onfocus="(this.type='date')" id="id_date" name="start_date">
+            </div>
+
+            <div class="form-group  col-md-3">
+                <input placeholder="শেষের তারিখ... " required class="textbox-n form-control col-md-12" type="text" onfocus="(this.type='date')" id="id_date" name="end_date">
+            </div>
+
+            <div class="form-group  col-md-6">
+                <div class="input-group">
+                  <select class="selectpicker form-control col-md-9" data-live-search="true" title="নাম নির্বাচন করুন ..." data-live-search-placeholder="Search" data-actions-box="true" name="issuer_name" id="id_issuer_name"  multiple="multiple" data-max-options="1" >
+                          <option value="Motahar">মোতাহার</option>
+                          <option value="Alam">আলম</option>
+                          <option value="Arafat">আরাফাত</option>
+                          <option value="Mehedi">মেহেদী</option>
+                          <option value="Khaled">খালেদ</option>
+                          <option value="Alamgir">আলমগীর</option>
+                  </select>
+                  <div class="input-group-append">
+                    <button type="submit" name="_search" class="btn btn-outline-secondary"><i class="fas fa-search"></i></button>
+                    <button type="reset" name="reset" class="btn btn-outline-secondary"><i class="fas fa-sync"></i></button>
+                  </div>
+                </div>
+            </div>
+
+        </div>
+    </form>
+    </div>
+    {% if purchase_info or issue_info %}
+        <div class="col-md-12 text-left">
+            <table class="table">
+                  <tbody>
+                    <tr>
+                        <td style="width: 145px; font-weight: bold;">Starting Date</td>
+                        <td style="width:15px;">:</td>
+                        <td style="width: fit-content">{{ start_date }}</td>
+                        <td style="width: 140px; font-weight: bold;">Ending Date</td>
+                        <td style="width:15px;">:</td>
+                        <td style="width: fit-content">{{ end_date }}</td>
+                    </tr>
+                  </tbody>
+            </table>
+        </div>
+    {% endif %}
+{% if purchase_info or issue_info %}
+    <table class="table table-bordered table-hover text-center">
+                  <thead class="thead-dark ">
+                  <br>
+                    <tr>
+                      <th scope="col">তারিখ</th>
+                      <th scope="col">দ্রব্যের কোড</th>
+                      <th scope="col">দ্রব্যের নাম</th>
+                      <th scope="col">এম.আর.আর নং</th>
+                      <th scope="col">এস আর নং</th>
+                      <th scope="col">ইস্যু কারীর নাম</th>
+                      <th scope="col">ব্যাবহারকারী</th>
+                      <th scope="col">ক্রয়ের পরিমাণ</th>
+                      <th scope="col">ইস্যুর পরিমাণ</th>
+                      <th scope="col">একক</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% if purchase_info %}
+                       {% for product_buy in purchase_info %}
+                            <tr>
+                              <td >{{ product_buy.buy_onDate }}</td>
+                              <td >{{ product_buy.item_code }}</td>
+                              <td >{{ product_buy.item_name }}</td>
+                              <td >{{ product_buy.ref_no }}</td>
+                              <td >-</td>
+                              <td >{{ product_buy.recorder }}</td>
+                              <td >{{ product_buy.item_user }}</td>
+                              <td >{{ product_buy.item_quantity }}</td>
+                              <td>-</td>
+                              <td >{{ product_buy.item_unit }}</td>
+                            </tr>
+                        {% endfor %}
+                  {% endif %}
+
+
+                  {% if issue_info %}
+                        {% for product_issue in issue_info %}
+                            <tr style="background-color: #ceffaa">
+                              <td >{{ product_issue.date }}</td>
+                              <td >{{ product_issue.item_code }}</td>
+                              <td >{{ product_issue.item_name }}</td>
+                              <td >-</td>
+                              <td >{{ product_issue.sr_no }}</td>
+                              <td >{{ product_issue.issuer_name }}</td>
+                              <td >{{ product_issue.received_shop }}</td>
+                              <td >-</td>
+                              <td>{{ product_issue.item_quantity }}</td>
+                              <td>{{ product_issue.item_unit }}</td>
+                            </tr>
+                        {% endfor %}
+                  {% endif %}
+                            <tr>
+                                <td style="font-weight: bold; text-align: right;" colspan="7">Total = </td>
+                                <td style="font-weight: bold">{{ total_buy }} </td>
+                                <td style="font-weight: bold">{{ total_issue }} </td>
+                                <td >-</td>
+                            </tr>
+                  </tbody>
+    </table>
+    <label style="color: #9c9c9c"> {{ purchase_info|length }} product received & {{ issue_info|length }} product issued </label>
+<!--Bin Card Information section End-->
+{% endif %}
+
+</div>
+{% endblock %}

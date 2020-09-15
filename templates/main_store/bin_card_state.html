@@ -1,0 +1,89 @@
+{% extends 'main_store/starter.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<!-- Page Content -->
+<div class="container">
+    <div class="col-md-12"><br> </div>
+    <!--      Start Header information-->
+        <div class="row">
+            <div class="col-md-3 text-center">
+                <img class="logo" alt="..." src={% static 'img/ksy_logo.png' %} >
+            </div>
+              <div class="col-md-6 text-center">
+                <h1 class = "font-weight-normal">খুলনা শিপইয়ার্ড লিমিটেড</h1>
+                <h4 class = "font-weight-light"> বাংলাদেশ নৌ-বাহিনী, খুলনা </h4>
+                  <h4 class = "font-weight-normal"><b><u>বিন কার্ড তথ্য বিবরণী</u></b> </h4>
+                  <br>
+              </div>
+            <b>QF-PUR-01</b>
+        </div>
+    <!--End Header information-->
+<!--Bin Card Information section Start-->
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-2">
+
+            </div>
+
+            <div class="col-md-8">
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" name="search" placeholder="Search product.." aria-describedby="basic-addon2">
+                  <div class="input-group-append">
+                    <button type="submit" name="_search" class="btn btn-outline-secondary"><i class="fas fa-search"></i></button>
+                  </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-2">
+
+            </div>
+
+        </div>
+    </form>
+
+    <table class="table table-bordered table-hover text-center">
+                  <thead class="thead-dark ">
+                  <br>
+                    <tr>
+                      <th scope="col">দ্রব্যের কোড</th>
+                      <th scope="col">দ্রব্যের নাম</th>
+                      <th scope="col">কার্যাদেশ নং</th>
+                      <th scope="col">দ্রব্যের সংখ্যা</th>
+                      <th scope="col">দ্রব্যের অবস্থান</th>
+                      <th scope="col">সর্বশেষ ক্রয়ের তারিখ</th>
+                      <th scope="col">ব্যাবহারকারী</th>
+                      <th scope="col">নূন্যতম স্টক</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                    {% for search_item in search_item_query %}
+                    <tr>
+                      <td >{{ search_item.item_code }}</td>
+                      <td >{{ search_item.item_name }}</td>
+                      <td >{{ search_item.buy_underJob }}</td>
+                      <td >{{ search_item.item_quantity }}</td>
+                      <td>{{ search_item.item_location }}</td>
+                      <td>{{ search_item.buy_onDate }}</td>
+                      <td>{{ search_item.item_user }}</td>
+                      <td>{{ search_item.min_balance }}</td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                      <td colspan="3" align="right"><b>সর্বমোট = </b></td>
+                      <td >{{ total }}</td>
+                      <td style="font-family: SutonnyMJ, serif;font-size: 16pt">{{ g_total_p }}</td>
+                      <td style="font-family: SutonnyMJ, serif;font-size: 16pt">{{ g_total_a }}</td>
+                    </tr>
+
+
+                  </tbody>
+    </table>
+    <label style="color: #9c9c9c">{{ search_item_query|length }} product purchased</label>
+<!--Bin Card Information section End-->
+
+</div>
+{% endblock %}

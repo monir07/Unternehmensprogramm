@@ -1,0 +1,176 @@
+{% extends 'main_store/starter.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<!-- Page Content -->
+  <div class="container-xl">
+      <div class="col-md-12"><br> </div>
+<!--      Start Header information-->
+    <div class="row">
+        <div class="col-md-3 text-center">
+            <img class="logo" alt="..." src={% static 'img/ksy_logo.png' %} >
+        </div>
+          <div class="col-md-6 text-center">
+            <h1 class = "font-weight-normal">খুলনা শিপইয়ার্ড লিমিটেড</h1>
+            <h4 class = "font-weight-light"> বাংলাদেশ নৌ-বাহিনী, খুলনা </h4>
+            <h3 class = "font-weight-normal"><u> ফরমায়েশ পত্র</u> </h3>
+          </div>
+        <b>QF-PUR-01</b>
+    </div>
+<!--End Header information-->
+
+<!--Start Main Form      -->
+<div class="custom-form indent_body">
+ <form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+<!--     sender part start   -->
+     <div class="row">
+              <div class="form-group col-md-6">
+                <label for="sender_shop">প্রেরকঃ</label>
+                <select class="selectpicker form-control" data-live-search="true" title="নির্বচন করুন" data-live-search-placeholder="Search" data-actions-box="true" name="sender_shop" id="id_sender_shop"   data-max-options="1" >
+                            <option value="17">প্রধান ভাণ্ডার</option>
+                </select>
+              </div>
+              <div class="form-group col-md-3">
+                <label for="receiver_shop">প্রাপকঃ</label>
+                <select class="selectpicker form-control" data-live-search="true" title="নির্বচন করুন" data-live-search-placeholder="Search" data-actions-box="true" name="receiver_shop" id="id_receiver_shop">
+                      <option value="14">বাণিজ্যিক শাখা লোকাল </option>
+                      <option value="15">বাণিজ্যিক শাখা ফরেন </option>
+                </select>
+              </div>
+              <div class="form-group col-md-3">
+                    <label class=""> তারিখ </label>
+                    <input type="date" class="form-control"  name="iden_date" id="id_iden_date" placeholder="তারিখ...">
+              </div>
+        </div>
+<!--sender part end-->
+<!--Header part start-->
+       <div class="row border-bottom">
+
+              <div class="form-group col-md-6">
+                <label for="receiver_shop">জব নংঃ </label> <!-- include here multiple keyword for multiple select-->
+                <select class="selectpicker form-control" data-live-search="true" title="নির্বচন করুন" data-live-search-placeholder="Search" data-actions-box="true" name="receiver_shop" id="id_receiver_shop">
+                      <option value="1">নব নির্মান- ৭৩৬</option>
+                      <option value="2">নব নির্মান- ৭৩৬</option>
+                      <option value="3">নব নির্মান- ৭৩৬</option>
+                      <option value="4">নব নির্মান- ৭৩৬</option>
+                      <option value="5">নব নির্মান- ৭৩৬</option>
+                </select>
+              </div>
+
+           <div class="form-group col-md-3">
+                <label for="receiver_shop">অগ্রাধিকার</label>
+                <select class="selectpicker form-control" data-live-search="true" title="নির্বচন করুন" data-live-search-placeholder="Search" data-actions-box="true" name="receiver_shop" id="id_receiver_shop">
+                      <option value="1">জরুরী</option>
+                      <option value="2">সাধারন</option>
+                </select>
+           </div>
+           <div class="form-group col-md-3">
+                <label for="receiver_shop">ফরমায়েশ নম্বর</label>
+                <input type="text" class="form-control"  name="job_no" id="id_job_no" maxlength="100"  placeholder="ফরমায়েশ নম্বর">
+           </div>
+       </div>
+<!--Header part end-->
+<!-- Material list start -->
+        <div class="row">
+            <div class="form-group col-md-5">
+              <label for="attention"> মালামালের বিবরণ</label>
+              <input type="text" class="form-control"  name="job_no" id="id_job_no" maxlength="100"  placeholder="বিবরণ">
+            </div>
+            <div class="form-group col-md-1">
+              <label for="attention">ভাণ্ডার সংকেত</label>
+              <input type="text" class="form-control"  name="job_no" id="id_job_no" maxlength="100"  placeholder="পার্টস কোড">
+            </div>
+            <div class="form-group col-md-1">
+              <label for="attention">বর্তমান চাহিদা</label>
+              <input type="text" class="form-control"  name="job_no" id="id_job_no" maxlength="100"  placeholder="চাহিদা পরিমান">
+            </div>
+            <div class="form-group col-md-1">
+              <label for="attention">একক</label>
+              <input type="text" class="form-control"  name="job_no" id="id_job_no" maxlength="100"  placeholder="দ্রব্যের একক">
+            </div>
+            <div class="form-group col-md-1">
+              <label for="attention">বর্তমান মজুদ </label>
+              <input type="text" class="form-control"  name="job_no" id="id_job_no" maxlength="100"  placeholder="বর্তমান মজুদ আছে ">
+            </div>
+            <div class="form-group col-md-2">
+              <label for="attention">গত ক্রয়ের বরাত</label>
+              <input type="text" class="form-control"  name="job_no" id="id_job_no" maxlength="100"  placeholder="পুর্বের ক্রয়ের বিবরন">
+            </div>
+            <div class="form-group col-md-1">
+              <label for="attention">প্রাপ্তির সময়</label>
+              <input type="text" class="form-control"  name="job_no" id="id_job_no" maxlength="100"  placeholder="প্রাপ্তির সময়">
+            </div>
+            <div class="col-md-2" style="padding-bottom: 15px;">
+                <button type="button" class="btn btn-primary">Add new</button>
+            </div>
+        </div>
+<!-- Material list end -->
+<!--     Start Table Design-->
+        <table class="table-responsive"> <!--        Start footer part Design-->
+         <table class="table">
+
+         <thead>
+            <tr>
+                <th class="col-lg-6"></th>
+                <th class="col-lg-6"></th>
+            </tr>
+        </thead>
+
+          <tbody class="table-bordered">
+            <tr>
+              <td scope="row">
+                  <div class="row">
+                      <div class="col-lg-12">
+                          <label class=""> ফরমায়েশ কর্মকর্তা </label>
+                          <input type="text" class="form-control" name="ref" id="id_ref" placeholder="নাম ও পদবী..." maxlength="100">
+                      </div>
+                      <div class="col-lg-12">
+                          <label class=""> সাক্ষর  </label>
+                          <div class="input-group">
+                                <input type="file" class="custom-file-input" name="sign" id="id_sign">
+                                <div class="input-group-prepend">
+                                    <label class="custom-file-label" for="id_sign">নির্বাচন করুন...</label>
+                                </div>
+                          </div>
+                       </div>
+                  </div>
+              </td>
+
+              <td>
+                  <div class="row">
+                      <div class="col-lg-12">
+                          <label class=""> ওআইসি প্রধান ভান্ডার </label>
+                          <input type="text" class="form-control" name="ref" id="id_ref" placeholder="নাম ও পদবী..." maxlength="100">
+                      </div>
+                      <div class="col-lg-12">
+                          <label class=""> সাক্ষর  </label>
+                          <div class="input-group">
+                                <input type="file" class="custom-file-input" name="sign" id="id_sign">
+                                <div class="input-group-prepend">
+                                    <label class="custom-file-label" for="id_sign">নির্বাচন করুন...</label>
+                                </div>
+                          </div>
+                       </div>
+                  </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </table>
+<!--     Table Design end-->
+<!--     submit button start-->
+        <div class="row"> <!-- submit button section -->
+            <div class="form-group col-md-6">
+                <button type="submit" name="_preview" class="btn btn-primary btn-lg btn-block">Preview</button>
+            </div>
+            <div class="form-group col-md-6">
+                <button type="submit" name="_save" class="btn btn-primary btn-lg btn-block">Submit</button>
+            </div>
+        </div>
+<!--     submit button end-->
+  </form>
+<!--End Main Form-->
+</div>
+</div>
+{% endblock %}

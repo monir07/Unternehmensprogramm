@@ -1,0 +1,319 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>New Inter-Shop Instruction Form</title>
+
+{#  <!-- Bootstrap core CSS -->#}
+  <link rel="stylesheet" href={% static 'style_idn/vendor/bootstrap/css/bootstrap.min.css' %} >
+  <link rel="stylesheet" href={% static 'style_idn/vendor/bootstrap/css/custom.css' %} >
+
+  <!-- multiselect css -->
+  <link rel="stylesheet" href={% static 'style_idn/css/bootstrap-select.css' %}>
+
+  <!-- Text editor installation-->
+
+
+</head>
+
+<body>
+
+
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Khulna Shipyard Limited</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+   <!--------- end of navigation bar------>
+
+{% block content %}
+
+    {% if submitted %}
+         <div class="row" id="paint">
+              <div class="col-lg-12 text-center"><br>
+                <h4 class = "font-weight-light"> আপনার অভ্যন্তরীণ লিপি সঠিকভাবে প্রেরণ করা হয়েছে, ধন্যবাদ।  </h4>
+              </div>
+          </div>
+        <script>
+             setTimeout(function(){
+                window.location.href = "{% url 'mail-list' user_shop %}";
+             }, 2000);
+        </script>
+    {% else %}
+  <!-- Page Content -->
+  <div class="container">
+      <div class="col-md-12"><br> </div>
+    <div class="row">
+        <div class="col-md-3 text-center">
+            <img src="{% static 'img/ksy_logo.png' %}" class="logo" alt="...">
+        </div>
+          <div class="col-md-6 text-center">
+            <h1 class = "font-weight-normal">খুলনা শিপইয়ার্ড লিমিটেড</h1>
+            <h4 class = "font-weight-light"> বাংলাদেশ নৌ-বাহিনী, খুলনা </h4>
+            <h3 class = "font-weight-normal"> অভ্যন্তরীণ লিপি</h3>
+          </div>
+	</div>
+
+
+	<form action="" method="post" enctype="multipart/form-data">
+		{% csrf_token %}
+        <div class="row">
+            <div class="form-group col-md-6">
+              <div class="input-group">
+        			  <div class="input-group-prepend">
+        				<span class="input-group-text">সুত্রঃ</span>
+        			  </div>
+        			  <input type="text" class="form-control" name="ref" id="id_ref" maxlength="100">
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+                <div class="input-group">
+			  <div class="input-group-prepend">
+				<span class="input-group-text">তারিখঃ</span>
+			  </div>
+			  <input type="date" class="form-control"  name="iden_date" id="id_iden_date">
+			</div>
+            </div>
+			<div class="form-group col-md-6">
+			  <label for="sender_shop">প্রেরকঃ</label>
+				<select class="selectpicker form-control" data-live-search="true" title="নির্বচন করুন" data-live-search-placeholder="Search" data-actions-box="true" name="sender_shop" id="id_sender_shop"  multiple="multiple" data-max-options="1" >
+				  <optgroup label="প্রডাকশন বিভাগ">
+                      <option value="1">জাহাজ নির্মাণ শাখা</option>
+                      <option value="2">যান্ত্রিক বাহির শাখা</option>
+                      <option value="3">যান্ত্রিক ভিতর শাখা</option>
+                      <option value="4">নঙ্গর শাখা</option>
+                      <option value="5">পুরকৌশল শাখা</option>
+                      <option value="6">বিদ্যুৎ শাখা</option>
+                      <option value="7">রেডিও ইলেক্ট্রিক্যাল শাখা</option>
+                      <option value="8">কার্প্রেন্ট্রি শপ</option>
+                      <option value="9">রক্ষণাবেক্ষণ শাখা</option>
+                    </optgroup>
+                    <optgroup label="নকশা ও পরিকল্পনা বিভাগ">
+                      <option value="10">নকশা শাখা</option>
+                      <option value="11">পরিকল্পনা শাখা</option>
+                      <option value="12">আইটি শাখা</option>
+                    </optgroup>
+                    <optgroup label="প্রশাসন বিভাগ">
+                      <option value="13">প্রশাসন শাখা</option>
+                      <option value="14">বাণিজ্যিক শাখা লোকাল</option>
+                      <option value="15">বাণিজ্যিক শাখা ফরেন</option>
+                      <option value="16">হিউম্যান রিসোর্স শাখা</option>
+                      <option value="17">প্রধান ভাণ্ডার</option>
+                    </optgroup>
+                    <optgroup label="অর্থ বিভাগ">
+                      <option value="18">অর্থ শাখা </option>
+                      <option value="19">মূল্য নির্ধারন শাখা</option>
+                    </optgroup>
+				</select>
+			</div>
+			<div class="form-group col-md-6">
+			  <label for="receiver_shop">প্রাপকঃ</label>
+                <select class="selectpicker form-control" data-live-search="true" title="নির্বচন করুন" data-live-search-placeholder="Search" data-actions-box="true" name="receiver_shop" id="id_receiver_shop" multiple = "multiple">
+                    <optgroup label="প্রডাকশন বিভাগ">
+                      <option value="1">জাহাজ নির্মাণ শাখা</option>
+                      <option value="2">যান্ত্রিক বাহির শাখা</option>
+                      <option value="3">যান্ত্রিক ভিতর শাখা</option>
+                      <option value="4">নঙ্গর শাখা</option>
+                      <option value="5">পুরকৌশল শাখা</option>
+                      <option value="6">বিদ্যুৎ শাখা</option>
+                      <option value="7">রেডিও ইলেক্ট্রিক্যাল শাখা</option>
+                      <option value="8">কার্প্রেন্ট্রি শপ</option>
+                      <option value="9">রক্ষণাবেক্ষণ শাখা</option>
+                    </optgroup>
+                    <optgroup label="নকশা ও পরিকল্পনা বিভাগ">
+                      <option value="10">নকশা শাখা</option>
+                      <option value="11">পরিকল্পনা শাখা</option>
+                      <option value="12">আইটি শাখা</option>
+                    </optgroup>
+                    <optgroup label="প্রশাসন বিভাগ">
+                      <option value="13">প্রশাসন শাখা</option>
+                      <option value="14">বাণিজ্যিক শাখা লোকাল </option>
+                      <option value="15">বাণিজ্যিক শাখা ফরেন </option>
+                      <option value="16">হিউম্যান রিসোর্স শাখা </option>
+                      <option value="17">প্রধান ভাণ্ডার </option>
+                    </optgroup>
+                    <optgroup label="অর্থ বিভাগ">
+                      <option value="18">অর্থ শাখা </option>
+                      <option value="19">মূল্য নির্ধারন শাখা</option>
+                    </optgroup>
+                </select>
+
+			</div>
+			<div class="form-group col-12">
+				<hr>
+			</div>
+			<div class="form-group col-6">
+                <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">বিষয়ঃ</span>
+                        </div>
+                        <input type="text" class="form-control" name="subject" id="id_subject" maxlength="300" placeholder="বিষয়...">
+                </div>
+            </div>
+            <div class="form-group col-6">
+                <div class="input-group">
+					<div class="input-group-prepend">
+						<span class="input-group-text">জব নংঃ</span>
+					</div>
+				    <input type="text" class="form-control"  name="job_no" id="id_job_no" maxlength="100"  placeholder="জব নং.../প্রয়োজন নাই">
+                </div>
+			</div>
+			<!-- text editor here -->
+	        <div class="form-group col-md-12">
+				<label for="iden_body">বর্ননাঃ</label>
+{#				<textarea class="form-control" rows="8" name="iden_body" id="id_iden_body" placeholder="এখানে অভ্যন্তরীণ লিপির বিস্তারিত লিখুন ... "></textarea>#}
+                {{ form.media }}
+                {{ form.iden_body }}
+			</div>
+			<!-- text editor end -->
+
+			<div class="form-group col-md-6">
+			  <label for="attention">অবগতিঃ</label>
+              <select multiple="multiple" class="selectpicker form-control" name="attention" id="id_attention" data-live-search="true" title="নির্বচন করুন" data-actions-box="true">
+				  <option value="1">জি এম প্রোডাকশন</option>
+				  <option value="2">ডি জি এম শিপ বিল্ডিং</option>
+				  <option value="3">ডি জি এম ইঞ্জিনিয়ারিং</option>
+				  <option value="4">ডি জি এম ইলেক্ট্রিক্যাল</option>
+              </select>
+			</div>
+			
+            <div class="form-group col-md-6">
+                <label for="sender_name">প্রেরকের নামঃ</label>
+			    <input type="text" class="form-control" name="sender_name" id="id_sender_name" maxlength="100" placeholder="প্রেরকের নামঃ... ">
+		    </div>
+            <div class="form-group col-md-6">
+                <div class="input-group">
+
+                    <input type="file" class="custom-file-input" name="attachment" id="id_attachment">
+                    <div class="input-group-prepend">
+                        <label class="custom-file-label" for="id_sign">সংলগ্নী...</label>
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-group col-md-6">
+                <input type="text" class="form-control" name="sender_designation" id="id_sender_designation" maxlength="100" placeholder="পদবীঃ... ">
+            </div>
+
+            <div class="form-group col-md-6">
+{#                <label for = "designation">পদবীঃ </label>#}
+{#                <input type="text" class="form-control" id="designation" placeholder="পদবীঃ... ">#}
+            </div>
+
+            <div class="form-group col-md-6">
+                <div class="input-group">
+                    <input type="file" class="custom-file-input" name="sign" id="id_sign">
+                    <div class="input-group-prepend">
+                        <label class="custom-file-label" for="id_sign">সাক্ষর...</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group col-md-6">
+                <button type="submit" name="_preview" class="btn btn-primary btn-lg btn-block">Preview</button>
+            </div>
+            <div class="form-group col-md-6">
+                <button type="submit" name="_save" class="btn btn-primary btn-lg btn-block">Submit</button>
+            </div>
+		</div>
+	</form>
+  {% endif %}
+  </div>
+
+
+{% endblock %}
+  <!-- Bootstrap core JavaScript -->
+<script src={% static 'style_idn/vendor/jquery/jquery.slim.min.js' %}></script>
+<script src={% static 'style_idn/vendor/bootstrap/js/bootstrap.bundle.min.js' %}></script>
+
+
+<!-- Dropdown Multiple Select JS -->
+<script src={% static 'style_idn/js/bootstrap-select.js'%}></script>
+
+<!-- Text Editor Source JS-->
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+<script type="text/javascript" src="{% static "ckeditor/ckeditor.js" %}"></script>
+
+<!-- JS Declaration here. -->
+
+<script type="text/javascript">
+
+// http redirect --------------------
+
+// Multiselect--------------------------------------
+function createOptions(number) {
+  var options = [], _options;
+  var option1 = ['Managing Director','GM Production','DGM Shipbuilding','DGM Engineering','DGM Electrical'];
+
+  {#Option Group Variable#}
+  var option_group = [];
+  var group_1st_tag =  '<optgroup label=" 1st gr">';
+  var group_end_tag =  '</optgroup>';
+
+
+  for (var i = 0; i < number; i++) {
+    var option = '<option value="' + i + '">' + option1[i] + '</option>';
+    options.push(option);
+  }
+
+
+
+  option_group.push(group_1st_tag);
+  option_group.push(options);
+  option_group.push(group_end_tag);
+
+  _options = option_group.join('');
+
+  $('#number')[0].innerHTML = _options;
+
+  {#$('#number-multiple')[0].innerHTML = _options;#}
+  {##}
+  {##}
+  {#$('#number2')[0].innerHTML = _options;#}
+  {#$('#number2-multiple')[0].innerHTML = _options;#}
+}
+
+var mySelect = $('#first-disabled2');
+
+createOptions(5);
+
+$('#special').on('click', function () {
+  mySelect.find('option:selected').prop('disabled', true);
+  mySelect.selectpicker('refresh');
+});
+
+$('#special2').on('click', function () {
+  mySelect.find('option:disabled').prop('disabled', false);
+  mySelect.selectpicker('refresh');
+});
+
+$('#basic2').selectpicker({
+  liveSearch: true,
+  maxOptions: 1
+});
+</script>
+
+
+</body>
+
+</html>

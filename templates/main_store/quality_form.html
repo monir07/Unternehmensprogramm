@@ -1,0 +1,229 @@
+{% extends 'main_store/starter.html' %}
+{% load staticfiles %}
+{% load static %}
+{% block content %}
+  <!-- Page Content -->
+
+  <div class="container">
+      <div class="col-md-12"><br> </div>
+    <div class="row">
+        <div class="col-md-3 text-center">
+            <img src="{% static 'img/ksy_logo.png' %}" class="logo" alt="...">
+        </div>
+          <div class="col-md-6 text-center">
+            <h1 class = "font-weight-normal">খুলনা শিপইয়ার্ড লিমিটেড</h1>
+            <h4 class = "font-weight-light"> বাংলাদেশ নৌ-বাহিনী, খুলনা </h4>
+            <h4 class = "font-weight-normal"><u>"দ্রব্যমান পরীক্ষা পত্র"</u> </h4>
+            <h5 class = "font-weight-normal">(MATERIAL QUALITY INSPECTION FORM)</h5>
+          </div>
+        <b>QF-STR-2</b>
+    </div>
+
+
+ <form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+<!--     header part start   -->
+     <div class="row"> <!--Header part start-->
+            
+          <div class="form-group row col-md-6">
+                <label for="id_item_code" class="col-md-1">প্রতিঃ</label>
+                <label class="col-md-10">{{ quality_data.send_to }}</label>
+          </div>
+         <div class="form-group row col-md-3">
+{#                <label for="id_item_code" style="padding-top:7px; " class="col-md-3"> নংঃ </label>#}
+{#                <p class="col-md-9">................................</p>#}
+         </div>
+         <div class="form-group row col-md-3">
+                <label for="id_item_code"  class="col-md-7">পরীক্ষা পত্র নংঃ </label>
+                <p class="col-md-5 text-left">{{ quality_data.quality_no }}</p>
+         </div>
+
+
+         <div class="form-group row col-md-6">
+{#                <label for="id_item_code" style="padding-top:7px; " class="col-md-1"></label>#}
+{#                <p class="col-md-10">.............................................................................</p>#}
+          </div>
+         <div class="form-group row col-md-3">
+{#                <label for="id_item_code" style="padding-top:7px; " class="col-md-3"> নংঃ </label>#}
+{#                <p class="col-md-9">................................</p>#}
+         </div>
+         <div class="form-group row col-md-3">
+                <label for="id_item_code"  class="col-md-3"> তারিখঃ </label>
+                <p class="col-md-9">{{ quality_data.quality_date|date:"d- m- Y" }}</p>
+         </div>
+
+         <div class="form-group row col-md-12">
+                <label class="col-md-12">অনুগ্রহ পূর্বক নিম্নে বর্ণিত দ্রব্যগুলোর গুনাগুণ পরীক্ষা করিয়া উহার গ্রহণ যোগ্যতা সম্পর্কে আপনার মন্তব্য পেশ করুন। দ্রব্যগুলির
+                    ফরমায়েশ নং / ক্রয়াদেশ নং {{ quality_data.po_no }} তারিখঃ {{ quality_data.po_date }}  এবং
+                    চালান/মেমো নংঃ {{ quality_data.memo_no }} তারিখঃ {{ quality_data.memo_date|date:"d- m- Y" }} অনুসারে সরবরাহ করা হয়েছে। </label>
+         </div>
+
+     </div>
+<!--header part end-->
+
+<!--material list table start-->
+    <!--     Start Table Design-->
+        <table class=" table table-bordered table-hover text-center"> <!--        Start footer part Design-->
+                 <thead class="thead-dark">
+                    <tr>
+                        <th class="col-md-1 align-middle">ক্রমিক নং</th>
+                        <th class="col-md-6 align-middle">মালামালের বিবরণ</th>
+                        <th class="col-md-2 align-middle">সরবরাহকৃত পরিমাণ</th>
+                        <th class="col-md-2 align-middle">পরীক্ষার পর ছাড়ের পরিমাণ </th>
+                        <th class="col-md-1 align-middle">মন্তব্য</th>
+                    </tr>
+                 </thead>
+
+                  <tbody class="table-bordered">
+                    {% for item_list in quality_item %}
+                        <tr>
+                          <td >{{ forloop.counter }}</td>
+                          <td class="text-left">{{ item_list.material_des }}</td>
+                          <td >{{ item_list.material_qty }}</td>
+                          <td >-</td>
+                          <td >-</td>
+                        </tr>
+                    {% endfor %}
+                  </tbody>
+        </table>
+    <div class="col-md-12">
+            <br>
+    </div>
+     <div class="col-md-12 text-right">
+            <img style="width: 120px; height: 60px;" src="{{ quality_data.get_oic_sign_oic_store }}">
+    </div>
+
+     <div class="row">
+                <div class="col-md-10">
+                    <label>(গুনাগুণ পরীক্ষা করিয়া গ্রহণযোগ্য/ অযোগ্য ঘোষণা করিতেছি।
+                    অযোগ্য ঘোষিত হইলে বিস্তারিত কারণ দর্শাইতে হবে। )</label>
+                </div>
+                <div class="col-md-2 text-right">
+                    <label>ওআইসি প্রধান ভান্ডার </label>
+                </div>
+         </div>
+
+<!--material list table end-->
+<div class="col-md-12">
+            <br>
+    </div>
+
+
+<!--     Start Table Design-->
+        <table class="table-responsive"> <!--        Start footer part Design-->
+         <table class="table-borderless">
+
+         <thead>
+            <tr>
+                <th class="col-md-3"></th>
+                <th class="col-md-3"></th>
+                <th class="col-md-3"></th>
+                <th class="col-md-3"></th>
+            </tr>
+        </thead>
+
+          <tbody >
+                <tr>
+                  <td scope="row">
+                      <div class="col-md-12" >
+                          <img style="width: 120px; height: 80px; margin-left: 40px;" src="{{ quality_data.get_oic_responsible_oic }}">
+                          <label for="quality_shop" class="col-md-12"> ........................... </label>
+                          <label for="quality_shop" class="col-md-12"> সংশ্লিট শাখা প্রধান </label>
+                          <label for="quality_shop" class="col-md-12"> সদস্য </label>
+                          <label class="col-md-12" for="quality_shop"> তারিখঃ {{ quality_data.responsible_oic_date|date:"d- m- Y" }} </label>
+                      </div>
+                  </td>
+                  <td scope="row">
+                      <div class="col-md-12"  style="padding-left: 50px;">
+                          <img style="width: 120px; height: 80px; margin-left: 40px;" src="{{ quality_data.get_oic_store_sign }}">
+                          <label for="quality_shop" class="col-md-12"> ........................... </label>
+                          <label for="quality_shop" class="col-md-12"> ওআইসি প্রধান ভান্ডার </label>
+                          <label for="quality_shop" class="col-md-12"> সদস্য </label>
+                          <label class="col-md-12" for="quality_shop"> তারিখঃ {{ quality_data.oic_store_date|date:"d- m- Y" }} </label>
+                      </div>
+                  </td>
+                  <td scope="row">
+                      <div class="col-md-12 "  style="padding-left: 80px;">
+                          <img style="width: 120px; height: 80px; margin-left: 40px;" src="{{ quality_data.get_dgm_sign }}">
+                          <label for="quality_shop" class="col-md-12"> ........................... </label>
+                          <label for="quality_shop" class="col-md-12"> সংশ্লিট ডিজিএম </label>
+                          <label for="quality_shop" class="col-md-12"> সদস্য </label>
+                          <label class="col-md-12" for="quality_shop"> তারিখঃ {{ quality_data.dgm_date|date:"d- m- Y" }}  </label>
+                      </div>
+                  </td>
+                  <td scope="row">
+                      <div class="col-md-12" style="padding-left: 80px;">
+                          <img style="width: 120px; height: 80px; margin-left: 40px;" src="{{ quality_data.get_gm_sign }}">
+                          <label for="quality_shop" class="col-md-12"> ........................... </label>
+                          <label for="quality_shop" class="col-md-12"> জিএম(প্রোডাকশন) </label>
+                          <label for="quality_shop" class="col-md-12"> সভাপতি</label>
+                          <label class="col-md-12" for="quality_shop"> তারিখঃ {{ quality_data.gm_date|date:"d- m- Y" }} </label>
+                      </div>
+                  </td>
+
+            </tr>
+          </tbody>
+        </table>
+      </table>
+<!--     Table Design end-->
+  </form>
+
+
+<!-- Material list start -->
+<!-- Material list end -->
+
+  </div>
+  <script>
+            $('#id_sign').on('change',function(){
+                //get the file name
+                var fileName = $(this).val();
+                //replace the "Choose a file" label
+                $(this).next('.custom-file-label').html(fileName);
+            });
+
+            {#Date Time input using jquery#}
+            $(function () {
+                    $("#id_mrr_date").datetimepicker({
+                      format: 'm/d/Y H:i',
+                    });
+                  });
+            {#Real time search by jquery#}
+
+            $('#id_mrr_date').keyup(function () {
+              $('#id_po_no').text($(this).val());
+            });
+
+{#Auto Complete using other input type#}
+
+            $("#id_mrr_no_first").keyup(function(){
+                update();
+            });
+
+            function update() {
+              $("#id_po_no").val($('#id_mrr_no_first').val());
+            }
+{# Submit  specific input type data onclick        #}
+  $(function () {
+    $('#id_mrr_no_first').keyup(function () {
+
+        $.ajax({
+            type: "POST",
+            url: "ajax_search",
+            data: {
+                'search_text' : $('#id_mrr_no_first').val(),
+                'csrfmiddlewaretoken' : $("input[name = csrfmiddlewaretoken]").val()
+            },
+            success: searchSuccess,
+            dataType: 'html'
+        });
+
+    });
+
+});
+
+function searchSuccess(data, textStatus, jqXHR) {
+    $('#search-results').html(data); <!-- show vlaue of html code this format-->
+    $('#id_supplier_name').val(data); <!-- show vlaue of input type this format-->
+}
+  </script>
+{% endblock %}

@@ -1,0 +1,138 @@
+{% extends 'manhour/starter.html' %}
+{% load staticfiles %}
+{% load static %}
+
+
+{% block content %}
+    <!-- Navigation -->
+          <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+            <div class="container">
+              <a class="navbar-brand" href="#">KHULNA SHIPYARD LIMITED</a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'plater-shop' %}">home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">logout</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-12">
+               <br>
+            </div>
+            <div class="col-md-3 text-center">
+                <img src="{% static 'img/ksy_logo.png' %}" class="logo" alt="...">
+            </div>
+              <div class="col-md-6 text-center">
+                <h1 class = "font-weight-normal">খুলনা শিপইয়ার্ড লিমিটেড</h1>
+                <h4 class = "font-weight-light"> বাংলাদেশ নৌ-বাহিনী, খুলনা </h4>
+                <h3 class = "font-weight-normal"> জব ভিত্তিক হাজিরা </h3>
+              </div>
+                QF-PRN-12
+            <div class="col-md-12">
+               <hr>
+            </div>
+
+
+            <div class="col-md-8">
+                <label><b>সুত্রঃ</b> {{ iden_list.ref }}</label>
+            </div>
+            <div class="col-md-4 dateFont">
+                <b>তারিখঃ </b><label>{{ iden_list.manhour_date|date:"d- m- Y" }}</label>
+            </div>
+            <div class="col-md-12">
+               <hr>
+            </div>
+
+            <div class="col-md-8">
+                <label><b>প্রেরকঃ </b> {{ iden_list.get_manhour_sender }}</label>
+            </div>
+            <div class="col-md-4 col">
+                <label><b>প্রাপকঃ </b>
+                <ol>
+                {% for recv in iden_list.get_manhour_receiver %}
+                   <li>. {{ recv }} </li>
+                {% endfor %}
+                </ol>
+                </label>
+            </div>
+            <div class="col-md-12">
+               <hr>
+            </div>
+
+            <div class="col-md-12">
+               <table class="table table-bordered table-hover text-center">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">জব নং</th>
+                      <th scope="col">জব-অফিসারের_নাম</th>
+                      <th scope="col">জব সুপারভাইজার</th>
+                      <th scope="col">শপ</th>
+                      <th scope="col">বি- শিফট </th>
+                      <th scope="col">ফিটার</th>
+                      <th scope="col">ওয়েল্ডার</th>
+                      <th scope="col">গ্যাস কাটার </th>
+                      <th scope="col">গ্রাইন্ডার</th>
+                      <th scope="col">মেশিন ম্যান</th>
+                      <th scope="col">সিএনসি </th>
+                      <th scope="col">জাহাজ নির্মান</th>
+                      <th scope="col">অন্যান্য শপ</th>
+                      <th scope="col">মোট</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                    {% for manhour, total, other, grndTotal in mylist %}
+                    <tr>
+                      <th rowspan = "2">{{ manhour.get_manhour_jobNo }}</th>
+                      <td rowspan = "2">{{ manhour.get_manhour_jobOfficer }}</td>
+                      <td rowspan = "2">{{ manhour.get_manhour_supvr }}</td>
+                      <td>জাহাজ নির্মান </td>
+                      <td >{{ manhour.get_manhour_shift }}</td>
+                      <td style="font-family: SutonnyMJ, serif;font-size: 16pt">{{ manhour.manhour_fitter }}</td>
+                      <td style="font-family: SutonnyMJ, serif;font-size: 16pt">{{ manhour.manhour_welder }}</td>
+                      <td style="font-family: SutonnyMJ, serif;font-size: 16pt">{{ manhour.manhour_gasCutter }}</td>
+                      <td style="font-family: SutonnyMJ, serif;font-size: 16pt">{{ manhour.manhour_grinder }}</td>
+                      <td style="font-family: SutonnyMJ, serif;font-size: 16pt">{{ manhour.manhour_machineMan }}</td>
+                      <td style="font-family: SutonnyMJ, serif;font-size: 16pt">{{ manhour.manhour_cNc }}</td>
+                      <td style="font-family: SutonnyMJ, serif;font-size: 16pt">{{ total }}</td>
+
+                      <td>-</td>
+                      <td rowspan = "2" style="font-family: SutonnyMJ, serif;font-size: 16pt">{{ grndTotal }}</td>
+                    </tr>
+                    <tr>
+                      <td>অন্যান্য শপ</td>
+                      <td>{{ manhour.get_manhour_shift }}</td>
+                      <td style="font-family: SutonnyMJ, serif;font-size: 16pt">{{ manhour.manhour_fitter_Other }}</td>
+                      <td style="font-family: SutonnyMJ, serif;font-size: 16pt">{{ manhour.manhour_welder_Other }}</td>
+                      <td style="font-family: SutonnyMJ, serif;font-size: 16pt">{{ manhour.manhour_gasCutter_Other }}</td>
+                      <td style="font-family: SutonnyMJ, serif;font-size: 16pt">{{ manhour.manhour_grinder_Other }}</td>
+                      <td style="font-family: SutonnyMJ, serif;font-size: 16pt">0</td>
+                      <td style="font-family: SutonnyMJ, serif;font-size: 16pt">0</td>
+                      <td style="font-family: SutonnyMJ, serif;font-size: 16pt">-</td>
+                      <td style="font-family: SutonnyMJ, serif;font-size: 16pt">{{ other }}</td>
+                    </tr>
+                  {% endfor %}
+
+                  </tbody>
+                </table>
+                <div class="form-group col-md-12">
+                    <a class="btn btn-primary" href="{% url 'manhour' %}" role="button">Add Another</a>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+{% endblock %}
+

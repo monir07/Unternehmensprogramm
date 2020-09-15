@@ -1,0 +1,73 @@
+{% extends 'main_store/Existing_product_store_form.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<!-- Page Content -->
+<div class="container">
+    <div class="col-md-12"><br> </div>
+    <!--      Start Header information-->
+        <div class="row">
+            <div class="col-md-3 text-center">
+                <img class="logo" alt="..." src={% static 'img/ksy_logo.png' %} >
+            </div>
+              <div class="col-md-6 text-center">
+                <h1 class = "font-weight-normal">খুলনা শিপইয়ার্ড লিমিটেড</h1>
+                <h4 class = "font-weight-light"> বাংলাদেশ নৌ-বাহিনী, খুলনা </h4>
+                  <h4 class = "font-weight-normal"><b><u>মালামালের স্টেটমেন্ট/ রিপোর্ট</u></b> </h4>
+                  <br>
+              </div>
+            <b>QF-PUR-01</b>
+        </div>
+    <!--End Header information-->
+<!--Bin Card Information section Start-->
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-3">
+                <input placeholder="শুরুর তারিখ... " required class="textbox-n form-control col-md-9" type="text" onfocus="(this.type='date')" id="id_date" name="start_date">
+            </div>
+
+            <div class="col-md-3">
+                <input placeholder="শেষের তারিখ... " required class="textbox-n form-control col-md-9" type="text" onfocus="(this.type='date')" id="id_date" name="end_date">
+            </div>
+            <div class="col-md-3">
+                <input placeholder="দ্রব্যের নাম" class="textbox-n form-control col-md-9" type="text"  id="id_item_name" name="item_name">
+            </div>
+
+            <div class="col-md-3">
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" name="item_code" id="id_item_code" placeholder="Product Code.." aria-describedby="basic-addon2">
+                  <div class="input-group-append">
+                    <button type="submit" name="_search" class="btn btn-outline-secondary"><i class="fas fa-search"></i></button>
+                  </div>
+                </div>
+            </div>
+
+        </div>
+    </form>
+
+     <table class="table table-bordered table-hover text-center">
+                  <thead class="thead-dark ">
+                  <br>
+                    <tr>
+                      <th scope="col">দ্রব্যের কোড</th>
+                      <th scope="col">দ্রব্যের নাম</th>
+                      <th scope="col">কার্যাদেশ নং</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% if demo_name %}
+                       {% for namelist in demo_name %}
+                            <tr>
+                              <td >{{ namelist.p_code }}</td>
+                              <td >{{ namelist.p_name }}</td>
+                              <td >{{ namelist.p_unit }}</td>
+                            </tr>
+                        {% endfor %}
+                  {% endif %}
+                  </tbody>
+    </table>
+<!--Bin Card Information section End-->
+
+</div>
+{% endblock %}

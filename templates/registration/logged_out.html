@@ -1,0 +1,18 @@
+{% extends "iden/starter.html" %}
+
+{% block content %}
+<div class="container">
+        <div class="row">
+              <div class="col-lg-12 text-center"><br>
+                <h4 class = "font-weight-light"> You Are Successfully Logout! </h4>
+                  <a class="btn btn-primary" href="{% url 'login' %}" role="button">Thank You</a>
+                  <script>
+                     setTimeout(function(){
+                        window.location.href = "{% url 'home1' %}";
+                     }, 2000);
+                  </script>
+              </div>
+          </div>
+</div>
+
+{% endblock %}

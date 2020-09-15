@@ -1,0 +1,391 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Iden Mail Box</title>
+
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+       <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href={% static 'starter_template/bootstrap/css/bootstrap.min.css' %} >
+    <link rel="stylesheet" href={% static 'starter_template/bootstrap/css/custom.css' %} >
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href= {% static 'js/fontawesome-free/css/all.min.css' %}>
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href={% static 'js/bootstrap/icheck-bootstrap.min.css' %}>
+  <!-- Theme style -->
+  <link rel="stylesheet" href={%  static 'css/adminlte.css' %}>
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+
+
+</head>
+<body>
+<!-- Navigation -->
+          <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+            <div class="container">
+              <a class="navbar-brand" href="#">KHULNA SHIPYARD LIMITED</a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'plater-shop' %}">home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+
+{% block content %}
+<div class="wrapper">
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+
+  <section class="content-header">
+      <div class="container-fluid">
+
+          <div class="row">
+          <div class="col-md-3">
+                <h1>স্বাগতম {{ shop_name }}</h1>
+          </div>
+              <div class="col-md-9">
+              <form action="" method="post">
+                  <div class="input-group">
+                      {% csrf_token %}
+                      <input type="text" name="srs" id="search" class="form-control" placeholder="Search Mail" aria-label="Search Mail" aria-describedby="basic-addon2">
+                      <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="submit">Search</button>
+                      </div>
+
+                  </div>
+              </form>
+              </div>
+
+          </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-md-3">
+          <a href="{% url 'compose-iden' shop_name %}" class="btn btn-primary btn-block mb-3">Compose Mail</a>
+
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Folders</h3>
+
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                </button>
+              </div>
+            </div>
+            <div class="card-body p-0" id="refresh1"><!-- id = refresh1 for this div reload -->
+            <div class="card-body p-0" id="refress1"><!-- id = refress1 for this div reload -->
+              <ul class="nav nav-pills flex-column">
+                <li class="nav-item active">
+                  <a href="{% url 'mail-list' shop_name %}" class="nav-link">
+                    <i class="fas fa-inbox"></i> Inbox
+                    <span class="badge bg-primary float-right">{{ count }}</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{% url 'sent-mail' shop_name %}" class="nav-link">
+                    <i class="far fa-envelope"></i> Sent
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-file-alt"></i> Drafts
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="fas fa-filter"></i> Junk
+                    <span class="badge bg-warning float-right">65</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-trash-alt"></i> Trash
+                  </a>
+                </li>
+              </ul>
+            </div>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Labels</h3>
+
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                </button>
+              </div>
+            </div>
+            <div class="card-body p-0">
+              <ul class="nav nav-pills flex-column">
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle text-danger"></i>
+                    Important
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle text-warning"></i> Promotions
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle text-primary"></i>
+                    Social
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-9">
+          <div class="card card-primary card-outline">
+            <div class="card-header">
+              <h3 class="card-title">Inbox</h3>
+
+{#              <div class="card-tools">#}
+{#                <div class="input-group input-group-sm">#}
+{#                  <input type="text" class="form-control" placeholder="Search Mail">#}
+{#                  <div class="input-group-append">#}
+{#                    <div class="btn btn-primary">#}
+{#                      <i class="fas fa-search"></i>#}
+{#                    </div>#}
+{#                  </div>#}
+{#                </div>#}
+{#              </div>#}
+              <!-- /.card-tools -->
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body p-0">
+              <div class="mailbox-controls">
+                <!-- Check all button -->
+                <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="far fa-square"></i>
+                </button>
+                <div class="btn-group">
+                  <button type="button" class="btn btn-default btn-sm"><i class="far fa-trash-alt"></i></button>
+                  <button type="button" class="btn btn-default btn-sm"><i class="fas fa-reply"></i></button>
+                  <button type="button" class="btn btn-default btn-sm"><i class="fas fa-share"></i></button>
+                </div>
+                <!-- /.btn-group -->
+                <button type="button" class="btn btn-default btn-sm"  onclick="history.go(0)"><i class="fas fa-sync-alt"></i></button>
+                <div class="float-right">
+                  1-50/200
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-default btn-sm"><i class="fas fa-chevron-left"></i></button>
+                    <button type="button" class="btn btn-default btn-sm"><i class="fas fa-chevron-right"></i></button>
+                  </div>
+                  <!-- /.btn-group -->
+                </div>
+                <!-- /.float-right -->
+              </div>
+            <div class="table-responsive mailbox-messages" id="refresh"> <!-- id = refresh for this div reload -->
+
+              <div class="table-responsive mailbox-messages" id="refress"><!-- id = refress for this div reload -->
+
+
+{#                    This section used for Mail Searching#}
+                      {% if search_res %}
+
+                          <table class="table table-hover table-striped">
+                          <tbody>
+
+                           {% for search in search_res %}
+                          <tr>
+                            <td>
+                              <div class="">
+                                <input type="checkbox" value="" id=>
+                                <label for="check1"></label>
+                              </div>
+                            </td>
+                            <td class="mailbox-star"><a href="#" target="_blank"><i class="fas fa-star text-warning"></i></a></td>
+                            <td class="mailbox-name"><a href="{% url 'show-iden' search.id %}" target="_blank">{{ search.get_senderShop }}</a></td>
+                            <td class="mailbox-subject"><a href="{% url 'show-iden' search.id %} " target="_blank"><b>{{ search.subject }}</b></a></td>
+                            <td {% if search.attachment %} class="mailbox-attachment"><i class="fas fa-paperclip"></i>{% endif %}</td>
+                            <td class="mailbox-date">{{ search.iden_date|date:"Y-m-d H:i" }}</td>
+                          </tr>
+                          {% endfor %}
+                          </tbody>
+{#                          Mail Searching end#}
+                        </table>
+
+                       {% else %}
+                        <table class="table table-hover table-striped">
+                          <tbody>
+
+                           {% for viewIden in iden_list %}
+                          <tr {% if not viewIden.viewed %} style=" background-color:#90e4f1  "{% endif %}>
+                            <td>
+                              <div class="">
+                                <input type="checkbox" value="" id=>
+                                <label for="check1"></label>
+                              </div>
+                            </td>
+                            <td class="mailbox-star"><a href="#" target="_blank">{% if not viewIden.viewed %} <i class="fa fa-envelope"></i>
+                            {% else %} <i class="fa fa-envelope-open"></i>{% endif %}</a></td>
+                            <td class="mailbox-name"><a href="{% url 'show-iden' viewIden.id %}" target="_blank">{{ viewIden.get_senderShop }}</a></td>
+                            <td class="mailbox-subject"><a href="{% url 'show-iden' viewIden.id %}" target="_blank"><b>{{ viewIden.subject }}</b></a></td>
+                            <td {% if viewIden.attachment %} class="mailbox-attachment"><i class="fas fa-paperclip"></i>{% endif %}</td>
+                            <td class="mailbox-date">{{ viewIden.iden_date|date:"d-M-Y, H:i" }}</td>
+                          </tr>
+                          {% endfor %}
+                          </tbody>
+                        </table>
+
+                      {% endif %}
+
+              {% if sent_search %}
+
+                          <table class="table table-hover table-striped">
+                          <tbody>
+
+                           {% for search in sent_search %}
+                          <tr>
+                            <td>
+                              <div class="">
+                                <input type="checkbox" value="" id=>
+                                <label for="check1"></label>
+                              </div>
+                            </td>
+                            <td class="mailbox-star"><a href="#" target="_blank"><i class="fas fa-star text-warning"></i></a></td>
+                            <td class="mailbox-name"><a href="{% url 'show-iden' search.id %}" target="_blank">{{ search.get_senderShop }}</a></td>
+                            <td class="mailbox-name"><a href="{% url 'show-iden' search.id %}" target="_blank">{{ search.get_receiverShop }}</a></td>
+                            <td class="mailbox-subject"><a href="{% url 'show-iden' search.id %} " target="_blank"><b>{{ search.subject }}</b></a></td>
+                            <td {% if search.attachment %} class="mailbox-attachment"><i class="fas fa-paperclip"></i>{% endif %}</td>
+                            <td class="mailbox-date">{{ search.iden_date|date:"Y-m-d H:i" }}</td>
+                          </tr>
+                          {% endfor %}
+                          </tbody>
+{#                          Mail Searching end#}
+                        </table>
+
+              {% else %}
+                  <table class="table table-hover table-striped">
+                          <tbody>
+
+                           {% for viewIden in sentlist %}
+                          <tr>
+                            <td>
+                              <div class="">
+                                <input type="checkbox" value="" id=>
+                                <label for="check1"></label>
+                              </div>
+                            </td>
+                            <td class="mailbox-star"><a href="#" target="_blank">{% if not viewIden.viewed %} <i class="fa fa-envelope"></i>
+                            {% else %} <i class="fa fa-envelope-open"></i>{% endif %}</a></td>
+                            <td class="mailbox-name"><a href="{% url 'show-iden' viewIden.id %}" target="_blank">{{ viewIden.get_senderShop }}</a></td>
+                            <td class="mailbox-name"><a href="{% url 'show-iden' viewIden.id %}" target="_blank">{{ viewIden.get_receiverShop }}</a></td>
+                            <td class="mailbox-subject"><a href="{% url 'show-iden' viewIden.id %}" target="_blank"><b>{{ viewIden.subject }}</b></a></td>
+                            <td {% if viewIden.attachment %} class="mailbox-attachment"><i class="fas fa-paperclip"></i>{% endif %}</td>
+                            <td class="mailbox-date">{{ viewIden.iden_date|date:"d-M-Y, H:i" }}</td>
+                          </tr>
+                          {% endfor %}
+                          </tbody>
+                        </table>
+
+              {% endif %}
+
+                <!-- /.table -->
+              </div>
+            </div>
+              <!-- /.mail-box-messages -->
+            </div>
+
+            <!-- /.card-body -->
+            <div class="card-footer p-0">
+              <div class="mailbox-controls">
+                <!-- Check all button -->
+                <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="far fa-square"></i>
+                </button>
+                <div class="btn-group">
+                  <button type="button" class="btn btn-default btn-sm"><i class="far fa-trash-alt"></i></button>
+                  <button type="button" class="btn btn-default btn-sm"><i class="fas fa-reply"></i></button>
+                  <button type="button" class="btn btn-default btn-sm"><i class="fas fa-share"></i></button>
+                </div>
+                <!-- /.btn-group -->
+                <button type="button" class="btn btn-default btn-sm" onclick="history.go(0)"><i class="fas fa-sync-alt"></i></button>
+                <div class="float-right">
+                  1-50/200
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-default btn-sm"><i class="fas fa-chevron-left"></i></button>
+                    <button type="button" class="btn btn-default btn-sm"><i class="fas fa-chevron-right"></i></button>
+                  </div>
+                  <!-- /.btn-group -->
+                </div>
+                <!-- /.float-right -->
+              </div>
+            </div>
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <div class="float-right d-none d-sm-block">
+      <b>Version</b> 3.0.4
+    </div>
+    <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">Monirul Islam</a>.</strong> All rights
+    reserved.
+  </footer>
+
+</div>
+<!-- ./wrapper -->
+ {% endblock %}
+
+<!-- jQuery -->
+<script src={%  static 'style_idn/js/jquery.min.js' %}></script>
+
+{##for Ajax Search#}
+{#<script src={%  static 'js/jquery/ajax.js' %}></script>#}
+
+<!-- AdminLTE App -->
+<script src={% static 'js/jquery/adminlte.min.js'  %}></script>
+
+<!--Bootstrap JS -->
+<script src={% static 'style_idn/vendor/jquery/jquery.slim.min.js' %}></script>
+<script src={% static 'style_idn/vendor/bootstrap/js/bootstrap.bundle.min.js' %}></script>
+
+# This is script for specific section reload
+<script src="http://code.jquery.com/jquery-latest.js"> </script>
+  <script type="text/javascript">
+    setInterval("my_function();",6000);
+    function my_function(){
+      $('#refresh').load(location.href + ' #refress');
+    }
+
+    setInterval("my_function1();",5000);
+    function my_function1(){
+      $('#refresh1').load(location.href + ' #refress1');
+    }
+  </script>
+</body>
+</html>
