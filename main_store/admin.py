@@ -1,7 +1,7 @@
 from django.contrib import admin
 from main_store.models import ProductStore, ProductIssue, ProductCodeName, MrrIssue, MaterialList, BinCardInfo, \
     MaterialQuality, QualitySign,  QualitySignDgm, QualitySignStore, QualitySignShop, SignOicStore, DemoNameCode, \
-    QualityItemList, JobNumber, DemoJobNumber
+    QualityItemList, JobNumber, DemoJobNumber, Indent, IndentMaterials
 import csv
 from django.http import HttpResponse
 
@@ -139,6 +139,19 @@ class JobNumberAdmin(admin.ModelAdmin):
 
         return response
 
+
+class IndentAdmin(admin.ModelAdmin):
+    list_display = ('sender_shop', 'receiver_shop', 'indent_date', 'job_no', 'priority', 'indent_no', 'indent_officer',
+                  'sign_indent_offcr', 'oic_store', 'sign_oic_store')
+    search_fields = ('indent_no', 'indent_date', 'job_no')
+
+
+class IndentMaterialsAdmin(admin.ModelAdmin):
+    list_display = ('item_description', 'item_code', 'item_requirement', 'item_unit', 'current_balance', 'prev_buy',
+                    'expect_time')
+    search_fields = ('item_code', 'item_description')
+
+
 # Register your models here.
 admin.site.register(ProductStore, ProductStoreAdmin)
 admin.site.register(ProductIssue, ProductIssueAdmin)
@@ -164,3 +177,7 @@ admin.site.register(DemoJobNumber, DemoJobNumberAdmin)
 
 # Demo Code and Name Registration Here.....
 admin.site.register(DemoNameCode, DemoCodeNameAdmin)
+
+# Indent and indent materials Registration here........
+admin.site.register(Indent, IndentAdmin)
+admin.site.register(IndentMaterials, IndentMaterialsAdmin)

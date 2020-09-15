@@ -1,6 +1,6 @@
 from django import forms
 from .models import ProductIssue, ProductStore, ProductCodeName, MrrIssue, MaterialList, MaterialQuality, \
-    QualityItemList, JobNumber
+    QualityItemList, JobNumber, Indent, IndentMaterials
 
 
 class ProductStoreForm(forms.ModelForm):
@@ -58,3 +58,17 @@ class JobNumberForm(forms.ModelForm):
     class Meta:
         model = JobNumber
         fields = ['job_no', 'job_name', 'job_type']
+
+
+class IndentForm(forms.ModelForm):
+    class Meta:
+        model = Indent
+        fields = ['sender_shop', 'receiver_shop', 'indent_date', 'job_no', 'priority', 'indent_no', 'indent_officer',
+                  'sign_indent_offcr', 'oic_store', 'sign_oic_store']
+
+
+class IndentMaterialsForm(forms.ModelForm):
+    class Meta:
+        model = IndentMaterials
+        fields = ['item_description', 'item_code', 'item_requirement', 'item_unit', 'current_balance', 'prev_buy',
+                  'expect_time']

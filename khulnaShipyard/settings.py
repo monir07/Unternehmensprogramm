@@ -26,9 +26,9 @@ SECRET_KEY = ')7su9+s&na90b2j_7!*%f+#jdgj^!md8cbs)x#j&t1efu-0thn'
 DEBUG = True
 
 # Local Network Hosting Purpose.
-# ALLOWED_HOSTS = ['172.16.16.115']
+# ALLOWED_HOSTS = ['192.168.10.114']
 
-ALLOWED_HOSTS = ['172.16.16.115']
+# ALLOWED_HOSTS = ['172.16.16.115']
 
 
 # Application definition

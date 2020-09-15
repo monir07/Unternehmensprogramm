@@ -279,7 +279,7 @@ class QualityItemList(models.Model):
     quality_no = models.CharField(max_length=100, blank=True, null=True)
 
     def __unicode__(self):
-        return self.mrr_no
+        return self.store_code
 
 
 class DemoNameCode(models.Model):
@@ -290,3 +290,32 @@ class DemoNameCode(models.Model):
 
     def __str__(self):
         return self.p_name
+
+
+class Indent(models.Model):
+    sender_shop = models.CharField(max_length=100, blank=True, null=True)
+    receiver_shop = models.CharField(max_length=100, blank=True, null=True)
+    indent_date = models.DateField(auto_now_add=False, auto_now=False, blank=True, null=True)
+    job_no = models.CharField(max_length=100, blank=True, null=True)
+    priority = models.CharField(max_length=100, blank=True, null=True)
+    indent_no = models.CharField(max_length=100, blank=True, null=True)
+    indent_officer = models.CharField(max_length=100, blank=True, null=True)
+    sign_indent_offcr = models.ImageField(upload_to='images/main_store/',blank=True, null=True)
+    oic_store = models.CharField(max_length=100, blank=True, null=True)
+    sign_oic_store = models.ImageField(upload_to='images/main_store/',blank=True, null=True)
+
+    def __str__(self):
+        return self.indent_no
+
+
+class IndentMaterials(models.Model):
+    item_description = models.CharField(max_length=200, blank=True, null=True)
+    item_code = models.CharField(max_length=50, blank=True, null=True)
+    item_requirement = models.CharField(max_length=50, blank=True, null=True)
+    item_unit = models.CharField(max_length=50, blank=True, null=True)
+    current_balance = models.CharField(max_length=50, blank=True, null=True)
+    prev_buy = models.CharField(max_length=50, blank=True, null=True)
+    expect_time = models.CharField(max_length=50, blank=True, null=True)
+
+    def __str__(self):
+        return self.item_code

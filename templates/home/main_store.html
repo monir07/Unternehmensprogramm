@@ -118,7 +118,12 @@
                                         </li>
                                         <li><a href="#">Form <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
-                                                <li><a href="{% url 'compose_indent' %}" target="_blank">Compose Indent</a></li>
+                                                <li><a href="#">Indent</a>
+                                                    <ul class="submenu2">
+		                                                <li><a href="{% url 'indent_form' %}" target="_blank">Compose Indent</a></li>
+                                                        <li><a href="{% url 'indent_box' %}" target="_blank">Indent Box</a></li>
+		                                            </ul>
+                                                </li>
                                                 <li><a href="#">MRR</a>
                                                     <ul class="submenu2">
 		                                                <li><a href="{% url 'compose_mrr' %}" target="_blank">Compose MRR</a></li>

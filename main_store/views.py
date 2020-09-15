@@ -6,9 +6,9 @@ from django.contrib import messages
 from django.db.models import Q
 # Create your views here.
 from main_store.models import ProductStore, ProductIssue, ProductCodeName, MaterialList, BinCardInfo, MaterialQuality, \
-    MrrIssue, QualityItemList, JobNumber
+    MrrIssue, QualityItemList, JobNumber, Indent, IndentMaterials
 from main_store.form import ProductIssueForm, ProductStoreForm, MaterialListForm, MrrIssueForm, MaterialQualityForm, \
-    QualityItemListForm
+    QualityItemListForm, IndentForm, IndentMaterialsForm
 from datetime import date, datetime
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
@@ -119,16 +119,6 @@ def ajax_search(request):
 
 
 # search using ajax end here...........
-
-
-def indent_compose(request):
-    if request.method == 'POST':
-        supplier = request.POST.get('supplier_name')
-        redirect('main_store')
-    context = {
-
-    }
-    return render(request, "main_store/indent_form.html", context)
 
 
 def job_number(request):  # Job Number & name show in dropdown list.
@@ -859,4 +849,30 @@ def data_entry_statement(request):
     context = {
 
     }
-    return render(request, 'main_store/data_entry_statement.html', context)    
+    return render(request, 'main_store/data_entry_statement.html', context)
+
+
+def indent_form(request):
+    submitted = False
+    if request.method == 'POST':
+        if '_save' in request.POST:
+            indent_no = request.POST.get('indent_no')
+            form = IndentForm(request.POST, request.FILES)
+            if form.is_valid():
+                form.save()
+                submitted = True
+                print("Data Save Indent Form")
+            else:
+                print('Form not valid!')
+    context = {
+        'submitted': submitted
+    }
+    return render(request, "main_store/indent_form.html", context)
+
+
+def indent_box(request):
+    indent_list = Indent.objects.all()
+    context = {
+        'indent_list': indent_list
+    }
+    return render(request, "main_store/mailbox_indent.html", context)

@@ -18,8 +18,22 @@
         <b>QF-PUR-01</b>
     </div>
 <!--End Header information-->
+{% if submitted %}
+     <div class="row" id="paint">
+              <div class="col-lg-12 text-center"><br>
+                <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+                    <p><b>Indent Send Successfully!</b></p>
+              </div>
+     </div>
+        <script>
+             setTimeout(function(){
+                window.location.href = "{% url 'indent_form'%}";
+             }, 2500);
+        </script>
+{% else %}
+<div class="col-md-12"> <br> </div>
 
-<!--Start Main Form      -->
+<!--Start Indent Form      -->
 <div class="custom-form indent_body">
  <form action="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
@@ -40,7 +54,7 @@
               </div>
               <div class="form-group col-md-3">
                     <label class=""> তারিখ </label>
-                    <input type="date" class="form-control"  name="iden_date" id="id_iden_date" placeholder="তারিখ...">
+                    <input type="date" class="form-control"  name="indent_date" id="id_indent_date" placeholder="তারিখ...">
               </div>
         </div>
 <!--sender part end-->
@@ -48,8 +62,8 @@
        <div class="row border-bottom">
 
               <div class="form-group col-md-6">
-                <label for="receiver_shop">জব নংঃ </label> <!-- include here multiple keyword for multiple select-->
-                <select class="selectpicker form-control" data-live-search="true" title="নির্বচন করুন" data-live-search-placeholder="Search" data-actions-box="true" name="receiver_shop" id="id_receiver_shop">
+                <label for="job_no">জব নংঃ </label> <!-- include here multiple keyword for multiple select-->
+                <select class="selectpicker form-control" data-live-search="true" title="নির্বচন করুন" data-live-search-placeholder="Search" data-actions-box="true" name="job_no" id="id_job_no">
                       <option value="1">নব নির্মান- ৭৩৬</option>
                       <option value="2">নব নির্মান- ৭৩৬</option>
                       <option value="3">নব নির্মান- ৭৩৬</option>
@@ -59,47 +73,47 @@
               </div>
 
            <div class="form-group col-md-3">
-                <label for="receiver_shop">অগ্রাধিকার</label>
-                <select class="selectpicker form-control" data-live-search="true" title="নির্বচন করুন" data-live-search-placeholder="Search" data-actions-box="true" name="receiver_shop" id="id_receiver_shop">
-                      <option value="1">জরুরী</option>
-                      <option value="2">সাধারন</option>
+                <label for="priority">অগ্রাধিকার</label>
+                <select class="selectpicker form-control" data-live-search="true" title="নির্বচন করুন" data-live-search-placeholder="Search" data-actions-box="true" name="priority" id="id_priority">
+                      <option value="urgent">জরুরী</option>
+                      <option value="general">সাধারন</option>
                 </select>
            </div>
            <div class="form-group col-md-3">
-                <label for="receiver_shop">ফরমায়েশ নম্বর</label>
-                <input type="text" class="form-control"  name="job_no" id="id_job_no" maxlength="100"  placeholder="ফরমায়েশ নম্বর">
+                <label for="indent_no">ফরমায়েশ নম্বর</label>
+                <input type="text" class="form-control"  name="indent_no" id="id_indent_no" maxlength="100"  placeholder="ফরমায়েশ নম্বর">
            </div>
        </div>
 <!--Header part end-->
 <!-- Material list start -->
         <div class="row">
             <div class="form-group col-md-5">
-              <label for="attention"> মালামালের বিবরণ</label>
-              <input type="text" class="form-control"  name="job_no" id="id_job_no" maxlength="100"  placeholder="বিবরণ">
+              <label for="item_description"> মালামালের বিবরণ</label>
+              <input type="text" class="form-control"  name="item_description" id="iditem_description" maxlength="100"  placeholder="বিবরণ">
             </div>
             <div class="form-group col-md-1">
-              <label for="attention">ভাণ্ডার সংকেত</label>
-              <input type="text" class="form-control"  name="job_no" id="id_job_no" maxlength="100"  placeholder="পার্টস কোড">
+              <label for="item_code">ভাণ্ডার সংকেত</label>
+              <input type="text" class="form-control"  name="item_code" id="id_item_code" maxlength="100"  placeholder="পার্টস কোড">
             </div>
             <div class="form-group col-md-1">
-              <label for="attention">বর্তমান চাহিদা</label>
-              <input type="text" class="form-control"  name="job_no" id="id_job_no" maxlength="100"  placeholder="চাহিদা পরিমান">
+              <label for="item_requirement">বর্তমান চাহিদা</label>
+              <input type="text" class="form-control"  name="item_requirement" id="id_item_requirement" maxlength="100"  placeholder="চাহিদা পরিমান">
             </div>
             <div class="form-group col-md-1">
-              <label for="attention">একক</label>
-              <input type="text" class="form-control"  name="job_no" id="id_job_no" maxlength="100"  placeholder="দ্রব্যের একক">
+              <label for="item_unit">একক</label>
+              <input type="text" class="form-control"  name="item_unit" id="id_item_unit" maxlength="100"  placeholder="দ্রব্যের একক">
             </div>
             <div class="form-group col-md-1">
-              <label for="attention">বর্তমান মজুদ </label>
-              <input type="text" class="form-control"  name="job_no" id="id_job_no" maxlength="100"  placeholder="বর্তমান মজুদ আছে ">
+              <label for="current_balance">বর্তমান মজুদ </label>
+              <input type="text" class="form-control"  name="current_balance" id="id_current_balance" maxlength="100"  placeholder="বর্তমান মজুদ আছে ">
             </div>
             <div class="form-group col-md-2">
-              <label for="attention">গত ক্রয়ের বরাত</label>
-              <input type="text" class="form-control"  name="job_no" id="id_job_no" maxlength="100"  placeholder="পুর্বের ক্রয়ের বিবরন">
+              <label for="prev_buy">গত ক্রয়ের বরাত</label>
+              <input type="text" class="form-control"  name="prev_buy" id="id_prev_buy" maxlength="100"  placeholder="পুর্বের ক্রয়ের বিবরন">
             </div>
             <div class="form-group col-md-1">
-              <label for="attention">প্রাপ্তির সময়</label>
-              <input type="text" class="form-control"  name="job_no" id="id_job_no" maxlength="100"  placeholder="প্রাপ্তির সময়">
+              <label for="expect_time">প্রাপ্তির সময়</label>
+              <input type="text" class="form-control"  name="expect_time" id="id_expect_time" maxlength="100"  placeholder="প্রাপ্তির সময়">
             </div>
             <div class="col-md-2" style="padding-bottom: 15px;">
                 <button type="button" class="btn btn-primary">Add new</button>
@@ -123,14 +137,14 @@
                   <div class="row">
                       <div class="col-lg-12">
                           <label class=""> ফরমায়েশ কর্মকর্তা </label>
-                          <input type="text" class="form-control" name="ref" id="id_ref" placeholder="নাম ও পদবী..." maxlength="100">
+                          <input type="text" class="form-control" name="indent_officer" id="id_indent_officer" placeholder="নাম ও পদবী..." maxlength="100">
                       </div>
                       <div class="col-lg-12">
                           <label class=""> সাক্ষর  </label>
                           <div class="input-group">
-                                <input type="file" class="custom-file-input" name="sign" id="id_sign">
+                                <input type="file" class="custom-file-input" name="sign_indent_offcr" id="id_sign_indent_offcr">
                                 <div class="input-group-prepend">
-                                    <label class="custom-file-label" for="id_sign">নির্বাচন করুন...</label>
+                                    <label class="custom-file-label" for="id_sign_indent_offcr">নির্বাচন করুন...</label>
                                 </div>
                           </div>
                        </div>
@@ -141,12 +155,12 @@
                   <div class="row">
                       <div class="col-lg-12">
                           <label class=""> ওআইসি প্রধান ভান্ডার </label>
-                          <input type="text" class="form-control" name="ref" id="id_ref" placeholder="নাম ও পদবী..." maxlength="100">
+                          <input type="text" class="form-control" name="oic_store" id="id_oic_store" placeholder="নাম ও পদবী..." maxlength="100">
                       </div>
                       <div class="col-lg-12">
                           <label class=""> সাক্ষর  </label>
                           <div class="input-group">
-                                <input type="file" class="custom-file-input" name="sign" id="id_sign">
+                                <input type="file" class="custom-file-input" name="sign_oic_store" id="id_sign_oic_store">
                                 <div class="input-group-prepend">
                                     <label class="custom-file-label" for="id_sign">নির্বাচন করুন...</label>
                                 </div>
@@ -172,5 +186,6 @@
   </form>
 <!--End Main Form-->
 </div>
+{% endif %}
 </div>
 {% endblock %}
