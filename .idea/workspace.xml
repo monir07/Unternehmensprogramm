@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="354e97ba-880d-4e5f-8933-92a33f9ba041" name="Default Changelist" comment="" />
+    <list default="true" id="354e97ba-880d-4e5f-8933-92a33f9ba041" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/khulnaShipyard/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/khulnaShipyard/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_store/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_store/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/main_store/Existing_product_store_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/main_store/Existing_product_store_form.html" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,14 +65,11 @@
     <option name="UPDATE_TYPE" value="MERGE" />
   </component>
   <component name="ProjectId" id="1bdPtQad63wGIIjkdRfyoZVW2GH" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
-    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/main_store" />
+    <property name="last_opened_file_path" value="C:/Program Files/Git/bin/git.exe" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -76,17 +80,17 @@
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="F:\Django_Project\khulnaShipyard\templates\main_store" />
-      <recent name="F:\Django_Project\khulnaShipyard\static\media" />
-      <recent name="F:\Django_Project\khulnaShipyard" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/templates/main_store" />
       <recent name="F:\Django_Project\production_server\khulnaShipyard\templates\main_store" />
       <recent name="F:\Django_Project\production_server\khulnaShipyard\main_store" />
       <recent name="F:\Django_Project\khulnaShipyard\templates\main_store" />
       <recent name="F:\Django_Project\khulnaShipyard\main_store" />
+      <recent name="F:\Django_Project\khulnaShipyard\static" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\Django_Project\khulnaShipyard\templates\main_store" />
+      <recent name="F:\Django_Project\khulnaShipyard\static\media" />
+      <recent name="F:\Django_Project\khulnaShipyard" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -215,7 +219,6 @@
       <workItem from="1600070792798" duration="15174000" />
       <workItem from="1600140050529" duration="7513000" />
       <workItem from="1600170683057" duration="250000" />
-      <workItem from="1600183799169" duration="7854000" />
     </task>
     <task id="LOCAL-00001" summary="Timber group name change">
       <created>1600170883332</created>
@@ -224,14 +227,7 @@
       <option name="project" value="LOCAL" />
       <updated>1600170883332</updated>
     </task>
-    <task id="LOCAL-00002" summary="Indent Form and Indent Mail Box created!">
-      <created>1600193723788</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1600193723788</updated>
-    </task>
-    <option name="localTasksCounter" value="3" />
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -251,9 +247,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Timber group name change" />
-    <MESSAGE value="Indent Form and Indent Mail Box created!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Indent Form and Indent Mail Box created!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Timber group name change" />
   </component>
 </project>

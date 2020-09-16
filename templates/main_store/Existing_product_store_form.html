@@ -320,6 +320,28 @@ function searchSuccess(data, textStatus, jqXHR) {
     $('#id_item_under_group').val(group).text();  <!-- show vlaue of input-type in id_item_unit -->
 
 }
+// Restricts input for the given textbox to the given inputFilter allow only integer.
+(function($) {
+  $.fn.inputFilter = function(inputFilter) {
+    return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function() {
+      if (inputFilter(this.value)) {
+        this.oldValue = this.value;
+        this.oldSelectionStart = this.selectionStart;
+        this.oldSelectionEnd = this.selectionEnd;
+      } else if (this.hasOwnProperty("oldValue")) {
+        this.value = this.oldValue;
+        this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+      } else {
+        this.value = "";
+      }
+    });
+  };
+}(jQuery));
+
+// Install input filters.
+$("#id_item_quantity").inputFilter(function(value) {
+  return /^-?\d*$/.test(value); });
+
 
 </script>
 
