@@ -28,7 +28,7 @@ DEBUG = True
 # Local Network Hosting Purpose.
 # ALLOWED_HOSTS = ['192.168.10.114']
 
-# ALLOWED_HOSTS = ['172.16.16.115']
+ALLOWED_HOSTS = ['172.16.16.115']
 
 
 # Application definition
@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'manhour',
     'main_store',
-    'xlrd', # for xlsc data parcing...
+    'xlrd',  # for Excel data parcing...
 ]
 
 MIDDLEWARE = [

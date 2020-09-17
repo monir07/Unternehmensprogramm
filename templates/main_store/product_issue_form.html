@@ -53,7 +53,7 @@
                           <div class="form-group row col-md-6">
                                 <label for="job_no" style="padding-top:7px; " class="col-md-3"> কার্যাদেশ নংঃ </label>
 {#                                <input type="text" class="form-control col-md-9"  name="job_no" id="id_job_no" placeholder="কার্যাদেশ নং...">#}
-                                <select class="selectpicker form-control col-md-9" data-live-search="true" title="কার্যাদেশ নং..." data-live-search-placeholder="Search" data-actions-box="true" name="job_no" id="id_job_no"  multiple="multiple" data-max-options="1" >
+                                <select class="selectpicker form-control col-md-9" required data-live-search="true" title="কার্যাদেশ নং..." data-live-search-placeholder="Search" data-actions-box="true" name="job_no" id="id_job_no"  multiple="multiple" data-max-options="1" >
 
                                     {% if all_job %}
                                         <optgroup label="নব নির্মান">
@@ -180,7 +180,7 @@
                           </div>
                           <div class="form-group row col-md-6">
                                 <label for="issuer_name" style="padding-top:7px; " class="col-md-3">ইস্যুকারীঃ</label>
-                                <select class="selectpicker form-control col-md-9" data-live-search="true" title="নির্বচন করুন" data-live-search-placeholder="Search" data-actions-box="true" name="issuer_name" id="id_issuer_name"  multiple="multiple" data-max-options="1" >
+                                <select class="selectpicker form-control col-md-9" required data-live-search="true" title="নির্বচন করুন" data-live-search-placeholder="Search" data-actions-box="true" name="issuer_name" id="id_issuer_name"  multiple="multiple" data-max-options="1" >
                                           <option value="Motahar">মোতাহার</option>
                                           <option value="Alam">আলম</option>
                                           <option value="Arafat">আরাফাত</option>
