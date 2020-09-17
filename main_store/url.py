@@ -25,6 +25,8 @@ urlpatterns = [
 
     path('job_number', job_number, name='job_number'),
 
+    path('commercial', commercial, name='commercial'),
+
     
     # Demo code and name
     path('demo_code_input', demo_code_input, name='demo_code_input'),

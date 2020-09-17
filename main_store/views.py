@@ -209,17 +209,18 @@ def product_store(request):
                     form.save()
                     submitted = True
                     print("Save is OK")
-                    # This code below for product save  to  product name and code table.
-                    form2 = ProductCodeName()
-                    try:
-                        target_item_p_name = ProductCodeName.objects.get(
-                            Q(code=p_code))  # Item Target in Product name &
-                        if target_item_p_name:
-                            target_item_p_name.location = request.POST.get('item_location')
-                            target_item_p_name.min_balance = request.POST.get('min_balance')
-                            target_item_p_name.item_picture = request.FILES.get('item_picture')
-                            target_item_p_name.save()
-                    except ObjectDoesNotExist:
+                else:
+                    print("Form is not Valid")
+                # This code below for product save  to  product name and code table.
+                form2 = ProductCodeName()
+                try:
+                    target_item_p_name = ProductCodeName.objects.get(Q(code=p_code))  # Item Target in Product name &
+                    if target_item_p_name:
+                        target_item_p_name.location = request.POST.get('item_location')
+                        target_item_p_name.min_balance = request.POST.get('min_balance')
+                        target_item_p_name.item_picture = request.FILES.get('item_picture')
+                        target_item_p_name.save()
+                except ObjectDoesNotExist:
                         form2.code = request.POST.get('item_code')
                         form2.name = request.POST.get('item_name')
                         form2.item_unit = request.POST.get('item_unit')
@@ -229,25 +230,21 @@ def product_store(request):
                         form2.item_under_group = request.POST.get('item_group')
                         form2.save()
                         print("Product Name and code save.")
-                        # Bin Card table data inserted here...
-                    bincard_form = BinCardInfo()
-                    bincard_form.ref_no = request.POST.get('ref_no')
-                    bincard_form.item_code = request.POST.get('item_code')
-                    bincard_form.item_name = request.POST.get('item_name')
-                    buy_date = request.POST.get('buy_onDate')
-                    if buy_date:
-                        bincard_form.date = buy_date
-                    bincard_form.job_no = request.POST.get('buy_underJob')
-                    bincard_form.entry_qty = request.POST.get('item_quantity')
-                    # bincard_form.issued_qty  = request.POST.get('buy_onDate')
-                    bincard_form.receiver = request.POST.get('item_user')
-                    bincard_form.balance = request.POST.get('item_quantity')
-                    bincard_form.min_balance = request.POST.get('min_balance')
-                    bincard_form.item_unit = request.POST.get('item_unit')
-                    bincard_form.save()
-                    print("Bin Card Save!")
-                else:
-                    print("Form is not Valid")
+                # Bin Card table data inserted here...
+                bincard_form = BinCardInfo()
+                bincard_form.ref_no = request.POST.get('ref_no')
+                bincard_form.item_code = request.POST.get('item_code')
+                bincard_form.item_name = request.POST.get('item_name')
+                bincard_form.date = request.POST.get('buy_onDate')
+                bincard_form.job_no = request.POST.get('buy_underJob')
+                bincard_form.entry_qty = request.POST.get('item_quantity')
+                # bincard_form.issued_qty  = request.POST.get('buy_onDate')
+                bincard_form.receiver = request.POST.get('item_user')
+                bincard_form.balance = request.POST.get('item_quantity')
+                bincard_form.min_balance = request.POST.get('min_balance')
+                bincard_form.item_unit = request.POST.get('item_unit')
+                bincard_form.save()
+                print("Bin Card Save!")
     context = {
         'submitted': submitted,
         'error_msg': error_msg,
@@ -878,4 +875,4 @@ def indent_box(request):
     context = {
         'indent_list': indent_list
     }
-    return render(request, "main_store/mail_box.html", context)
+    return render(request, "main_store/mailbox_indent.html", context)
