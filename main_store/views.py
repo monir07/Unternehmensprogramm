@@ -876,3 +876,10 @@ def indent_box(request):
         'indent_list': indent_list
     }
     return render(request, "main_store/mailbox_indent.html", context)
+
+
+def commercial(request):
+    context = {
+
+    }
+    return render(request, 'home/commercial_local.html', context)
