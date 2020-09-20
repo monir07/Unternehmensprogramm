@@ -1,0 +1,134 @@
+{% extends 'main_store/mail_box.html' %}
+{% load staticfiles %}
+{% block content %}
+<!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">KHULNA SHIPYARD LIMITED</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'main_store' %}">Home
+              <span class="sr-only">(current)</span>
+            </a>
+         </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Services</a>
+          </li>
+         <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+<!--Nav Bar End here..... -->
+<div class="container" id="refress"> <!--Mail Box Table with side bar start here.... -->
+
+        <div class="row">
+        <div class="col-md-12">
+            <h4>Welcome to Costing Section</h4>
+        </div>
+        <div class="col-md-3">
+
+        </div>
+        <div class="col-md-9">
+
+        </div>
+        <div class="col-md-12"> <br> </div>
+        <div class="col-md-3">
+            <div class="list-group" id="list-tab" role="tablist">
+                <a class="btn btn-primary" href="{% url 'indent_form' %}" role="button">Compose</a>
+{#                <a href = "{% url 'indent_form' %}" class="list-group-item list-group-item-action active text-center" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Compose</a>#}
+            </div>
+        <br>
+            <ul class="list-group nav1">
+                  <li class="list-group-item d-flex justify-content-between align-items-center active">
+                    MAIL-BOX
+                  </li>
+                  <a href="{% url 'indent_list' %}" ><li  class="list-group-item d-flex justify-content-between align-items-center hover_nav">
+                    <i class="fas fa-inbox"></i><b>INDENT</b>
+                    <span class="badge badge-pill badge-danger">{{ count_indent }}</span>
+                  </li></a>
+
+                  <a href="{% url 'mrr_list' %}"><li class="list-group-item d-flex justify-content-between align-items-center hover_nav">
+                   <i class="far fa-envelope"></i><b>MRR</b>
+                    <span class="badge badge-pill badge-danger">{{ count_mrr }}</span>
+                  </li></a>
+
+                  <a href=""><li class="list-group-item d-flex justify-content-between align-items-center hover_nav">
+                    <i class="far fa-file-alt"></i> <b>OUTBOX</b>
+                    <span class="badge badge-pill badge-danger">1</span>
+                  </li></a>
+            </ul>
+        </div>
+        <div class="col-md-9">
+        <table id="example" class="table table-hover dt-responsive nowrap" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>.</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th>.</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  {% if indent_list %}
+                    {% for indent in indent_list %}
+                    <tr>
+                        <td class="mailbox-star">{% if not mrr.viewed %} <span class="badge badge-danger">New</span>
+                            {% else %} <i class="fa fa-envelope-open"></i>{% endif %}</td>
+
+                             <td class="mailbox-name"><a href="" target="_blank">Indent No- {{ indent.indent_no }}</a></td>
+                             <td class="mailbox-date"> {{ indent.indent_date }}</td>
+
+                              <td class="mailbox-subject">{{ indent.priority }}</td>
+
+                              <td class="mailbox-attachment"><!-- <i class="fas fa-paperclip"></i> --> Job No- {{ indent.job_no }}</td>
+
+                              <td class="mailbox-date">{{ indent.indent_date }}</td>
+                              <td class="mailbox-date">{{ indent.indent_date }}</td>
+                              <td class="mailbox-date">{{ indent.indent_date }}</td>
+                              <td class="mailbox-date">{{ indent.indent_date }}</td>
+                    </tr>
+                    {% endfor %}
+                  {% endif %}
+
+
+                  {% if mrr_list %}
+                    {% for mrr in mrr_list %}
+                    <tr>
+                        <td class="mailbox-star">{% if not mrr.viewed %} <span class="badge badge-danger">New</span>
+                            {% else %} <i class="fa fa-envelope-open"></i>{% endif %}</td>
+
+                             <td class="mailbox-name"><a href="{% url 'mrr_show_costing' mrr.mrr_no  %}" onClick="clickRefresh()" target="_blank">MRR No- {{ mrr.mrr_no }}</a></td>
+
+                              <td class="mailbox-subject"><a href="{% url 'mrr_show_costing' mrr.mrr_no  %}" target="_blank">{{ mrr.mrr_date }}</a></td>
+
+                              <td class="mailbox-attachment"><!-- <i class="fas fa-paperclip"></i> --> PO No- {{ mrr.po_no }}</td>
+
+                              <td class="mailbox-date"> {{ mrr.po_date }}</td>
+                              <td class="mailbox-date">Quantity- {{ mrr.po_qty }}</td>
+                              <td class="mailbox-date">Chalan No- {{ mrr.challan_no }}</td>
+                              <td class="mailbox-date">{{ mrr.supplier_name }}</td>
+                              <td class="mailbox-date">{{ mrr.supplier_addrs }}</td>
+                    </tr>
+                    {% endfor %}
+                  {% endif %}
+                </tbody>
+            </table>
+        </div>
+        </div>
+</div>
+{% endblock %}

@@ -24,5 +24,7 @@ urlpatterns = [
     path(r'', include('iden.url')),
     path('', include('manhour.url')),
     path('', include('main_store.url')),
+    path('', include('commercial_local.url')),
+    path('', include('costing.url')),
 
 ]
