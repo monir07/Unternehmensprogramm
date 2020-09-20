@@ -94,6 +94,7 @@ class MrrIssue(models.Model):
 
     ledgerer = models.CharField(max_length=100, blank=True, null=True)
     leadger_date = models.DateField(auto_now_add=False, auto_now=False, blank=True, null=True)
+    viewed = models.BooleanField(default=False)
 
 
 # MRR Material List database
@@ -303,6 +304,7 @@ class Indent(models.Model):
     sign_indent_offcr = models.ImageField(upload_to='images/main_store/',blank=True, null=True)
     oic_store = models.CharField(max_length=100, blank=True, null=True)
     sign_oic_store = models.ImageField(upload_to='images/main_store/',blank=True, null=True)
+    viewed = models.BooleanField(default=False)
 
     def __str__(self):
         return self.indent_no

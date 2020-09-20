@@ -1,6 +1,6 @@
 from django.contrib import admin
 from main_store.models import ProductStore, ProductIssue, ProductCodeName, MrrIssue, MaterialList, BinCardInfo, \
-    MaterialQuality, QualitySign,  QualitySignDgm, QualitySignStore, QualitySignShop, SignOicStore, DemoNameCode, \
+    MaterialQuality, QualitySign, QualitySignDgm, QualitySignStore, QualitySignShop, SignOicStore, DemoNameCode, \
     QualityItemList, JobNumber, DemoJobNumber, Indent, IndentMaterials
 import csv
 from django.http import HttpResponse
@@ -8,9 +8,9 @@ from django.http import HttpResponse
 
 class ProductStoreAdmin(admin.ModelAdmin):
     list_display = ('item_code', 'item_name', 'ref_no', 'item_quantity', 'item_unit', 'item_location', 'buy_underJob',
-                    'buy_onDate', 'expire_date', 'min_balance', 'item_user',  'item_picture', 'recorder', 'remarks',
+                    'buy_onDate', 'expire_date', 'min_balance', 'item_user', 'item_picture', 'recorder', 'remarks',
                     'item_under_group')
-    search_fields = ('item_code', 'item_name', 'ref_no', 'buy_underJob', 'buy_onDate', 'item_user',  'recorder',
+    search_fields = ('item_code', 'item_name', 'ref_no', 'buy_underJob', 'buy_onDate', 'item_user', 'recorder',
                      'remarks', 'item_under_group')
     actions = ["export_as_csv"]
 
@@ -70,7 +70,7 @@ class MrrIssueAdmin(admin.ModelAdmin):
                     'supplier_addrs', 'challan_no', 'challan_date', 'how_delivary', 'transport_form_no',
                     'where_delivery', 'delivery_date', 'quality_shop', 'quality_date', 'quality_form_no',
                     'bin_card_writer', 'written_date', 'oic_store', 'oic_sign', 'qc_name', 'java_no', 'java_date',
-                    'ledgerer', 'leadger_date')
+                    'ledgerer', 'leadger_date', 'viewed')
 
 
 class MaterialListAdmin(admin.ModelAdmin):
@@ -142,7 +142,7 @@ class JobNumberAdmin(admin.ModelAdmin):
 
 class IndentAdmin(admin.ModelAdmin):
     list_display = ('sender_shop', 'receiver_shop', 'indent_date', 'job_no', 'priority', 'indent_no', 'indent_officer',
-                  'sign_indent_offcr', 'oic_store', 'sign_oic_store')
+                    'sign_indent_offcr', 'oic_store', 'sign_oic_store', 'viewed')
     search_fields = ('indent_no', 'indent_date', 'job_no')
 
 
