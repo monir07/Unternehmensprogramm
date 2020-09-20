@@ -15,7 +15,7 @@
 		<link href='http://fonts.googleapis.com/css?family=Playfair+Display:400,700italic,700,400italic' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Playfair+Display:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-		<link rel="shortcut icon" type="image/x-icon" href={% static 'Commercial/img/favicon.ico' %}>
+		<link rel="shortcut icon" type="image/x-icon" href={% static 'Home/img/fabicon.png' %}>
 		<!-- countdown.css ======================== -->
         <link rel="stylesheet" href={%  static 'Commercial/css/jquery.countdown.css'%}>
 		<!-- bootstrap.min.css ======================== -->
@@ -76,19 +76,19 @@
 										<ul id="nav">
 											<li class="current"><img style="width: 127px;" alt="Logo" src={% static 'Commercial/img/logo.png' %} />
 											</li>
-											<li class="current"><a href="index.html"><span><i class="fa fa-home"></i></span>Home <i class="fa fa-arrow-circle-o-right"></i></a>
+											<li class="current"><a href="#"><span><i class="fa fa-home"></i></span>Home <i class="fa fa-arrow-circle-o-right"></i></a>
 												<ul class="sub-menu">
 													<li><a href="#">Home page 2</a></li>
 													<li><a href="#">Home page 3</a></li>
 												</ul>
 											</li>
-											<li class="current"><a href="index.html"><span><i class="fa fa-home"></i></span>Home <i class="fa fa-arrow-circle-o-right"></i></a>
+											<li class="current"><a href="#"><span><i class="fa fa-home"></i></span>Home <i class="fa fa-arrow-circle-o-right"></i></a>
 												<ul class="sub-menu">
 													<li><a href="#">Home page 2</a></li>
 													<li><a href="#">Home page 3</a></li>
 												</ul>
 											</li>
-											<li class="current"><a href="index.html"><span><i class="fa fa-home"></i></span>Home <i class="fa fa-arrow-circle-o-right"></i></a>
+											<li class="current"><a href="#"><span><i class="fa fa-home"></i></span>Home <i class="fa fa-arrow-circle-o-right"></i></a>
 												<ul class="sub-menu">
 													<li><a href="#">Home page 2</a>
 														<ul class="sub-menu2">
@@ -144,7 +144,7 @@
 												<!---MEGAMENU END-->
 											</li>
 											<li><a href=""><span><i class="fa fa-leaf"></i></span>Featured</a></li>
-											<li><a href=""><span><i class="fa fa-envelope"></i></span>Contact</a></li>
+											<li><a href="{% url 'mail_list' %}" target="_blank"><span><i class="fa fa-envelope"></i></span>Mail-Box</a></li>
 										</ul>						
 									</nav>
 								</div>
@@ -159,21 +159,21 @@
 						<div class="mobile-menu">
 							<ul id="mobile-menu">
 								<li>
-									<a href="index.html">Home</a>
+									<a href="#">Home</a>
 									<ul>
 										<li><a href="#">Home page 2</a></li>
 										<li><a href="#">Home page 3</a></li>
 									</ul>
 								</li>
 								<li>
-									<a href="index.html">Home</a>
+									<a href="#">Home</a>
 									<ul>
 										<li><a href="#">Home page 2</a></li>
 										<li><a href="#">Home page 3</a></li>
 									</ul>
 								</li>
 								<li>
-									<a href="index.html">Home</a>
+									<a href="#">Home</a>
 									<ul>
 										<li><a href="#">Home page 2</a>
 											<ul>

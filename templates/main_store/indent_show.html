@@ -1,0 +1,238 @@
+{% extends 'main_store/starter.html' %}
+{% load staticfiles %}
+{% load static %}
+{% block content %}
+  <!-- Page Content -->
+<div class="container">
+
+<div class="col-md-12"><br> </div>
+    <div class="row">
+        <div class="col-md-3 text-center">
+            <img src="{% static 'img/ksy_logo.png' %}" class="logo" alt="...">
+        </div>
+          <div class="col-md-6 text-center">
+            <h1 class = "font-weight-normal">খুলনা শিপইয়ার্ড লিমিটেড</h1>
+            <h4 class = "font-weight-light"> বাংলাদেশ নৌ-বাহিনী, খুলনা </h4>
+            <h3 class = "font-weight-normal"><u> ফরমায়েশ পত্র</u> </h3>
+          </div>
+        <b>QF-PUR-01</b>
+    </div>
+
+    <div class="col-md-12"><br> </div>
+
+ <!--Header part start-->
+ <div class="row border-bottom">
+<!-- Header Part start here -->
+            <div class="col-md-12 row">
+                <label class="col-md-2">অগ্রাধিকারঃ  <b>{{ target_mrr.po_no }}</b></label>
+                <label class="col-md-2"> </label>
+                <label class="col-md-2">indent No: <b>{{ target_mrr.po_qty }}</b></label>
+                <label class="col-md-2" dateFont>তারিখঃ <b style="font-family: SutonnyMJ;font-size: 19px;">{{ target_mrr.po_date|date:"d- m- Y" }}</b></label>
+            </div>
+            <div class="col-md-12 row">
+                <label class="col-md-12">সমীপে বাণিজ্যিক শাখাঃ অনুগ্রহ  পূর্বক ........................ কাজের জন্য নিম্নলিখিত দ্রব্যাদি
+                    ক্রয় করুন। (০১ হতে ০৮ পর্যন্ত কলাম প্রধান ভাণ্ডার, পুর্বের ক্রয় মোতাবেক মূল্য কষ্টিং শাখা, বিশেষ ক্রয়ের ক্ষেত্রে প্রস্তুতকারী প্রতিষ্ঠান/ অন্যান্য উৎসমূল্য চাহিদাকারী বিভাগ
+                    এবং নগদ ক্রয়ের ক্ষেত্রে স্থানীয় বাজার মূল্য বাণিজ্যিক শাখা কর্তিক প্রদান করতে হবে। )</label>
+            </div>
+
+            <div class="col-md-12 row">
+                <label class="col-md-12">সরবরাহকারীর ঠিকানাঃ <b>{{ target_mrr.supplier_addrs }}</b></label>
+            </div>
+
+            <div class="col-md-12 row">
+                <label class="col-md-8">সরবরাহকারীর চালান / প্যাকিং লিস্ট নংঃ<b> {{ target_mrr.challan_no }}</b></label>
+                <label class="col-md-4">তারিখঃ <b style="font-family: SutonnyMJ;font-size: 19px;">{{ target_mrr.challan_date|date:"d- m- Y" }}</b></label>
+            </div>
+
+            <div class="col-md-12 row">
+                <label class="col-md-8">কিভাবে সরবরাহ হয়েছেঃ <b>{{ target_mrr.how_delivary }}</b></label>
+                <label class="col-md-4">যানবাহন রশিদ নংঃ <b>{{ target_mrr.transport_form_no }}</b></label>
+            </div>
+            <div class="col-md-12 row">
+                <label class="col-md-8">কোথায় সরবরাহ হয়েছেঃ <b>{{ target_mrr.where_delivery }}</b></label>
+                <label class="col-md-4">তারিখঃ <b style="font-family: SutonnyMJ;font-size: 19px;">{{ target_mrr.delivery_date|date:"d- m- Y" }}</b></label>
+            </div>
+<!-- Header Part end here -->
+
+<!-- Material list start here -->
+            <table class="table table-bordered table-hover">
+                  <thead class=" ">
+                    <tr>
+                      <th rowspan="2" class="col-md-4 text-center align-middle" >বিবরন</th>
+                      <th rowspan="2" class="col-md-1 text-center align-middle">অবস্থান</th>
+                      <th rowspan="2" class="col-md-1 text-center align-middle" > অংশ নং</th>
+                      <th rowspan="2" class="col-md-2 text-center align-middle">ভাণ্ডার সংকেত নং</th>
+                      <th rowspan="2" class="col-md-1 text-center align-middle">পরিমান</th>
+                      <th rowspan="2" class="col-md-1 text-center align-middle">একক</th>
+                      <th colspan="2" class="col-md-2 text-center align-middle">মূল্য নির্ধারন শাখা ব্যাবহারের জন্য</th>
+                    </tr>
+                    <tr>
+                        <th class="text-center align-middle">দর</th>
+                        <th class="text-center align-middle">মোট মূল্য</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for materials in target_material_list %}
+                    <tr>
+                      <td class="align-middle" >{{ materials.material_des }}</td>
+                      <td class="text-center align-middle">{{ materials.material_location }}</td>
+                      <td class="text-center align-middle" > {{ materials.material_part_no }}</td>
+                      <td class="text-center align-middle">{{ materials.store_code }}</td>
+                      <td class="text-center align-middle">{{ materials.material_qty }}</td>
+                      <td class="text-center align-middle">{{ materials.material_unit }}</td>
+                      <td class="text-center align-middle">For Costing</td>
+                      <td class="text-center align-middle">For Costing</td>
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+            </table>
+
+
+<!-- Material list end here -->
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <label id="showDes"></label>
+                <ul id="search-results">
+
+                </ul>
+            </div>
+        </div>
+
+
+<!--     Start Table Design-->
+        <table class="table-responsive"> <!--        Start footer part Design-->
+         <table class="table">
+
+         <thead>
+            <tr>
+                <th class="col-md-4"></th>
+                <th class="col-md-3"></th>
+                <th class="col-md-2"></th>
+                <th class="col-md-3"></th>
+            </tr>
+        </thead>
+
+          <tbody class="table-bordered">
+            <tr>
+              <td scope="row">
+                  <div class="row">
+                      <div class="col-md-12">
+                          <label for="quality_shop"> গৃহীত ও পরীক্ষিতঃ {{ target_mrr.quality_shop }}</label>
+                      </div>
+
+                      <div class="col-md-12">
+                          <label for="quality_date"> তারিখঃ <b style="font-family: SutonnyMJ;font-size: 19px;">{{ target_mrr.quality_date|date:"d- m- Y" }}</b></label>
+                      </div>
+
+                      <div class="col-md-12">
+                          <label for="quality_form_no"> দ্রব্যমান পরীক্ষা নংঃ {{ target_mrr.quality_form_no }}</label>
+                       </div>
+                      <div class="col-md-12">
+                          <label for="bin_card_writer"> বিন কার্ড লিপিবদ্ধকারীঃ {{ target_mrr.bin_card_writer }}</label>
+                      </div>
+                      <div class="col-md-12">
+                          <label for="written_date"> তারিখঃ <b style="font-family: SutonnyMJ;font-size: 19px;">{{ target_mrr.written_date|date:"d- m- Y" }}</b></label>
+                      </div>
+                  </div>
+              </td>
+
+              <td>
+                  <div class="row">
+                      <div class="col-md-12"><br></div>
+                      <div class="col-md-12 text-center">
+                          <img style="width: 120px; height: 60px;" src="{% get_media_prefix %}{{ target_mrr.oic_sign }}">
+                      </div>
+                      <div class="col-md-12 text-center">
+                          <label class="">ওআইসি প্রধান ভান্ডার  </label>
+                       </div>
+                  </div>
+              </td>
+              <td>
+                  <div class="row">
+                      <div class="col-md-12">
+                          <label for="qc_name"> মূল্যায়িত দ্বারাঃ {{ target_mrr.qc_name }}</label>
+                      </div>
+                      <div class="col-md-12">
+                          <label for="java_no"> জাভা/চেভা নংঃ {{ target_mrr.java_no }}</label>
+                      </div>
+                      <div class="col-md-12">
+                          <label for="java_date"> তারিখঃ <b style="font-family: SutonnyMJ;font-size: 19px;">{{ target_mrr.java_date|date:"d- m- Y" }}</b></label>
+                      </div>
+                  </div>
+              </td>
+              </td>
+              <td>
+                  <div class="row">
+                      <div class="col-md-12">
+
+                          <label for="ledgerer"> ক্ষতিয়ান নথিভূক্তকারীঃ {{ target_mrr.ledgerer }}  </label>
+                      </div>
+                      <div class="col-md-12">
+                          <label for="leadger_date"> তারিখঃ <b style="font-family: SutonnyMJ;font-size: 19px;">{{ target_mrr.leadger_date|date:"d- m- Y" }}</b></label>
+                      </div>
+                  </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </table>
+<!--     Table Design end-->
+
+  </div>
+
+  <script>
+            $('#id_sign').on('change',function(){
+                //get the file name
+                var fileName = $(this).val();
+                //replace the "Choose a file" label
+                $(this).next('.custom-file-label').html(fileName);
+            });
+
+            {#Date Time input using jquery#}
+            $(function () {
+                    $("#id_mrr_date").datetimepicker({
+                      format: 'm/d/Y H:i',
+                    });
+                  });
+            {#Real time search by jquery#}
+
+            $('#id_mrr_date').keyup(function () {
+              $('#id_po_no').text($(this).val());
+            });
+
+{#Auto Complete using other input type#}
+
+            $("#id_mrr_no_first").keyup(function(){
+                update();
+            });
+
+            function update() {
+              $("#id_po_no").val($('#id_mrr_no_first').val());
+            }
+{# Submit  specific input type data onclick        #}
+  $(function () {
+    $('#id_mrr_no_first').keyup(function () {
+
+        $.ajax({
+            type: "POST",
+            url: "ajax_search",
+            data: {
+                'search_text' : $('#id_mrr_no_first').val(),
+                'csrfmiddlewaretoken' : $("input[name = csrfmiddlewaretoken]").val()
+            },
+            success: searchSuccess,
+            dataType: 'html'
+        });
+
+    });
+
+});
+
+function searchSuccess(data, textStatus, jqXHR) {
+    $('#search-results').html(data); <!-- show vlaue of html code this format-->
+    $('#id_supplier_name').val(data); <!-- show vlaue of input type this format-->
+}
+  </script>
+{% endblock %}

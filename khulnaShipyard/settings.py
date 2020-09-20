@@ -28,7 +28,7 @@ DEBUG = True
 # Local Network Hosting Purpose.
 # ALLOWED_HOSTS = ['192.168.10.114']
 
-ALLOWED_HOSTS = ['172.16.16.115']
+# ALLOWED_HOSTS = ['172.16.16.115']
 
 
 # Application definition
@@ -41,11 +41,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Newly Installed app start here.
-    'iden',
+
+    # Shop Name start here.
+    'iden', 'manhour',
+    'main_store',
+    'commercial_local', 'costing',
+
+    # Building Package Start here.
     'ckeditor',
     'ckeditor_uploader',
-    'manhour',
-    'main_store',
     'xlrd',  # for Excel data parcing...
 ]
 
