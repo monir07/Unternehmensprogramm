@@ -142,13 +142,13 @@ class JobNumberAdmin(admin.ModelAdmin):
 
 class IndentAdmin(admin.ModelAdmin):
     list_display = ('sender_shop', 'receiver_shop', 'indent_date', 'job_no', 'priority', 'indent_no', 'indent_officer',
-                    'sign_indent_offcr', 'oic_store', 'sign_oic_store', 'viewed')
+                    'sign_indent_offcr', 'oic_store', 'sign_oic_store', 'viewed', 'remarks')
     search_fields = ('indent_no', 'indent_date', 'job_no')
 
 
 class IndentMaterialsAdmin(admin.ModelAdmin):
     list_display = ('item_description', 'item_code', 'item_requirement', 'item_unit', 'current_balance', 'prev_buy',
-                    'expect_time')
+                    'expect_time', 'indent_no')
     search_fields = ('item_code', 'item_description')
 
 

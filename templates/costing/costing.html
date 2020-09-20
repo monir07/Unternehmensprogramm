@@ -1,4 +1,5 @@
 {% load staticfiles %}
+
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -82,10 +83,10 @@
 													<li><a href="#">Home page 3</a></li>
 												</ul>
 											</li>
-											<li class="current"><a href="#"><span><i class="fa fa-home"></i></span>Home <i class="fa fa-arrow-circle-o-right"></i></a>
+											<li class="current"><a href="#"><span><i class="fa fa-envelope"></i></span>Mail-Box <i class="fa fa-arrow-circle-o-right"></i></a>
 												<ul class="sub-menu">
-													<li><a href="#">Home page 2</a></li>
-													<li><a href="#">Home page 3</a></li>
+													<li><a href="{% url 'mrr_list' %}">MRR-Box</a></li>
+													<li><a href="{% url 'indent_list' %}">Indent-Box</a></li>
 												</ul>
 											</li>
 											<li class="current"><a href="#"><span><i class="fa fa-home"></i></span>Home <i class="fa fa-arrow-circle-o-right"></i></a>
@@ -144,7 +145,7 @@
 												<!---MEGAMENU END-->
 											</li>
 											<li><a href=""><span><i class="fa fa-leaf"></i></span>Featured</a></li>
-											<li><a href="{% url 'mail_list' %}" target="_blank"><span><i class="fa fa-envelope"></i></span>Mail-Box</a></li>
+											<li><a href="#" target="_blank"><span><i class="fa fa-envelope"></i></span>Mail-Box</a></li>
 										</ul>						
 									</nav>
 								</div>

@@ -25,7 +25,7 @@ urlpatterns = [
 
     path('job_number', job_number, name='job_number'),
 
-    path('commercial', commercial, name='commercial'),
+    # path('commercial', commercial, name='commercial'),
 
     
     # Demo code and name

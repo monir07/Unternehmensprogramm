@@ -8,4 +8,5 @@ urlpatterns = [
     path('costing/indent_list', indent_box, name='indent_list'),
     path('mrr_show/costing/<mrr_no>/', mrr_show, name='mrr_show_costing'),
     path('costing/mrr_list', mrr_box, name='mrr_list'),
+    path('costing/indent_show/<indent_no>/', indent_show, name='indent_show_costing'),
 ]

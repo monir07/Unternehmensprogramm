@@ -3,7 +3,7 @@
 {% load static %}
 {% block content %}
   <!-- Page Content -->
-<div class="container">
+<div class="container-fluid">
 
 <div class="col-md-12"><br> </div>
     <div class="row">
@@ -21,11 +21,11 @@
     <div class="col-md-12"><br> </div>
 
  <!--Header part start-->
- <div class="row border-bottom">
+ <div class="row">
 <!-- Header Part start here -->
             <div class="col-md-12 row">
                 <label class="col-md-2">অগ্রাধিকারঃ  <b>{{ target_mrr.po_no }}</b></label>
-                <label class="col-md-2"> </label>
+                <label class="col-md-6"> </label>
                 <label class="col-md-2">indent No: <b>{{ target_mrr.po_qty }}</b></label>
                 <label class="col-md-2" dateFont>তারিখঃ <b style="font-family: SutonnyMJ;font-size: 19px;">{{ target_mrr.po_date|date:"d- m- Y" }}</b></label>
             </div>
@@ -34,54 +34,60 @@
                     ক্রয় করুন। (০১ হতে ০৮ পর্যন্ত কলাম প্রধান ভাণ্ডার, পুর্বের ক্রয় মোতাবেক মূল্য কষ্টিং শাখা, বিশেষ ক্রয়ের ক্ষেত্রে প্রস্তুতকারী প্রতিষ্ঠান/ অন্যান্য উৎসমূল্য চাহিদাকারী বিভাগ
                     এবং নগদ ক্রয়ের ক্ষেত্রে স্থানীয় বাজার মূল্য বাণিজ্যিক শাখা কর্তিক প্রদান করতে হবে। )</label>
             </div>
-
-            <div class="col-md-12 row">
-                <label class="col-md-12">সরবরাহকারীর ঠিকানাঃ <b>{{ target_mrr.supplier_addrs }}</b></label>
-            </div>
-
-            <div class="col-md-12 row">
-                <label class="col-md-8">সরবরাহকারীর চালান / প্যাকিং লিস্ট নংঃ<b> {{ target_mrr.challan_no }}</b></label>
-                <label class="col-md-4">তারিখঃ <b style="font-family: SutonnyMJ;font-size: 19px;">{{ target_mrr.challan_date|date:"d- m- Y" }}</b></label>
-            </div>
-
-            <div class="col-md-12 row">
-                <label class="col-md-8">কিভাবে সরবরাহ হয়েছেঃ <b>{{ target_mrr.how_delivary }}</b></label>
-                <label class="col-md-4">যানবাহন রশিদ নংঃ <b>{{ target_mrr.transport_form_no }}</b></label>
-            </div>
-            <div class="col-md-12 row">
-                <label class="col-md-8">কোথায় সরবরাহ হয়েছেঃ <b>{{ target_mrr.where_delivery }}</b></label>
-                <label class="col-md-4">তারিখঃ <b style="font-family: SutonnyMJ;font-size: 19px;">{{ target_mrr.delivery_date|date:"d- m- Y" }}</b></label>
-            </div>
 <!-- Header Part end here -->
 
 <!-- Material list start here -->
-            <table class="table table-bordered table-hover">
-                  <thead class=" ">
-                    <tr>
-                      <th rowspan="2" class="col-md-4 text-center align-middle" >বিবরন</th>
-                      <th rowspan="2" class="col-md-1 text-center align-middle">অবস্থান</th>
-                      <th rowspan="2" class="col-md-1 text-center align-middle" > অংশ নং</th>
-                      <th rowspan="2" class="col-md-2 text-center align-middle">ভাণ্ডার সংকেত নং</th>
-                      <th rowspan="2" class="col-md-1 text-center align-middle">পরিমান</th>
-                      <th rowspan="2" class="col-md-1 text-center align-middle">একক</th>
-                      <th colspan="2" class="col-md-2 text-center align-middle">মূল্য নির্ধারন শাখা ব্যাবহারের জন্য</th>
+            <table class="table table-bordered table-responsive table-hover">
+                  <thead>
+                    <tr class="">
+                      <th rowspan="2" class="text-center align-middle" >ক্রমিক নং</th>
+                      <th rowspan="2" class="col-md-4 text-center align-middle" >দ্রব্যাদির বিবরন</th>
+                      <th rowspan="2" class="col-md-1 text-center align-middle">ভাণ্ডার সংকেত</th>
+                      <th rowspan="2" class="text-center align-middle" > বর্তমান চাহিদা </th>
+                      <th rowspan="2" class="text-center align-middle"> একক</th>
+                      <th rowspan="2" class="col-md-1 text-center align-middle">বর্তমান মজুদের পরিমান</th>
+                      <th rowspan="2" class="col-md-1 text-center align-middle">গত ক্রয়ের বরাত </th>
+                      <th rowspan="2" class="col-md-1 text-center align-middle">প্রাপ্তির প্রত্যাশিত সময়</th>
+                      <th colspan="2" class="col-md-2 text-left align-middle" style="padding-left: 25px; font-size: 12px;">
+                            <li> <input type="checkbox" aria-label="Checkbox for following text input"> পুর্বের ক্রয় মোতাবেক মূল্য</li>
+                            <li> <input type="checkbox" aria-label="Checkbox for following text input"> স্থানীয় বাজারের মূল্য </li>
+                            <li> <input type="checkbox" aria-label="Checkbox for following text input"> প্রস্তুতকারী প্রতিষ্টান/অন্যান্য উৎস মূল্য</li>
+                      </th>
+                      <th rowspan="2" class="col-md-1 text-center align-middle">মন্তব্য</th>
                     </tr>
-                    <tr>
+                    <tr class="col-md-1 text-center align-middle ">
                         <th class="text-center align-middle">দর</th>
                         <th class="text-center align-middle">মোট মূল্য</th>
                     </tr>
+
+                    <tr style="font-family: SutonnyMJ" class="text-bold ">
+                        <th class="text-center">1</th>
+                        <th class="text-center">2</th>
+                        <th class="text-center">3</th>
+                        <th class="text-center">4</th>
+                        <th class="text-center">5</th>
+                        <th class="text-center">6</th>
+                        <th class="text-center">7</th>
+                        <th class="text-center">8</th>
+                        <th class="text-center">9</th>
+                        <th class="text-center">10</th>
+                        <th class="text-center">11</th>
+                    </tr>
                   </thead>
                   <tbody>
-                  {% for materials in target_material_list %}
-                    <tr>
-                      <td class="align-middle" >{{ materials.material_des }}</td>
-                      <td class="text-center align-middle">{{ materials.material_location }}</td>
-                      <td class="text-center align-middle" > {{ materials.material_part_no }}</td>
-                      <td class="text-center align-middle">{{ materials.store_code }}</td>
-                      <td class="text-center align-middle">{{ materials.material_qty }}</td>
-                      <td class="text-center align-middle">{{ materials.material_unit }}</td>
-                      <td class="text-center align-middle">For Costing</td>
-                      <td class="text-center align-middle">For Costing</td>
+                  {% for materials in material_list %}
+                    <tr class="">
+                      <td class="align-middle text-center" style="font-family: SutonnyMJ; font-size:20px">{{ forloop.counter }}</td> <!-- sl no -->
+                      <td class="align-middle" >{{ materials.item_description }}</td> <!-- item description -->
+                      <td class="align-middle" >{{ materials.item_code }}</td> <!-- store code -->
+                      <td class="align-middle" ><span id="itemQty" data-value="{{ materials.item_requirement }}"></span>{{ materials.item_requirement }}</td> <!-- requirement -->
+                      <td class="align-middle" >{{ materials.item_unit }}</td> <!-- unit -->
+                      <td class="align-middle" >{{ materials.current_balance }}</td> <!-- stock present -->
+                      <td class="align-middle" >{{ materials.prev_buy }}</td> <!-- previous stock -->
+                      <td class="align-middle" >{{ materials.expect_time }}</td> <!-- expected time -->
+                      <td class="align-middle" > <input style="width: 80px;" type="text" class="form-control" id="id_unit_price" aria-describedby="emailHelp" placeholder="Rate"></td> <!-- price rate -->
+                      <td class="align-middle" ><input style="width: 80px;" type="text" class="form-control" id="id_total_price" aria-describedby="emailHelp" placeholder="Total"></td> <!-- total rate -->
+                      <td class="align-middle" >প্লেটার শপের চাহিদা </td> <!-- remarks -->
                     </tr>
                   {% endfor %}
                   </tbody>
@@ -91,105 +97,190 @@
 <!-- Material list end here -->
 
 
-        <div class="row">
-            <div class="col-md-12">
-                <label id="showDes"></label>
-                <ul id="search-results">
-
-                </ul>
-            </div>
-        </div>
-
-
 <!--     Start Table Design-->
-        <table class="table-responsive"> <!--        Start footer part Design-->
-         <table class="table">
+        <table class="table table-borderless">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                              <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" name="oic_sign" id="id_oic_sign"/>
+                                        <label class="custom-file-label" for="id_sign">Choose file</label>
+                                    </div>
+                                    <button type="submit" name="_search" class="btn btn-outline-secondary"><i class="fa fa-upload"></i></button>
+                              </div>
+                              <label class=""> ফরমায়েশ কর্মকর্তা  </label>
+                        </td>
+                        <td>
+                              <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" name="oic_sign" id="id_oic_sign"/>
+                                        <label class="custom-file-label" for="id_sign">Choose file</label>
+                                    </div>
+                                     <button type="submit" name="_search" class="btn btn-outline-secondary"><i class="fa fa-upload"></i></button>
+                              </div>
+                              <label class=""> ওআইসি (প্রধান ভাণ্ডার)   </label>
+                        </td>
+                        <td>
+                              <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" name="oic_sign" id="id_oic_sign"/>
+                                        <label class="custom-file-label" for="id_sign">Choose file</label>
+                                    </div>
+                                    <button type="submit" name="_search" class="btn btn-outline-secondary"><i class="fa fa-upload"></i></button>
+                              </div>
+                              <label class="">  মূল্যায়নকৃত  </label><br>
+                              <label class="">  (ওআইসি কষ্টিং শাখা/ ওআইসি চাহিদাকারী শাখা/ <br>ওআইসি বানিজ্যিক শাখা) </label>
+                        </td>
+                        <td>
+                              <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" name="oic_sign" id="id_oic_sign"/>
+                                        <label class="custom-file-label" for="id_sign">Choose file</label>
+                                    </div>
+                                    <button type="submit" name="_search" class="btn btn-outline-secondary"><i class="fa fa-upload"></i></button>
+                              </div>
+                              <label class=""> ওআইসি (ফাইনান্স)  </label><br>
+                              <label class=""> বাজেট তহবিলে বন্দোবন্ত আছে </label>
+                              <input type="checkbox" aria-label="Checkbox for following text input">
+                              <label class="">নাই</label>
+                              <input type="checkbox" aria-label="Checkbox for following text input">
 
-         <thead>
+                        </td>
+                        <td>
+                              <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" name="oic_sign" id="id_oic_sign"/>
+                                        <label class="custom-file-label" for="id_sign">Choose file</label>
+                                    </div>
+                                    <button type="submit" name="_search" class="btn btn-outline-secondary"><i class="fa fa-upload"></i></button>
+                              </div>
+                              <label class=""> হিসাব বিভাগীয় শাখা </label>
+                        </td>
+                    </tr>
+                </tbody>
+        </table>
+<!--     Table Design end-->
+        <table class="table table-responsive">
+            <thead>
+                <tr>
+                  <th scope="col">বানিজ্যিক শাখার মন্তব্য/সুপারিশঃ </th>
+                </tr>
+              </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <label>নগদ/স্থানীয় ক্রয়ঃ দফা নংঃ ........................ প্রাক্কলিত মূল্য টাকা ........................ ভ্যাট/অন্যান্য বাবদ টাকা .................. মোট টাকা ............... ... (কথায়ঃ ..................... মাত্র) </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>প্রস্তুতকারী প্রতিষ্ঠান হতে সরাসরি ক্রয়ঃ দফা নং ..................... প্রস্তুতকারী প্রতিষ্ঠান.................. মোট টাকা ... ..................... (কথায়ঃ ....................................... মাত্র) </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>সিমীত/ তাৎক্ষনিক দরপত্রঃ দফা নংঃ ......... ........................... </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>বিজ্ঞপ্তি দরপত্রঃ দফা নং .................................  বিজ্ঞপ্তি পত্রিকায় প্রকাশনা বাবদ আর্থিক বিজড়ন টাকা ... ........................... (কথায়ঃ ........................................... মাত্র) </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>অন্যান্য .................................................................................................................................... </label>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+        <table class="table text-center table-borderless">
+          <thead>
             <tr>
-                <th class="col-md-4"></th>
-                <th class="col-md-3"></th>
-                <th class="col-md-2"></th>
-                <th class="col-md-3"></th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+              <th scope="col"></th>
             </tr>
-        </thead>
-
-          <tbody class="table-bordered">
+          </thead>
+          <tbody>
             <tr>
-              <td scope="row">
-                  <div class="row">
-                      <div class="col-md-12">
-                          <label for="quality_shop"> গৃহীত ও পরীক্ষিতঃ {{ target_mrr.quality_shop }}</label>
-                      </div>
-
-                      <div class="col-md-12">
-                          <label for="quality_date"> তারিখঃ <b style="font-family: SutonnyMJ;font-size: 19px;">{{ target_mrr.quality_date|date:"d- m- Y" }}</b></label>
-                      </div>
-
-                      <div class="col-md-12">
-                          <label for="quality_form_no"> দ্রব্যমান পরীক্ষা নংঃ {{ target_mrr.quality_form_no }}</label>
-                       </div>
-                      <div class="col-md-12">
-                          <label for="bin_card_writer"> বিন কার্ড লিপিবদ্ধকারীঃ {{ target_mrr.bin_card_writer }}</label>
-                      </div>
-                      <div class="col-md-12">
-                          <label for="written_date"> তারিখঃ <b style="font-family: SutonnyMJ;font-size: 19px;">{{ target_mrr.written_date|date:"d- m- Y" }}</b></label>
-                      </div>
-                  </div>
-              </td>
-
               <td>
-                  <div class="row">
-                      <div class="col-md-12"><br></div>
-                      <div class="col-md-12 text-center">
-                          <img style="width: 120px; height: 60px;" src="{% get_media_prefix %}{{ target_mrr.oic_sign }}">
-                      </div>
-                      <div class="col-md-12 text-center">
-                          <label class="">ওআইসি প্রধান ভান্ডার  </label>
-                       </div>
-                  </div>
+                <div class="input-group">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" name="oic_sign" id="id_oic_sign"/>
+                            <label class="custom-file-label" for="id_sign">স্বাক্ষর</label>
+                        </div>
+                </div>
+                <label class=""> ডিজিএম (সিএন্ডপি) </label>
               </td>
               <td>
-                  <div class="row">
-                      <div class="col-md-12">
-                          <label for="qc_name"> মূল্যায়িত দ্বারাঃ {{ target_mrr.qc_name }}</label>
-                      </div>
-                      <div class="col-md-12">
-                          <label for="java_no"> জাভা/চেভা নংঃ {{ target_mrr.java_no }}</label>
-                      </div>
-                      <div class="col-md-12">
-                          <label for="java_date"> তারিখঃ <b style="font-family: SutonnyMJ;font-size: 19px;">{{ target_mrr.java_date|date:"d- m- Y" }}</b></label>
-                      </div>
-                  </div>
-              </td>
+                <div class="input-group">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" name="oic_sign" id="id_oic_sign"/>
+                            <label class="custom-file-label" for="id_sign">স্বাক্ষর</label>
+                        </div>
+                </div>
+                <label class="">জি এম (এ্যাডমিন)</label>
               </td>
               <td>
-                  <div class="row">
-                      <div class="col-md-12">
-
-                          <label for="ledgerer"> ক্ষতিয়ান নথিভূক্তকারীঃ {{ target_mrr.ledgerer }}  </label>
-                      </div>
-                      <div class="col-md-12">
-                          <label for="leadger_date"> তারিখঃ <b style="font-family: SutonnyMJ;font-size: 19px;">{{ target_mrr.leadger_date|date:"d- m- Y" }}</b></label>
-                      </div>
-                  </div>
+                <div class="input-group">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" name="oic_sign" id="id_oic_sign"/>
+                            <label class="custom-file-label" for="id_sign">স্বাক্ষর</label>
+                        </div>
+                </div>
+                <label class=""> ব্যবস্থাপনা পরিচালক </label><br>
+                <input type="checkbox" aria-label="Checkbox for following text input">
+                <label class=""> অনুমোদিত</label>
+                <input type="checkbox" aria-label="Checkbox for following text input">
+                <label class=""> অনুমোদিত নহে</label>
               </td>
             </tr>
           </tbody>
         </table>
-      </table>
-<!--     Table Design end-->
-
   </div>
+</div>
+
+
+
+
+
 
   <script>
+
+      //  <!-- Auto Complete. Type one field auto complete another field with calculation -->
+            $("#id_unit_price").keyup(function(){
+                update();
+            });
+
+            function update() {
+                var unit_price = $('#id_unit_price').val();
+                var quantity = $("span#itemQty").data().value; // Collect Data from html attribute using JS. see spanTest id in HTML
+                var total = unit_price * quantity ;
+              $("#id_total_price").val(total);
+            }
+<!-- END Auto Complete. Type one field auto complete another field with calculation -->
+
+// input type file icon change.
             $('#id_sign').on('change',function(){
                 //get the file name
                 var fileName = $(this).val();
                 //replace the "Choose a file" label
                 $(this).next('.custom-file-label').html(fileName);
             });
-
+// END of input type icon change.....
             {#Date Time input using jquery#}
             $(function () {
                     $("#id_mrr_date").datetimepicker({
@@ -202,15 +293,7 @@
               $('#id_po_no').text($(this).val());
             });
 
-{#Auto Complete using other input type#}
 
-            $("#id_mrr_no_first").keyup(function(){
-                update();
-            });
-
-            function update() {
-              $("#id_po_no").val($('#id_mrr_no_first').val());
-            }
 {# Submit  specific input type data onclick        #}
   $(function () {
     $('#id_mrr_no_first').keyup(function () {
