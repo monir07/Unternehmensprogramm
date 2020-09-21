@@ -80,15 +80,29 @@
                       <td class="align-middle text-center" style="font-family: SutonnyMJ; font-size:20px">{{ forloop.counter }}</td> <!-- sl no -->
                       <td class="align-middle" >{{ materials.item_description }}</td> <!-- item description -->
                       <td class="align-middle" >{{ materials.item_code }}</td> <!-- store code -->
-                      <td class="align-middle" ><span id="itemQty" data-value="{{ materials.item_requirement }}"></span>{{ materials.item_requirement }}</td> <!-- requirement -->
+                      <td class="align-middle" ><span id="itemQty{{ forloop.counter }}" data-value="{{ materials.item_requirement }}"></span>{{ materials.item_requirement }}</td> <!-- requirement -->
                       <td class="align-middle" >{{ materials.item_unit }}</td> <!-- unit -->
                       <td class="align-middle" >{{ materials.current_balance }}</td> <!-- stock present -->
                       <td class="align-middle" >{{ materials.prev_buy }}</td> <!-- previous stock -->
                       <td class="align-middle" >{{ materials.expect_time }}</td> <!-- expected time -->
-                      <td class="align-middle" > <input style="width: 80px;" type="text" class="form-control" id="id_unit_price" aria-describedby="emailHelp" placeholder="Rate"></td> <!-- price rate -->
-                      <td class="align-middle" ><input style="width: 80px;" type="text" class="form-control" id="id_total_price" aria-describedby="emailHelp" placeholder="Total"></td> <!-- total rate -->
+                      <td class="align-middle" > <input style="width: 80px;" type="text" class="form-control" id="id_unit_price{{ forloop.counter }}" aria-describedby="emailHelp" placeholder="Rate"></td> <!-- price rate -->
+                      <td class="align-middle" ><input style="width: 80px;" type="text" class="form-control" id="id_total_price{{ forloop.counter }}" aria-describedby="emailHelp" placeholder="Total"></td> <!-- total rate -->
                       <td class="align-middle" >প্লেটার শপের চাহিদা </td> <!-- remarks -->
                     </tr>
+                      <script>
+                       //  <!-- Auto Complete. Type one field auto complete another field with calculation -->
+                            $("#id_unit_price{{ forloop.counter }}").keyup(function(){
+                                update{{ forloop.counter }}();
+                            });
+
+                            function update{{ forloop.counter }}() {
+                                var unit_price = $('#id_unit_price{{ forloop.counter }}').val();
+                                var quantity = $("span#itemQty{{ forloop.counter }}").data().value; // Collect Data from html attribute using JS. see spanTest id in HTML
+                                var total = unit_price * quantity ;
+                              $("#id_total_price{{ forloop.counter }}").val(total);
+                            }
+                      </script>
+                <!-- END Auto Complete. Type one field auto complete another field with calculation -->
                   {% endfor %}
                   </tbody>
             </table>
@@ -260,18 +274,7 @@
 
   <script>
 
-      //  <!-- Auto Complete. Type one field auto complete another field with calculation -->
-            $("#id_unit_price").keyup(function(){
-                update();
-            });
 
-            function update() {
-                var unit_price = $('#id_unit_price').val();
-                var quantity = $("span#itemQty").data().value; // Collect Data from html attribute using JS. see spanTest id in HTML
-                var total = unit_price * quantity ;
-              $("#id_total_price").val(total);
-            }
-<!-- END Auto Complete. Type one field auto complete another field with calculation -->
 
 // input type file icon change.
             $('#id_sign').on('change',function(){
