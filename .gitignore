@@ -1,2 +1,4 @@
 assets
 media
+db.sqlite3
+static_dirs
