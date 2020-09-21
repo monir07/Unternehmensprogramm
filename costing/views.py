@@ -78,3 +78,11 @@ def indent_show(request, indent_no):
         'count': count
     }
     return render(request, "main_store/indent_show.html", context)
+
+
+def check_git(request):  # This is costing Home page view.
+    context = {
+
+    }
+    return render(request, "costing/costing.html", context)
+
