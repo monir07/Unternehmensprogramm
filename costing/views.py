@@ -65,12 +65,16 @@ def mrr_show(request, mrr_no):
 
 
 def indent_show(request, indent_no):
+    count = 0
     target_indent = Indent.objects.get(indent_no=indent_no)
     target_indent.viewed = True
     target_indent.save()
     material_list = IndentMaterials.objects.filter(indent_no=indent_no)
+    for indent in material_list:
+        count += 1
     context = {
         'target_indent': target_indent,
-        'material_list': material_list
+        'material_list': material_list,
+        'count': count
     }
     return render(request, "main_store/indent_show.html", context)
