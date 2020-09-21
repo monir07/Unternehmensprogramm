@@ -28,7 +28,11 @@ DEBUG = True
 # Local Network Hosting Purpose.
 # ALLOWED_HOSTS = ['192.168.10.114']
 
-ALLOWED_HOSTS = ['172.16.16.115']
+<<<<<<< HEAD
+# ALLOWED_HOSTS = ['172.16.16.115']
+=======
+# ALLOWED_HOSTS = ['172.16.16.115']
+>>>>>>> 83fd2234e5e27752185ee62eee5c4312834ef7bc
 
 
 # Application definition

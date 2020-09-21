@@ -305,6 +305,7 @@ class Indent(models.Model):
     oic_store = models.CharField(max_length=100, blank=True, null=True)
     sign_oic_store = models.ImageField(upload_to='images/main_store/',blank=True, null=True)
     viewed = models.BooleanField(default=False)
+    remarks = models.CharField(max_length=100, blank=True, null=True)
 
     def __str__(self):
         return self.indent_no
@@ -318,6 +319,7 @@ class IndentMaterials(models.Model):
     current_balance = models.CharField(max_length=50, blank=True, null=True)
     prev_buy = models.CharField(max_length=50, blank=True, null=True)
     expect_time = models.CharField(max_length=50, blank=True, null=True)
+    indent_no = models.CharField(max_length=100, blank=True, null=True)
 
     def __str__(self):
         return self.item_code
